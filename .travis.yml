@@ -1,0 +1,13 @@
+language: python
+python: 3.6
+cache: pip
+install:
+  - pip install pipenv
+  - pipenv install
+script:
+  - pipenv run lektor build
+deploy:
+  provider: script
+  script: pipenv run lektor deploy ghpages
+  on:
+    branch: develop

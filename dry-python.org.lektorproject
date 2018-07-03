@@ -1,2 +1,5 @@
 [project]
 name = dry-python.org
+
+[servers.ghpages]
+target = ghpages+https://dry-python/dry-python.github.io
