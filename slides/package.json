@@ -1,0 +1,28 @@
+{
+    "name": "slides",
+    "version": "1.0.0",
+    "description": "Dry-Python Talk Slides",
+    "main": "index.js",
+    "author": "Artem Malyshev",
+    "license": "BSD-2-Clause",
+    "private": true,
+    "dependencies": {
+        "reveal.js": "^3.7.0"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-loader": "^7.1.5",
+        "babel-preset-env": "^1.7.0",
+        "css-loader": "^1.0.0",
+        "file-loader": "^1.1.11",
+        "pug": "^2.0.3",
+        "pug-cli": "^1.0.0-alpha6",
+        "style-loader": "^0.22.1",
+        "webpack": "^4.16.5",
+        "webpack-cli": "^3.1.0"
+    },
+    "scripts": {
+        "pug": "pug --out ../assets/static/slides/ index.pug",
+        "webpack": "webpack"
+    }
+}
