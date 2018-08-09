@@ -1,12 +1,87 @@
 doctype html
 html
   head
+    meta(charset='utf-8')
+    meta(name="description" content="Dry-Python")
+    meta(name="author" content="Artem Malyshev")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     title Test
   body
     .reveal
       .slides
         section
-          h1 Test
+          h1 Dry Python
+          h2 Artem Malyshev
+          h3 @proofit404
         section
-          h1 Test 1
+          h2 BIO
+          ul
+            li 5 years experience in Python
+            li Django Channels 1.0
+            li Dry Python
+        section
+          p picture from the Office Space
+          p enterprise company quick story
+          p code base like a house of the serial killer
+        section
+          p picture from the Silicon Valley
+          p startup company quick story
+        section
+          h2 Common problems
+          ul
+            li Ad-hoc solutions
+            li Mess in the code bases
+            li No time to fix anything
+        section
+          h2 Picture of the dayly meeting with a lot of sleepy, tired developers
+          p quick chat "we have a problem"
+        section
+          h2 Micro framework problems
+          p very long views
+          p too many "if" in one place
+          p you can't edit on line without breaking 5 other use cases of this view
+        section
+          h2 Macro framework problems
+          p method call flow charts from docs
+          p your code frequently intercahnge with framework code "zig zag picture"
+          p you will see blody method full of framework details right in between of your thoughts about busines logic
+        section
+          h2 Feature request
+          p looks like one sentence
+          p you need to "learn and interpret" your code
+        section
+          h2 Picture steakers on the way wont help if your code is crap
+        section
+          h2 This problems are framework agnostic, language agnostic and
+          p even does not relate to programming at all
+        section
+          h2 this is hell picture
+        section
+          h2 the only sollution we have for this is to write a clever code
+        section
+          h2 the last time I saw it was...
+        section
+          h2 in the meeting room :)
+          p where we discuss every aspect of the behavior in terms of the busines logic
+        section
+          h2 We describe it everything in the straightforward way
+          ul
+            li a
+            li b
+            li c
+            li d
+            li e
+        section
+          h2 Why not write code the same way
+          pre
+            code.
+              class Foo:
+                  def foo(self):
+                      self.a()
+                      self.b()
+                      self.c()
+                      self.d()
+                      self.e()
     script(src='bundle.js')
