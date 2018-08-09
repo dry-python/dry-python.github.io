@@ -46,7 +46,7 @@ html
           h2 Macro framework problems
           p method call flow charts from docs
           p your code frequently intercahnge with framework code "zig zag picture"
-          p you will see blody method full of framework details right in between of your thoughts about busines logic
+          p you will see blody method full of framework details right in between of your thoughts about business logic
         section
           h2 Feature request
           p looks like one sentence
@@ -64,24 +64,94 @@ html
           h2 the last time I saw it was...
         section
           h2 in the meeting room :)
-          p where we discuss every aspect of the behavior in terms of the busines logic
+          p where we discuss every aspect of the behavior in terms of the business logic
         section
           h2 We describe it everything in the straightforward way
+          h3 Renew subscription
           ul
-            li a
-            li b
-            li c
-            li d
-            li e
+            li check user profile
+            li check balance
+            li schedule payment
+            li enable service
+            li send notification
         section
           h2 Why not write code the same way
           pre
             code.
-              class Foo:
-                  def foo(self):
-                      self.a()
-                      self.b()
-                      self.c()
-                      self.d()
-                      self.e()
+              class Subscription:
+                  def renew(self):
+                      self.check_user_profile()
+                      self.check_balance()
+                      self.schedule_payment()
+                      self.enable_service()
+                      self.send_notification()
+        section
+          h2 It's called service layer
+        section
+          h2 And business transactions is the best way to write it
+          p (in my oppinion)
+          p A business transaction is a series of operations where any can fail and stop the processing
+        section
+          h2 Real life
+          pre
+            code.
+              Code without stories with control flow and wariables...
+        section
+          h2 Dry Python
+          img(src='https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png')
+        section
+          h2 Stories
+          pre
+            code.
+              from stories import story, argument
+
+              class Subscription:
+
+                  @story
+                  @argument('user')
+                  def renew(self):
+                      self.check_user_profile()
+                      self.check_balance()
+                      self.schedule_payment()
+                      self.enable_service()
+                      self.send_notification()
+        section
+          h2 Steps
+          pre
+            code.
+              from stories import Success, Failure
+
+              class Subscription:
+                  ...
+
+                  def check_user_profile(self):
+                      if not has_subscription(self.ctx.user):
+                          return Success()
+                      else:
+                          return Failure()
+
+                  def check_balance(self):
+                      ...
+        section
+          h2 Usage
+          pre
+            code.
+              class SubscribeView(view):
+
+                  def post(self, request):
+                      return Subscription().renew(request.user)
+        section
+          h2 Benefits
+        section
+          h2 Picture of the annotated context
+        section
+          h2 Picture of Py.Test report
+        section
+          h2 Picture of Sentry reporter
+        section
+          h2 Dependencies
+          p a way to integrate stories into existed frameworks without boilerplate
+        section
+          h2 Components
+          p server side reusable ui components
     script(src='bundle.js')
