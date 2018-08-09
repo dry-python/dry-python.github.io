@@ -1,0 +1,7 @@
+_model: page
+---
+title: Talks
+---
+body: [Readability matters](/static/slides/)
+---
+_discoverable: yes
