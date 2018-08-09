@@ -1,0 +1,20 @@
+* ---
+* point to web
+* common pains
+* permission, roles and tests with dry
+* mocks in unit tests
+* more about set of the libraries
+* ---
+* train to feet in 30 min
+* to long intro
+* point entrerprise -> startups
+* add code! maybe to intro
+* 125 line -> next slide traceback
+* boring intro
+* stories integrations should be more meaningful
+* viewflow comparison
+* add more about usage stories (more from intro)
+* where is response
+* mention asyncio integration
+* more stories less dependencies (in the features section)
+* remove components
