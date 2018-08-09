@@ -1,1 +1,33 @@
-<!DOCTYPE html><html><head><title>Test</title></head><body><div class="reveal"><div class="slides"><section><h1>Test</h1></section><section><h1>Test 1</h1></section></div></div><script src="bundle.js"></script></body></html>
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Test</title></head><body><div class="reveal"><div class="slides"><section><h1>Dry Python</h1><h2>Artem Malyshev</h2><h3>@proofit404</h3></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><p>picture from the Office Space</p><p>enterprise company quick story</p><p>code base like a house of the serial killer</p></section><section><p>picture from the Silicon Valley</p><p>startup company quick story</p></section><section><h2>Common problems</h2><ul><li>Ad-hoc solutions</li><li>Mess in the code bases</li><li>No time to fix anything</li></ul></section><section><h2>Picture of the dayly meeting with a lot of sleepy, tired developers</h2><p>quick chat "we have a problem"</p></section><section><h2>Micro framework problems</h2><p>very long views</p><p>too many "if" in one place</p><p>you can't edit on line without breaking 5 other use cases of this view</p></section><section><h2>Macro framework problems</h2><p>method call flow charts from docs</p><p>your code frequently intercahnge with framework code "zig zag picture"</p><p>you will see blody method full of framework details right in between of your thoughts about business logic</p></section><section><h2>Feature request</h2><p>looks like one sentence</p><p>you need to "learn and interpret" your code</p></section><section><h2>Picture steakers on the way wont help if your code is crap</h2></section><section><h2>This problems are framework agnostic, language agnostic and</h2><p>even does not relate to programming at all</p></section><section><h2>this is hell picture</h2></section><section><h2>the only sollution we have for this is to write a clever code</h2></section><section><h2>the last time I saw it was...</h2></section><section><h2>in the meeting room :)</h2><p>where we discuss every aspect of the behavior in terms of the business logic</p></section><section><h2>We describe it everything in the straightforward way</h2><h3>Renew subscription</h3><ul><li>check user profile</li><li>check balance</li><li>schedule payment</li><li>enable service</li><li>send notification</li></ul></section><section><h2>Why not write code the same way</h2><pre><code>class Subscription:
+    def renew(self):
+        self.check_user_profile()
+        self.check_balance()
+        self.schedule_payment()
+        self.enable_service()
+        self.send_notification()</code></pre></section><section><h2>It's called service layer</h2></section><section><h2>And business transactions is the best way to write it</h2><p>(in my oppinion)</p><p>A business transaction is a series of operations where any can fail and stop the processing</p></section><section><h2>Real life</h2><pre><code>Code without stories with control flow and wariables...</code></pre></section><section><h2>Dry Python</h2><img src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><h2>Stories</h2><pre><code>from stories import story, argument
+
+class Subscription:
+
+    @story
+    @argument('user')
+    def renew(self):
+        self.check_user_profile()
+        self.check_balance()
+        self.schedule_payment()
+        self.enable_service()
+        self.send_notification()</code></pre></section><section><h2>Steps</h2><pre><code>from stories import Success, Failure
+
+class Subscription:
+    ...
+
+    def check_user_profile(self):
+        if not has_subscription(self.ctx.user):
+            return Success()
+        else:
+            return Failure()
+
+    def check_balance(self):
+        ...</code></pre></section><section><h2>Usage</h2><pre><code>class SubscribeView(view):
+
+    def post(self, request):
+        return Subscription().renew(request.user)</code></pre></section></div></div><script src="bundle.js"></script></body></html>
