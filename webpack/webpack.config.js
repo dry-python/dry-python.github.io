@@ -3,10 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
-    entry: './index.js',
+    entry: '../slides/index.js',
     output: {
         path: path.resolve(__dirname, '../assets/static/slides/'),
         filename: 'bundle.js'
+    },
+    resolve: {
+        modules: [path.resolve(__dirname, 'node_modules')]
     },
     mode: 'production',
     devtool: 'source-map',
@@ -33,7 +36,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.pug'
+            template: '../slides/index.pug'
         })
     ]
 }

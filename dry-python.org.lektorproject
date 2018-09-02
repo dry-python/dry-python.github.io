@@ -3,3 +3,6 @@ name = dry-python.org
 
 [servers.ghpages]
 target = ghpages+https://dry-python/dry-python.github.io?cname=dry-python.org
+
+[packages]
+lektor-webpack-support = 0.5

@@ -1,7 +1,5 @@
 assets/static/slides/
-packages/slides/build
-packages/slides/dist
-slides/node_modules/
+node_modules/
 *.egg-info
 *.pyc
 *.pyo

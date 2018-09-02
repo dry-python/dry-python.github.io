@@ -1,8 +1,7 @@
 {
-    "name": "slides",
+    "name": "dry-python",
     "version": "1.0.0",
-    "description": "Dry-Python Talk Slides",
-    "main": "index.js",
+    "description": "Dry-Python Web Site",
     "author": "Artem Malyshev",
     "license": "BSD-2-Clause",
     "private": true,
@@ -22,8 +21,5 @@
         "style-loader": "^0.22.1",
         "webpack": "^4.16.5",
         "webpack-cli": "^3.1.0"
-    },
-    "scripts": {
-        "webpack": "webpack"
     }
 }
