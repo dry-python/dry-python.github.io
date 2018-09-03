@@ -1,6 +1,6 @@
-title: Welcome to dry-python.org!
+title: Make business logic first class citizen in your app.
 ---
 body:
 
-This is a basic demo website that shows how to use Lektor for a basic
-website with some pages.
+The easiest way to make your code simple to reason about.
+Dry-Python is a collection of libraries to help you to work with domain logic of your app.
