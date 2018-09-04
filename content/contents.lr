@@ -3,4 +3,26 @@ title: Make business logic first class citizen in your app.
 body:
 
 The easiest way to make your code simple to reason about.
+
 Dry-Python is a collection of libraries to help you to work with domain logic of your app.
+
+## Stories
+
+Define your business logic in one place.
+
+```python
+from stories import story, argument
+
+class PurchaseProduct:
+
+    @story
+    @argument('user')
+    @argument('product')
+    @argument('shipment_details')
+    def purchase(self):
+
+        self.create_order()
+        self.calculate_price()
+        self.request_payment()
+        self.notify_user()
+```
