@@ -28,8 +28,25 @@
     <div class="page">
         
     <h2>Make business logic first class citizen in your app.</h2>
-    <p>The easiest way to make your code simple to reason about.
-Dry-Python is a collection of libraries to help you to work with domain logic of your app.</p>
+    <p>The easiest way to make your code simple to reason about.</p>
+<p>Dry-Python is a collection of libraries to help you to work with domain logic of your app.</p>
+<h2>Stories</h2>
+<p>Define your business logic in one place.</p>
+<pre><code class="lang-python">from stories import story, argument
+
+class PurchaseProduct:
+
+    @story
+    @argument(&#39;user&#39;)
+    @argument(&#39;product&#39;)
+    @argument(&#39;shipment_details&#39;)
+    def purchase(self):
+
+        self.create_order()
+        self.calculate_price()
+        self.request_payment()
+        self.notify_user()
+</code></pre>
 
 
     </div>
