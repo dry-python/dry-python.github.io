@@ -26,3 +26,22 @@ class PurchaseProduct:
         self.request_payment()
         self.notify_user()
 ```
+
+## Dependencies
+
+Integrate it into frameworks you already use without boilerplate
+
+```python
+# views.py
+from dependencies import Injector
+from dependencies.contrib.django import view
+
+@view
+class PurchaseProductView(Injector):
+    post = PurchaseProduct.purchase.bind()
+
+# urls.py
+urlpatterns = [
+    path('purchase/', PurchaseProductView.as_view()),
+]
+```
