@@ -2,7 +2,6 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %} | dry-python.org</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -26,4 +25,6 @@
     <footer>
         &copy; Copyright 2018 by Artem Malyshev.
     </footer>
+    <!-- FIXME: Use MiniCssExtractPlugin Webpack plugin. -->
+    <script type="text/javascript" src="{{ '/static/slides/styles.js'|asseturl }}"></script>
 </body>

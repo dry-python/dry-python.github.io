@@ -3,10 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = {
-    entry: '../slides/index.js',
+    entry: {
+        slides: '../slides/index.js',
+        styles: './styles/main.css'
+    },
     output: {
         path: path.resolve(__dirname, '../assets/static/slides/'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     resolve: {
         modules: [path.resolve(__dirname, 'node_modules')]
@@ -17,7 +20,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader' ]
+                use: [ 'style-loader', 'css-loader', 'postcss-loader' ]
             },
             {
                 test: /\.js$/,
