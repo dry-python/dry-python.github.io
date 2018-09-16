@@ -40,7 +40,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: '../slides/index.pug'
+            template: '../slides/index.pug',
+            chunks: ['slides']
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'
