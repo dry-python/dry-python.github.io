@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader', 'postcss-loader' ]
+                use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader' ]
             },
             {
                 test: /\.js$/,
@@ -40,6 +41,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: '../slides/index.pug'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
         })
     ]
 }
