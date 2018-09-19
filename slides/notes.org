@@ -17,4 +17,3 @@
 * where is response
 * mention asyncio integration
 * more stories less dependencies (in the features section)
-* remove components
