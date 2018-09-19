@@ -21,7 +21,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [ 'style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader' ]
+                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
             },
             {
                 test: /\.js$/,
@@ -29,12 +29,12 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: 'file-loader'
-            },
-            {
                 test: /\.pug$/,
                 use: 'pug-loader'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|png|jpg)$/,
+                use: 'file-loader'
             }
         ]
     },
