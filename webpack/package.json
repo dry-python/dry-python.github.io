@@ -1,30 +1,30 @@
 {
-    "name": "dry-python",
-    "version": "1.0.0",
-    "description": "Dry-Python Web Site",
-    "author": "Artem Malyshev",
-    "license": "BSD-2-Clause",
-    "private": true,
-    "dependencies": {
-        "highlight.js": "^9.12.0",
-        "reveal.js": "^3.7.0",
-        "tailwindcss": "^0.6.5"
-    },
-    "devDependencies": {
-        "autoprefixer": "^9.1.5",
-        "babel-cli": "^6.26.0",
-        "babel-loader": "^7.1.5",
-        "babel-preset-env": "^1.7.0",
-        "css-loader": "^1.0.0",
-        "file-loader": "^1.1.11",
-        "html-webpack-plugin": "^3.2.0",
-        "mini-css-extract-plugin": "^0.4.2",
-        "postcss-loader": "^3.0.0",
-        "pug": "^2.0.3",
-        "pug-cli": "^1.0.0-alpha6",
-        "pug-loader": "^2.4.0",
-        "style-loader": "^0.22.1",
-        "webpack": "^4.16.5",
-        "webpack-cli": "^3.1.0"
-    }
+  "name": "dry-python",
+  "version": "1.0.0",
+  "description": "Dry-Python Web Site",
+  "author": "Artem Malyshev",
+  "license": "BSD-2-Clause",
+  "private": true,
+  "dependencies": {
+    "highlight.js": "^9.12.0",
+    "reveal.js": "^3.7.0",
+    "tailwindcss": "^0.6.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.1.5",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.2",
+    "postcss-loader": "^3.0.0",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "pug-loader": "^2.4.0",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  }
 }

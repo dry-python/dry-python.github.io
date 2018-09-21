@@ -8,10 +8,10 @@ import Reveal from 'reveal.js/js/reveal.js'
 hljs.initHighlightingOnLoad()
 
 Reveal.initialize({
-    controls: false,
-    progress: false,
-    slideNumber: true,
-    history: true,
-    center: true,
-    transition: 'none'
+  controls: false,
+  progress: false,
+  slideNumber: true,
+  history: true,
+  center: true,
+  transition: 'none'
 })
