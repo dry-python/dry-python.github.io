@@ -158,6 +158,22 @@ html
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
           p Boilerplate-free #[b stories] integration with different frameworks.
         section
+          h2 Django views
+          pre
+            code.python.
+              @view
+              class BuySubscriptionView(Injector):
+                  buy_subscription = services.Subscription.buy
+                  category_id = this.form.cleared_data['category_id']
+
+                  @operation
+                  def post(buy_subscription, render, category_id, user):
+                      result = buy_subscription.run(category_id, price_id)
+                      if result.is_success:
+                          return redirect(result.value)
+                      elif result.failed_on('check_balance'):
+                          return render(show_prices(category_id, price_id))
+        section
           h2 Get in touch
           ul
             li
