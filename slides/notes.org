@@ -7,7 +7,7 @@
 * ---
 * train to feet in 30 min
 * to long intro
-* point entrerprise -> startups
+* DONE point entrerprise -> startups
 * add code! maybe to intro
 * 125 line -> next slide traceback
 * boring intro
