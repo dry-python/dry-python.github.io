@@ -32,29 +32,38 @@ html
             li.fragment Framework independent
             li.fragment Let's consider WEB for simplicity
         section(data-background-image=require("./pics/startup.jpg") data-background-size="contain")
-          h2
-            span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
-              Micro framework
+          br
+        section
+          h2 Micro framework
           ol
-            li.fragment
-              span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
-                Long views
-            li.fragment
-              span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
-                Lots of "if" statements
+            li.fragment Long views
+            li.fragment Lots of "if" statements
         section(data-background-image=require("./pics/enterprise.jpg") data-background-size="contain")
           br
+        section
+          h2 Big framework
+          ol
+            li.fragment You need method flowchart
+            li.fragment Zig-zag in the traceback
+            li.fragment Framework internals leak
+        section
+          h2 Framework internals leak
+          pre
+            code.python.
+              def recreate_nested_writable_fields(self, instance):
+                  for field, values in self.writable_fields_to_recreate():
+                      related_manager = getattr(instance, field)
+                      related_manager.all().delete()
+                      for data in values:
+                          obj = related_manager.model.objects.create(
+                              to=instance, **data)
+                          related_manager.add(obj)
         section
           h2 Common problems
           ul
             li Ad-hoc solutions
             li Mess in the code bases
             li No time to fix anything
-        section
-          h2 Macro framework problems
-          p method call flow charts from docs
-          p your code frequently intercahnge with framework code "zig zag picture"
-          p you will see blody method full of framework details right in between of your thoughts about business logic
         section
           h2 Feature request
           p looks like one sentence
