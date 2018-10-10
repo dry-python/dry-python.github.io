@@ -44,7 +44,7 @@ html
           pre
             code.python.
               121    if props[-1].endswith('$'):
-              122 ->     props[-1] = props[-1][:-1]
+              122 -#{">"}     props[-1] = props[-1][:-1]
               123
           pre.fragment
             code.python.
@@ -100,7 +100,7 @@ html
                   category = find_category(category_id)
                   price = find_price(price_id)
                   profile = find_profile(user)
-                  if profile.balance < price.cost:
+                  if profile.balance #{"<"} price.cost:
                       raise ValueError
                   del_balance(profile, price.cost)
                   save_profile(profile)
