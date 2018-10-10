@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Readability matters</title><link href="slides.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1>Readability matters</h1><h2><a href="https://dry-python.org/">dry-python.org</a></h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is all about...</h2><p class="fragment"><b>pain</b></p><ol><li class="fragment">Framework independent</li><li class="fragment">Let's consider WEB for simplicity</li></ol></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python">121    if props[-1].endswith('$'):
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Readability matters</title><link href="slides.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1>Readability matters</h1><h2><a href="https://dry-python.org/">dry-python.org</a></h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is all about...</h2><p class="fragment"><b>pain</b></p><p class="fragment"><b>and humiliation</b></p><ol><li class="fragment">Framework independent</li><li class="fragment">Let's consider WEB for simplicity</li></ol></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python">121    if props[-1].endswith('$'):
 122 ->     props[-1] = props[-1][:-1]
 123</code></pre><pre class="fragment"><code class="python">Traceback (most recent call last):
   File "views.py", line 1027, in post
@@ -22,7 +22,7 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     subscription = create_subscription(
         profile, category, expires)
     notification = send_notification(
-        "subscription", profile, category.name)</code></pre></section><section><h2>Stories</h2><pre><code>from stories import story, argument
+        "subscription", profile, category.name)</code></pre></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code>from stories import story, argument
 
 class Subscription:
     @story
@@ -35,19 +35,4 @@ class Subscription:
         self.check_balance()
         self.persist_payment()
         self.persist_subscription()
-        self.send_subscription_notification()</code></pre></section><section><h2>Steps</h2><pre><code>from stories import Success, Failure
-
-class Subscription:
-    ...
-
-    def check_user_profile(self):
-        if not has_subscription(self.ctx.user):
-            return Success()
-        else:
-            return Failure()
-
-    def check_balance(self):
-        ...</code></pre></section><section><h2>Usage</h2><pre><code>class SubscribeView(view):
-
-    def post(self, request):
-        return Subscription().renew(request.user)</code></pre></section><section><h2>Benefits</h2></section><section><h2>Picture of the annotated context</h2></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><br></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><br></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><br></section><section><h2>Dependencies</h2><p>a way to integrate stories into existed frameworks without boilerplate</p></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">Website</a></li><li><a href="https://twitter.com/dry_py">Twitter</a></li><li><a href="https://github.com/dry-python">Github</a></li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
+        self.send_subscription_notification()</code></pre></section><section><h2>Picture of the annotated context</h2></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><br></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><br></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><br></section><section><h2>Dependencies</h2><p>a way to integrate stories into existed frameworks without boilerplate</p></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">Website</a></li><li><a href="https://twitter.com/dry_py">Twitter</a></li><li><a href="https://github.com/dry-python">Github</a></li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
