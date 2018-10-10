@@ -27,6 +27,8 @@ html
           h2 Code is all about...
           p.fragment
             b pain
+          p.fragment
+            b and humiliation
           ol
             li.fragment Framework independent
             li.fragment Let's consider WEB for simplicity
@@ -108,7 +110,7 @@ html
                   notification = send_notification(
                       "subscription", profile, category.name)
         section
-          h2 Stories
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
           pre
             code.
               from stories import story, argument
@@ -125,33 +127,6 @@ html
                       self.persist_payment()
                       self.persist_subscription()
                       self.send_subscription_notification()
-        section
-          h2 Steps
-          pre
-            code.
-              from stories import Success, Failure
-
-              class Subscription:
-                  ...
-
-                  def check_user_profile(self):
-                      if not has_subscription(self.ctx.user):
-                          return Success()
-                      else:
-                          return Failure()
-
-                  def check_balance(self):
-                      ...
-        section
-          h2 Usage
-          pre
-            code.
-              class SubscribeView(view):
-
-                  def post(self, request):
-                      return Subscription().renew(request.user)
-        section
-          h2 Benefits
         section
           h2 Picture of the annotated context
         section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
