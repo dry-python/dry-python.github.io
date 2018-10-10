@@ -104,6 +104,7 @@ html
               Code without stories with control flow and variables...
         section
           h2 Dry Python
+          p This is a set of libraries aimed to improve architecture and code design
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png")
         section
           h2 Stories
@@ -112,15 +113,17 @@ html
               from stories import story, argument
 
               class Subscription:
-
                   @story
-                  @argument('user')
-                  def renew(self):
-                      self.check_user_profile()
+                  @argument("category_id")
+                  @argument("price_id")
+                  def buy(self):
+                      self.find_category()
+                      self.find_price()
+                      self.find_profile()
                       self.check_balance()
-                      self.schedule_payment()
-                      self.enable_service()
-                      self.send_notification()
+                      self.persist_payment()
+                      self.persist_subscription()
+                      self.send_subscription_notification()
         section
           h2 Steps
           pre
@@ -150,15 +153,12 @@ html
           h2 Benefits
         section
           h2 Picture of the annotated context
-        section
-          h2 Py.Test
-          img(src=require("./pics/pytest.png"))
-        section
-          h2 Debug Toolbar
-          img(src=require("./pics/debug-toolbar.png"))
-        section
-          h2 Sentry
-          img(src=require("./pics/sentry.png"))
+        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+          br
+        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+          br
+        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+          br
         section
           h2 Dependencies
           p a way to integrate stories into existed frameworks without boilerplate
