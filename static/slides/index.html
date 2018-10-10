@@ -4,18 +4,20 @@
         self.check_balance()
         self.schedule_payment()
         self.enable_service()
-        self.send_notification()</code></pre></section><section><h2>It's called service layer</h2></section><section><h2>And business transactions is the best way to write it</h2><p>(in my oppinion)</p><p>A business transaction is a series of operations where any can fail and stop the processing</p></section><section><h2>Real life</h2><pre><code>Code without stories with control flow and variables...</code></pre></section><section><h2>Dry Python</h2><img src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><h2>Stories</h2><pre><code>from stories import story, argument
+        self.send_notification()</code></pre></section><section><h2>It's called service layer</h2></section><section><h2>And business transactions is the best way to write it</h2><p>(in my oppinion)</p><p>A business transaction is a series of operations where any can fail and stop the processing</p></section><section><h2>Real life</h2><pre><code>Code without stories with control flow and variables...</code></pre></section><section><h2>Dry Python</h2><p>This is a set of libraries aimed to improve architecture and code design</p><img src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><h2>Stories</h2><pre><code>from stories import story, argument
 
 class Subscription:
-
     @story
-    @argument('user')
-    def renew(self):
-        self.check_user_profile()
+    @argument("category_id")
+    @argument("price_id")
+    def buy(self):
+        self.find_category()
+        self.find_price()
+        self.find_profile()
         self.check_balance()
-        self.schedule_payment()
-        self.enable_service()
-        self.send_notification()</code></pre></section><section><h2>Steps</h2><pre><code>from stories import Success, Failure
+        self.persist_payment()
+        self.persist_subscription()
+        self.send_subscription_notification()</code></pre></section><section><h2>Steps</h2><pre><code>from stories import Success, Failure
 
 class Subscription:
     ...
@@ -30,4 +32,4 @@ class Subscription:
         ...</code></pre></section><section><h2>Usage</h2><pre><code>class SubscribeView(view):
 
     def post(self, request):
-        return Subscription().renew(request.user)</code></pre></section><section><h2>Benefits</h2></section><section><h2>Picture of the annotated context</h2></section><section><h2>Py.Test</h2><img src="335b1cb95d5010bb26e11d96f39114bc.png"></section><section><h2>Debug Toolbar</h2><img src="0b268941b08e07b82b1982ba847f31ec.png"></section><section><h2>Sentry</h2><img src="4427b3c017312108535dcfd25fd5898c.png"></section><section><h2>Dependencies</h2><p>a way to integrate stories into existed frameworks without boilerplate</p></section><section><h2>Get in touch</h2><ul><li>Site</li><li>Twitter</li><li>Github</li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
+        return Subscription().renew(request.user)</code></pre></section><section><h2>Benefits</h2></section><section><h2>Picture of the annotated context</h2></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><br></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><br></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><br></section><section><h2>Dependencies</h2><p>a way to integrate stories into existed frameworks without boilerplate</p></section><section><h2>Get in touch</h2><ul><li>Site</li><li>Twitter</li><li>Github</li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
