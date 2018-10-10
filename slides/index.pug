@@ -36,8 +36,20 @@ html
         section
           h2 Micro framework
           ol
-            li.fragment Long views
+            li.fragment Long handlers
             li.fragment Lots of "if" statements
+        section
+          h2 Long handlers
+          pre
+            code.python.
+              121    if props[-1].endswith('$'):
+              122 ->     props[-1] = props[-1][:-1]
+              123
+          pre.fragment
+            code.python.
+              Traceback (most recent call last):
+                File "views.py", line 1027, in post
+              ZeroDivisionError: division by zero
         section(data-background-image=require("./pics/enterprise.jpg") data-background-size="contain")
           br
         section
