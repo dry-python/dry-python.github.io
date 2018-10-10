@@ -3,7 +3,7 @@
 * common pains
 * permission, roles and tests with dry
 * mocks in unit tests
-* more about set of the libraries
+* DONE more about set of the libraries
 * ---
 * train to feet in 30 min
 * to long intro
