@@ -128,7 +128,26 @@ html
                       self.persist_subscription()
                       self.send_subscription_notification()
         section
-          h2 Picture of the annotated context
+          h2 Context
+          pre
+            code.python.
+              (Pdb) self
+              Subscription.buy:
+                find_category
+                check_price
+                check_purchase (PromoCode.validate)
+                  find_code (skipped)
+                check_balance
+                  find_profile
+          pre
+            code.python.
+              (Pdb) self.ctx
+              Context:
+                  category_id = 1318  # Story argument
+                  user = #{"<"}User: 3292#{">"} # Story argument
+                  category = #{"<"}Category: 1318#{">"}
+                    # Set by Subscription.find_category
+                  code = None         # Set by PromoCode.find_code
         section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
           br
         section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
