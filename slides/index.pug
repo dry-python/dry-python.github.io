@@ -167,12 +167,39 @@ html
                   category_id = this.form.cleared_data['category_id']
 
                   @operation
-                  def post(buy_subscription, render, category_id, user):
+                  def post(buy_subscription, category_id, user):
                       result = buy_subscription.run(category_id, price_id)
                       if result.is_success:
                           return redirect(result.value)
-                      elif result.failed_on('check_balance'):
-                          return render(show_prices(category_id, price_id))
+        section
+          h2 Celery Task
+          pre
+            code.python.
+              @task
+              class PutMoneyTask(Injector):
+                  put_money = services.PutMoneyIntoAccount.put
+                  amount = this.kwargs['amount']
+
+                  @operation
+                  def run(put_money, user, amount, task):
+                      result = put_money.run(user, amount)
+                      if result.is_failure:
+                          task.on_failure(result.ctx.transaction_id)
+        section
+          h2 Plans
+          ol
+            li asyncio support
+            li flask support
+            li typing advantages
+            li linters integration
+        section
+          h2 Try it!
+          pre
+            code.
+              $ pip install stories
+          pre
+            code.
+              $ pip install dependencies
         section
           h2 Get in touch
           ul
