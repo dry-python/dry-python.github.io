@@ -95,9 +95,9 @@ html
             code.python.
               def buy_subscription(category_id, price_id, user):
 
-                  category = find_category()
-                  price = find_price()
-                  profile = find_profile()
+                  category = find_category(category_id)
+                  price = find_price(price_id)
+                  profile = find_profile(user)
                   if profile.balance < price.cost:
                       raise ValueError
                   del_balance(profile, price.cost)
