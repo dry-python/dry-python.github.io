@@ -86,6 +86,10 @@ html
               @HenrikKniberg
             img(src=require("./pics/stickers-on-the-wall.jpg")).plain
         section
+          h2 Dry Python
+          p This is a set of libraries aimed to improve architecture and code design
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
+        section
           h2 Business objects
           pre
             code.python.
@@ -103,32 +107,6 @@ html
                       profile, category, expires)
                   notification = send_notification(
                       "subscription", profile, category.name)
-        section
-          h2 Why not write code the same way
-          pre
-            code.
-              class Subscription:
-                  def renew(self):
-                      self.check_user_profile()
-                      self.check_balance()
-                      self.schedule_payment()
-                      self.enable_service()
-                      self.send_notification()
-        section
-          h2 It's called service layer
-        section
-          h2 And business transactions is the best way to write it
-          p (in my oppinion)
-          p A business transaction is a series of operations where any can fail and stop the processing
-        section
-          h2 Real life
-          pre
-            code.
-              Code without stories with control flow and variables...
-        section
-          h2 Dry Python
-          p This is a set of libraries aimed to improve architecture and code design
-          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
         section
           h2 Stories
           pre
