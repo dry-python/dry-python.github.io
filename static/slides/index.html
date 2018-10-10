@@ -54,9 +54,16 @@ class BuySubscriptionView(Injector):
     category_id = this.form.cleared_data['category_id']
 
     @operation
-    def post(buy_subscription, render, category_id, user):
+    def post(buy_subscription, category_id, user):
         result = buy_subscription.run(category_id, price_id)
         if result.is_success:
-            return redirect(result.value)
-        elif result.failed_on('check_balance'):
-            return render(show_prices(category_id, price_id))</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">Website</a></li><li><a href="https://twitter.com/dry_py">Twitter</a></li><li><a href="https://github.com/dry-python">Github</a></li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
+            return redirect(result.value)</code></pre></section><section><h2>Celery Task</h2><pre><code class="python">@task
+class PutMoneyTask(Injector):
+    put_money = services.PutMoneyIntoAccount.put
+    amount = this.kwargs['amount']
+
+    @operation
+    def run(put_money, user, amount, task):
+        result = put_money.run(user, amount)
+        if result.is_failure:
+            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>asyncio support</li><li>flask support</li><li>typing advantages</li><li>linters integration</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">Website</a></li><li><a href="https://twitter.com/dry_py">Twitter</a></li><li><a href="https://github.com/dry-python">Github</a></li></ul></section></div></div><script type="text/javascript" src="slides.js"></script></body></html>
