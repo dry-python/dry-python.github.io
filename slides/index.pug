@@ -27,12 +27,22 @@ html
           h2 Codebase problems
           ol
             li.fragment Fragile
+            li.fragment Hard to reason about
             li.fragment Time-consuming
             li.fragment Framework independent
             li.fragment Let's consider WEB for simplicity
-        section(data-background-image=require("./pics/enterprise.jpg") data-background-size="contain")
-          br
         section(data-background-image=require("./pics/startup.jpg") data-background-size="contain")
+          h2
+            span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
+              Micro framework
+          ol
+            li.fragment
+              span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
+                Long views
+            li.fragment
+              span(style="background-color: white; padding-left: 20px; padding-right: 20px;").
+                Lots of "if" statements
+        section(data-background-image=require("./pics/enterprise.jpg") data-background-size="contain")
           br
         section
           h2 Common problems
@@ -40,11 +50,6 @@ html
             li Ad-hoc solutions
             li Mess in the code bases
             li No time to fix anything
-        section
-          h2 Micro framework problems
-          p very long views
-          p too many "if" in one place
-          p you can't edit on line without breaking 5 other use cases of this view
         section
           h2 Macro framework problems
           p method call flow charts from docs
