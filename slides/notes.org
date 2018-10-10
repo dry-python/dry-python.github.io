@@ -1,5 +1,5 @@
 * ---
-* point to web
+* DONE point to web
 * common pains
 * permission, roles and tests with dry
 * mocks in unit tests
@@ -9,8 +9,8 @@
 * to long intro
 * DONE point entrerprise -> startups
 * add code! maybe to intro
-* 125 line -> next slide traceback
-* boring intro
+* DONE 125 line -> next slide traceback
+* DONE boring intro
 * stories integrations should be more meaningful
 * viewflow comparison
 * add more about usage stories (more from intro)
