@@ -86,14 +86,23 @@ html
               @HenrikKniberg
             img(src=require("./pics/stickers-on-the-wall.jpg")).plain
         section
-          h2 We describe it everything in the straightforward way
-          h3 Renew subscription
-          ul
-            li check user profile
-            li check balance
-            li schedule payment
-            li enable service
-            li send notification
+          h2 Business objects
+          pre
+            code.python.
+              def buy_subscription(category_id, price_id, user):
+
+                  category = find_category()
+                  price = find_price()
+                  profile = find_profile()
+                  if profile.balance < price.cost:
+                      raise ValueError
+                  del_balance(profile, price.cost)
+                  save_profile(profile)
+                  expires = calculate_period(price.period)
+                  subscription = create_subscription(
+                      profile, category, expires)
+                  notification = send_notification(
+                      "subscription", profile, category.name)
         section
           h2 Why not write code the same way
           pre
