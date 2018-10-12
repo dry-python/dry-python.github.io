@@ -2,7 +2,7 @@
 122 -&gt;     props[-1] = props[-1][:-1]
 123</code></pre><pre class="fragment"><code class="python">Traceback (most recent call last):
   File "views.py", line 1027, in post
-ZeroDivisionError: division by zero</code></pre></section><section data-background-image="b4353ae91abb68108aaf28f8c3a76c5c.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section data-background-image="ec7fb2b01603f0b5a5c9357bbd161119.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">def recreate_nested_writable_fields(self, instance):
+ZeroDivisionError: division by zero</code></pre></section><section data-background-image="b4353ae91abb68108aaf28f8c3a76c5c.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">def recreate_nested_writable_fields(self, instance):
     for field, values in self.writable_fields_to_recreate():
         related_manager = getattr(instance, field)
         related_manager.all().delete()
@@ -48,7 +48,7 @@ Context:
     user = &lt;User: 3292&gt; # Story argument
     category = &lt;Category: 1318&gt;
       # Set by Subscription.find_category
-    code = None         # Set by PromoCode.find_code</code></pre></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><br></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><br></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><br></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Django views</h2><pre><code class="python">@view
+    code = None         # Set by PromoCode.find_code</code></pre></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><br></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><br></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><br></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Django views</h2><pre><code class="python">@view
 class BuySubscriptionView(Injector):
     buy_subscription = services.Subscription.buy
     category_id = this.form.cleared_data['category_id']
