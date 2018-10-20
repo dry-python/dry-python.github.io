@@ -184,6 +184,28 @@ html
         section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
           h2 Sentry
         section
+          h2 Usage
+          ol
+            li.fragment Story decorator build an execution plan
+              pre
+                code.python.
+                  @story
+                  def buy(self):
+                      self.find_category()
+            li.fragment We call the story method
+              pre
+                code.python.
+                  subs = Subscription()
+                  subs.buy(category_id=1, price_id=1)
+            li.fragment Execute object methods according to plan
+              pre
+                code.python.
+                  def find_category(self):
+                      category = Category.objects.get(
+                          id=self.ctx.category_id
+                      )
+                      return Success(category=category)
+        section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
           p Boilerplate-free #[b stories] integration with different frameworks.
         section
