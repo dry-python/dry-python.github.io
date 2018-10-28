@@ -150,7 +150,7 @@ html
           h2 Context
           pre
             code.python.
-              (Pdb) self
+              (Pdb) ctx
               Subscription.buy:
                 find_category
                 check_price
@@ -158,15 +158,12 @@ html
                   find_code (skipped)
                 check_balance
                   find_profile
-          pre
-            code.python.
-              (Pdb) self.ctx
+
               Context:
                   category_id = 1318  # Story argument
                   user = #{"<"}User: 3292#{">"} # Story argument
                   category = #{"<"}Category: 1318#{">"}
                     # Set by Subscription.find_category
-                  code = None         # Set by PromoCode.find_code
         section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
           h2(style="color: white") py.test
         section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
@@ -200,9 +197,9 @@ html
             li.fragment Execute object methods according to plan
               pre
                 code.python.
-                  def find_category(self):
+                  def find_category(self, ctx):
                       category = Category.objects.get(
-                          id=self.ctx.category_id
+                          id=ctx.category_id
                       )
                       return Success(category=category)
         section
@@ -223,7 +220,7 @@ html
                       if result.is_success:
                           return redirect(result.value)
         section
-          h2 Celery Task
+          h2 Celery Tasks
           pre
             code.python.
               @task
