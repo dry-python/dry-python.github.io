@@ -131,21 +131,21 @@ html
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
           pre
-            code.
+            code.python.
               from stories import story, argument
 
               class Subscription:
                   @story
                   @argument("category_id")
                   @argument("price_id")
-                  def buy(self):
-                      self.find_category()
-                      self.find_price()
-                      self.find_profile()
-                      self.check_balance()
-                      self.persist_payment()
-                      self.persist_subscription()
-                      self.send_subscription_notification()
+                  def buy(I):
+                      I.find_category()
+                      I.find_price()
+                      I.find_profile()
+                      I.check_balance()
+                      I.persist_payment()
+                      I.persist_subscription()
+                      I.send_subscription_notification()
         section
           h2 Context
           pre
@@ -186,9 +186,10 @@ html
             li.fragment Story decorator build an execution plan
               pre
                 code.python.
-                  @story
-                  def buy(self):
-                      self.find_category()
+                  class Subscription:
+                      @story
+                      def buy(I):
+                          I.find_category()
             li.fragment We call the story method
               pre
                 code.python.
@@ -199,8 +200,7 @@ html
                 code.python.
                   def find_category(self, ctx):
                       category = Category.objects.get(
-                          id=ctx.category_id
-                      )
+                          pk=ctx.category_id)
                       return Success(category=category)
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
