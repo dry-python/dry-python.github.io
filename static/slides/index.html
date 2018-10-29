@@ -22,20 +22,20 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     subscription = create_subscription(
         profile, category, expires)
     notification = send_notification(
-        "subscription", profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>It is a set of libraries aimed to improve architecture and code design</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code>from stories import story, argument
+        "subscription", profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>It is a set of libraries aimed to improve architecture and code design</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, argument
 
 class Subscription:
     @story
     @argument("category_id")
     @argument("price_id")
-    def buy(self):
-        self.find_category()
-        self.find_price()
-        self.find_profile()
-        self.check_balance()
-        self.persist_payment()
-        self.persist_subscription()
-        self.send_subscription_notification()</code></pre></section><section><h2>Context</h2><pre><code class="python">(Pdb) ctx
+    def buy(I):
+        I.find_category()
+        I.find_price()
+        I.find_profile()
+        I.check_balance()
+        I.persist_payment()
+        I.persist_subscription()
+        I.send_subscription_notification()</code></pre></section><section><h2>Context</h2><pre><code class="python">(Pdb) ctx
 Subscription.buy:
   find_category
   check_price
@@ -48,13 +48,13 @@ Context:
     category_id = 1318  # Story argument
     user = &lt;User: 3292&gt; # Story argument
     category = &lt;Category: 1318&gt;
-      # Set by Subscription.find_category</code></pre></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">@story
-def buy(self):
-    self.find_category()</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
+      # Set by Subscription.find_category</code></pre></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">class Subscription:
+    @story
+    def buy(I):
+        I.find_category()</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
 subs.buy(category_id=1, price_id=1)</code></pre></li><li class="fragment">Execute object methods according to plan<pre><code class="python">def find_category(self, ctx):
     category = Category.objects.get(
-        id=ctx.category_id
-    )
+        pk=ctx.category_id)
     return Success(category=category)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Django views</h2><pre><code class="python">@view
 class BuySubscriptionView(Injector):
     buy_subscription = services.Subscription.buy
