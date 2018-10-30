@@ -51,8 +51,11 @@ html
           h2 Long handlers
           pre
             code.python.
-              121    if props[-1].endswith('$'):
-              122 -#{">"}     props[-1] = props[-1][:-1]
+               85 @app.route('/subscriptions/')
+               86 def buy_subscription(page):
+              ...
+              121     if props[-1].endswith('$'):
+              122 -#{">"}      props[-1] = props[-1][:-1]
               123
           pre.fragment
             code.python.
