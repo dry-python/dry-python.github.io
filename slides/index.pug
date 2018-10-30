@@ -219,18 +219,32 @@ html
                   subs.buy(category_id=1, price_id=1)
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
-          p Boilerplate-free #[b stories] integration with different frameworks.
+          p Provide composition instead of inheritance.
+          p.fragment Boilerplate-free #[b stories] integration with different frameworks.
+        section
+          h2 Implementation
+          pre
+            code.python.
+              from dependencies import Injector
+
+              class BuySubscription(Injector):
+
+                  buy_subscription = services.Subscription.buy
+                  load_category = repositories.load_category
+                  load_price = repositories.load_price
+                  load_profile = repositories.load_profile
         section
           h2 Django views
           pre
             code.python.
+              from dependencies import operation
+              from dependencies.contrib.django import view
+
               @view
-              class BuySubscriptionView(Injector):
-                  buy_subscription = services.Subscription.buy
-                  category_id = this.form.cleared_data['category_id']
+              class BuySubscriptionView(BuySubscription):
 
                   @operation
-                  def post(buy_subscription, category_id, user):
+                  def post(buy_subscription, category_id, price_id):
                       result = buy_subscription.run(category_id, price_id)
                       if result.is_success:
                           return redirect(result.value)
@@ -238,10 +252,11 @@ html
           h2 Celery Tasks
           pre
             code.python.
+              from dependencies import operation
+              from dependencies.contrib.celery import task
+
               @task
-              class PutMoneyTask(Injector):
-                  put_money = services.PutMoneyIntoAccount.put
-                  amount = this.kwargs['amount']
+              class PutMoneyTask(PutMoney):
 
                   @operation
                   def run(put_money, user, amount, task):
