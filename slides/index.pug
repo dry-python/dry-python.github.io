@@ -205,11 +205,6 @@ html
                       @story
                       def buy(I):
                           I.find_category
-            li.fragment We call the story method
-              pre
-                code.python.
-                  subs = Subscription()
-                  subs.buy(category_id=1, price_id=1)
             li.fragment Execute object methods according to plan
               pre
                 code.python.
@@ -217,6 +212,11 @@ html
                       category = Category.objects.get(
                           pk=ctx.category_id)
                       return Success(category=category)
+            li.fragment We call the story method
+              pre
+                code.python.
+                  subs = Subscription()
+                  subs.buy(category_id=1, price_id=1)
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
           p Boilerplate-free #[b stories] integration with different frameworks.
