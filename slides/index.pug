@@ -79,7 +79,7 @@ html
             li.fragment Zig-zag in the traceback
             li.fragment Framework internals leak
         section
-          h2 Usual API
+          h2 Implicit API
           pre
             code.python.
               class SubscriptionViewSet(viewsets.ModelViewSet):
@@ -88,7 +88,7 @@ html
                   permission_classes = (CanSubscribe,)
                   filter_class = SubscriptionFilter
           ol
-            li.fragment What this class do exactly?
+            li.fragment What exactly does this class do?
             li.fragment How to use it?
         section(data-background-image=require("./pics/method-flowchart.png") data-background-size="contain")
           br
