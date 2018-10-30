@@ -1,8 +1,15 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Readability matters</title><link href="slides.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1>Readability matters</h1><h2><a href="https://dry-python.org/">dry-python.org</a></h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is...</h2><p class="fragment"><b>hard</b></p><p class="fragment"><b>and frustrating</b></p><ol><li class="fragment">Framework independent</li><li class="fragment">Let's consider WEB for simplicity</li></ol></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Startup</h2><br><br><br><br><br><br><br><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python">121    if props[-1].endswith('$'):
-122 -&gt;     props[-1] = props[-1][:-1]
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Readability matters</title><link href="slides.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1>Readability matters</h1><h2><a href="https://dry-python.org/">dry-python.org</a></h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is...</h2><p class="fragment"><b>hard</b></p><p class="fragment"><b>and frustrating</b></p><ol><li class="fragment">Framework independent</li><li class="fragment">Let's consider WEB for simplicity</li></ol></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Startup</h2><br><br><br><br><br><br><br><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python"> 85 @app.route('/subscriptions/')
+ 86 def buy_subscription(page):
+...
+121     if props[-1].endswith('$'):
+122 -&gt;      props[-1] = props[-1][:-1]
 123</code></pre><pre class="fragment"><code class="python">Traceback (most recent call last):
   File "views.py", line 1027, in post
-ZeroDivisionError: division by zero</code></pre></section><section data-background-image="b4353ae91abb68108aaf28f8c3a76c5c.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">def recreate_nested_writable_fields(self, instance):
+ZeroDivisionError: division by zero</code></pre></section><section data-background-image="b4353ae91abb68108aaf28f8c3a76c5c.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section><h2>Implicit API</h2><pre><code class="python">class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    permission_classes = (CanSubscribe,)
+    filter_class = SubscriptionFilter</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">def recreate_nested_writable_fields(self, instance):
     for field, values in self.writable_fields_to_recreate():
         related_manager = getattr(instance, field)
         related_manager.all().delete()
@@ -51,23 +58,32 @@ Context:
     # Set by Subscription.find_category</code></pre></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">class Subscription:
     @story
     def buy(I):
-        I.find_category</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
-subs.buy(category_id=1, price_id=1)</code></pre></li><li class="fragment">Execute object methods according to plan<pre><code class="python">def find_category(self, ctx):
+        I.find_category</code></pre></li><li class="fragment">Execute object methods according to plan<pre><code class="python">def find_category(self, ctx):
     category = Category.objects.get(
         pk=ctx.category_id)
-    return Success(category=category)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Django views</h2><pre><code class="python">@view
-class BuySubscriptionView(Injector):
+    return Success(category=category)</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
+subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Implementation</h2><pre><code class="python">from dependencies import Injector
+
+class BuySubscription(Injector):
+
     buy_subscription = services.Subscription.buy
-    category_id = this.form.cleared_data['category_id']
+    load_category = repositories.load_category
+    load_price = repositories.load_price
+    load_profile = repositories.load_profile</code></pre></section><section><h2>Django views</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.django import view
+
+@view
+class BuySubscriptionView(BuySubscription):
 
     @operation
-    def post(buy_subscription, category_id, user):
+    def post(buy_subscription, category_id, price_id):
         result = buy_subscription.run(category_id, price_id)
         if result.is_success:
-            return redirect(result.value)</code></pre></section><section><h2>Celery Tasks</h2><pre><code class="python">@task
-class PutMoneyTask(Injector):
-    put_money = services.PutMoneyIntoAccount.put
-    amount = this.kwargs['amount']
+            return redirect(result.value)</code></pre></section><section><h2>Celery Tasks</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.celery import task
+
+@task
+class PutMoneyTask(PutMoney):
 
     @operation
     def run(put_money, user, amount, task):
