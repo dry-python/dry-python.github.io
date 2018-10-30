@@ -139,13 +139,13 @@ html
                   @argument("category_id")
                   @argument("price_id")
                   def buy(I):
-                      I.find_category()
-                      I.find_price()
-                      I.find_profile()
-                      I.check_balance()
-                      I.persist_payment()
-                      I.persist_subscription()
-                      I.send_subscription_notification()
+                      I.find_category
+                      I.find_price
+                      I.find_profile
+                      I.check_balance
+                      I.persist_payment
+                      I.persist_subscription
+                      I.send_subscription_notification
         section
           h2 Context
           pre
@@ -189,7 +189,7 @@ html
                   class Subscription:
                       @story
                       def buy(I):
-                          I.find_category()
+                          I.find_category
             li.fragment We call the story method
               pre
                 code.python.
