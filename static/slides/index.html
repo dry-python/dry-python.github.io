@@ -4,7 +4,7 @@
 121     if props[-1].endswith('$'):
 122 -&gt;      props[-1] = props[-1][:-1]
 123</code></pre><pre class="fragment"><code class="python">Traceback (most recent call last):
-  File "views.py", line 1027, in post
+  File "views.py", line 1027, in buy_subscription
 ZeroDivisionError: division by zero</code></pre></section><section data-background-image="b4353ae91abb68108aaf28f8c3a76c5c.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section><h2>Implicit API</h2><pre><code class="python">class SubscriptionViewSet(viewsets.ModelViewSet):
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
