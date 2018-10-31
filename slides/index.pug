@@ -132,7 +132,7 @@ html
                   profile = find_profile(user)
                   if profile.balance #{"<"} price.cost:
                       raise ValueError
-                  del_balance(profile, price.cost)
+                  decrease_balance(profile, price.cost)
                   save_profile(profile)
                   expires = calculate_period(price.period)
                   subscription = create_subscription(
