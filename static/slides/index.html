@@ -64,7 +64,13 @@ Context:
     category = Category.objects.get(
         pk=ctx.category_id)
     return Success(category=category)</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
-subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Implementation</h2><pre><code class="python">from dependencies import Injector
+subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Implementation</h2><pre><code class="python">@dataclass
+class Subscription:
+    load_category: Callable[..., Category]
+
+    @story
+    def buy(I):
+        ...</code></pre><pre class="fragment"><code class="python">from dependencies import Injector
 
 class BuySubscription(Injector):
 
