@@ -9,7 +9,9 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     queryset = Subscription.objects.all()
     serializer_class = SubscriptionSerializer
     permission_classes = (CanSubscribe,)
-    filter_class = SubscriptionFilter</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">def recreate_nested_writable_fields(self, instance):
+    filter_class = SubscriptionFilter</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">class SubscriptionSerializer(Serializer):
+    category_id = IntegerField()
+    price_id = IntegerField()</code></pre><pre class="fragment"><code class="python">def recreate_nested_writable_fields(self, instance):
     for field, values in self.writable_fields_to_recreate():
         related_manager = getattr(instance, field)
         related_manager.all().delete()
