@@ -96,6 +96,11 @@ html
           h2 Framework internals leak
           pre
             code.python.
+              class SubscriptionSerializer(Serializer):
+                  category_id = IntegerField()
+                  price_id = IntegerField()
+          pre.fragment
+            code.python.
               def recreate_nested_writable_fields(self, instance):
                   for field, values in self.writable_fields_to_recreate():
                       related_manager = getattr(instance, field)
