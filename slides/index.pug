@@ -232,6 +232,15 @@ html
           h2 Implementation
           pre
             code.python.
+                  @dataclass
+                  class Subscription:
+                      load_category: Callable[..., Category]
+
+                      @story
+                      def buy(I):
+                          ...
+          pre.fragment
+            code.python.
               from dependencies import Injector
 
               class BuySubscription(Injector):
