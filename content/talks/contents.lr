@@ -1,7 +1,5 @@
-_model: page
----
 title: Talks
 ---
-body: [Readability matters](/static/slides/)
----
-_discoverable: yes
+body:
+
+[Readability matters](/static/slides/)
