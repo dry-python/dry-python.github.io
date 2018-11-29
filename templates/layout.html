@@ -1,3 +1,4 @@
+{% from 'macros/navbar.html' import navbar %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -7,18 +8,7 @@
 </head>
 <body>
   <header>
-    <nav>
-      <ul>
-        <li>
-          <a href="{{ site.get('/')|url }}">dry-python.org</a>
-        </li>
-        {% for page in site.get('/').children %}
-          <li>
-            <a href="{{ page|url }}">{{ page.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
+    {{ navbar() }}
   </header>
   <div>
     {% block body %}

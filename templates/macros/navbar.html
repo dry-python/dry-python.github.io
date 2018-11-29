@@ -1,0 +1,11 @@
+{% macro navbar() %}
+  <nav>
+    <ul>
+      {% for path, label in bag('navbar').items() %}
+        <li>
+          <a href="{{ path|url }}">{{ label }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endmacro %}
