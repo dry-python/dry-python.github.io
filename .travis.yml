@@ -1,5 +1,7 @@
 language: python
-python: 3.6
+python: 3.7
+dist: xenial
+sudo: true
 cache: pip
 install:
   - (cd slides && npm install)

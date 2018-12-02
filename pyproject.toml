@@ -5,7 +5,7 @@ description = "dry-python.org website"
 authors = ["Artem Malyshev <proofit404@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 Lektor = "^3.1"
 
 [build-system]
