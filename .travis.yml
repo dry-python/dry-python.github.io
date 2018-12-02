@@ -2,9 +2,11 @@ language: python
 python: 3.6
 cache: pip
 install:
+  - cd slides && npm install
   - pip install pipenv
   - pipenv install
 script:
+  - cd slides && npm run webpack
   - pipenv run lektor build -f webpack
 deploy:
   provider: script
