@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{ this.title }}
+{% endblock %}
+
+{% block body %}
+  {% for num, record in bag(this.databag).items() %}
+    <div>
+      <h2>{{ record.title }}</h2>
+      <p>{{ record.date }}</p>
+      <p>{{ record.description }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
