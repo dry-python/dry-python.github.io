@@ -1,4 +1,5 @@
 {% from 'macros/navbar.html' import navbar %}
+{% from 'macros/copyright.html' import copyright %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -15,7 +16,7 @@
     {% endblock %}
   </div>
   <footer>
-    &copy; Copyright 2018 by Artem Malyshev.
+    {{ copyright() }}
   </footer>
   <script src="{{ '/static/styles.js'|asseturl }}"></script>
 </body>
