@@ -1,5 +1,6 @@
 {% from 'macros/navbar.html' import navbar %}
 {% from 'macros/copyright.html' import copyright %}
+{% from 'macros/gitter_sidecar.html' import gitter_sidecar %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -19,4 +20,5 @@
     {{ copyright() }}
   </footer>
   <script src="{{ '/static/styles.js'|asseturl }}"></script>
+  {{ gitter_sidecar() }}
 </body>
