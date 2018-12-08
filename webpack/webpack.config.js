@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    styles: './styles/main.css'
+    app: './app/index.js'
   },
   output: {
     path: path.resolve(__dirname, '../assets/static/'),
@@ -17,6 +17,11 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|png|jpg)$/,

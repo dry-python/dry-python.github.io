@@ -1,12 +1,14 @@
 {% from 'macros/navbar.html' import navbar %}
 {% from 'macros/copyright.html' import copyright %}
 {% from 'macros/gitter_sidecar.html' import gitter_sidecar %}
+{% from 'macros/bundle.html' import bundle %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}{% endblock %} | dry-python.org</title>
-  <link rel="stylesheet" href="{{ '/static/styles.css'|asseturl }}">
   <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
+  {{ bundle() }}
+  {{ gitter_sidecar() }}
+  <title>{% block title %}Welcome{% endblock %} | dry-python.org</title>
 </head>
 <body>
   <header>
@@ -19,6 +21,4 @@
   <footer>
     {{ copyright() }}
   </footer>
-  <script src="{{ '/static/styles.js'|asseturl }}"></script>
-  {{ gitter_sidecar() }}
 </body>
