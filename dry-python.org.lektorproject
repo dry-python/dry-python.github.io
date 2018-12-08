@@ -1,5 +1,6 @@
 [project]
 name = dry-python.org
+excluded_assets = *~
 
 [servers.ghpages]
 target = ghpages+https://dry-python/dry-python.github.io?cname=dry-python.org
