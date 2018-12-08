@@ -1,28 +1,17 @@
 
 
 
-
 <!doctype html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="/static/pygments.css">
   
   <link rel="stylesheet"
-        href="/static/app.css?h=7e15c3f8"
+        href="/static/app.css?h=7b88c1d0"
         data-turbolinks-track="reload">
   <script defer
-          src="/static/app.js?h=9e992dad"
+          src="/static/app.js?h=0d230ee6"
           data-turbolinks-track="reload">
   </script>
-
-  
-  <script>
-   ((window.gitter = {}).chat = {}).options = {
-     room: 'dry-python/dry-python'
-   };
-  </script>
-
-  <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
 
   <title>
   A set of libraries for pluggable business logic components.
@@ -58,39 +47,56 @@
     
   <h2>A set of libraries for pluggable business logic components.</h2>
   <p>The easiest way to make your code simple to reason about.</p>
-<p>Dry-Python is a collection of libraries to help you to work with domain logic of your app.</p>
+<p>dry-python is a collection of libraries aimed to help you to build an application in your domain.</p>
 <h2>Stories</h2>
-<p>Define your business logic in one place.</p>
-<div class="hll"><pre><span></span><span class="kn">from</span> <span class="nn">stories</span> <span class="kn">import</span> <span class="n">story</span><span class="p">,</span> <span class="n">argument</span>
+<p>You can define business logic processes with clear DSL.</p>
+<pre><code class="lang-python"># workflows.py
+from stories import story, argument
 
-<span class="k">class</span> <span class="nc">PurchaseProduct</span><span class="p">:</span>
+class BuySubscription:
 
-    <span class="nd">@story</span>
-    <span class="nd">@argument</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
-    <span class="nd">@argument</span><span class="p">(</span><span class="s1">&#39;product&#39;</span><span class="p">)</span>
-    <span class="nd">@argument</span><span class="p">(</span><span class="s1">&#39;shipment_details&#39;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">purchase</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    @story
+    @argument(&quot;price_id&quot;)
+    @argument(&quot;user&quot;)
+    def buy(I):
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">create_order</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">calculate_price</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">request_payment</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notify_user</span><span class="p">()</span>
-</pre></div>
+        I.find_price
+        I.check_balance
+        I.persist_payment
+        I.persist_subscription
+        I.send_subscription_notification
+        I.show_category
+</code></pre>
 <h2>Dependencies</h2>
-<p>Integrate it into frameworks you already use without boilerplate</p>
-<div class="hll"><pre><span></span><span class="c1"># views.py</span>
-<span class="kn">from</span> <span class="nn">dependencies</span> <span class="kn">import</span> <span class="n">Injector</span>
-<span class="kn">from</span> <span class="nn">dependencies.contrib.django</span> <span class="kn">import</span> <span class="n">view</span>
+<p>You can integrate it into frameworks you already use.</p>
+<pre><code class="lang-python"># views.py
+from dependencies import Injector, operation, this
+from dependencies.contrib.django import view
+from django.http import HttpResponse
+from django.shortcuts import redirect
 
-<span class="nd">@view</span>
-<span class="k">class</span> <span class="nc">PurchaseProductView</span><span class="p">(</span><span class="n">Injector</span><span class="p">):</span>
-    <span class="n">post</span> <span class="o">=</span> <span class="n">PurchaseProduct</span><span class="o">.</span><span class="n">purchase</span><span class="o">.</span><span class="n">bind</span><span class="p">()</span>
+@view
+class BuySubscriptionView(Injector):
 
-<span class="c1"># urls.py</span>
-<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;purchase/&#39;</span><span class="p">,</span> <span class="n">PurchaseProductView</span><span class="o">.</span><span class="n">as_view</span><span class="p">()),</span>
-<span class="p">]</span>
-</pre></div>
+    buy_subscription = workflows.BuySubscription.buy
+    price_id = this.kwargs[&quot;id&quot;]
+
+    @operation
+    def post(buy_subscription, price_id, user):
+        result = buy_subscription.run(price_id, user)
+        if result.is_success:
+            return redirect(result.value)
+        elif result.failed_on(&quot;check_balance&quot;):
+            return HttpResponse(&quot;&lt;h1&gt;Error: not enough money&lt;/h1&gt;&quot;)
+</code></pre>
+<p>And a framework of your choise will not even notice the change.</p>
+<pre><code class="lang-python"># urls.py
+from .views import BuySubscriptionView
+
+urlpatterns = [
+    path(&quot;buy_subscription/&lt;int:id&gt;/&quot;, BuySubscriptionView.as_view()),
+]
+</code></pre>
 
 
   </div>
