@@ -4,44 +4,64 @@ body:
 
 The easiest way to make your code simple to reason about.
 
-Dry-Python is a collection of libraries to help you to work with domain logic of your app.
+dry-python is a collection of libraries aimed to help you to build an application in your domain.
 
 ## Stories
 
-Define your business logic in one place.
+You can define business logic processes with clear DSL.
 
 ```python
+# workflows.py
 from stories import story, argument
 
-class PurchaseProduct:
+class BuySubscription:
 
     @story
-    @argument('user')
-    @argument('product')
-    @argument('shipment_details')
-    def purchase(self):
+    @argument("price_id")
+    @argument("user")
+    def buy(I):
 
-        self.create_order()
-        self.calculate_price()
-        self.request_payment()
-        self.notify_user()
+        I.find_price
+        I.check_balance
+        I.persist_payment
+        I.persist_subscription
+        I.send_subscription_notification
+        I.show_category
 ```
 
 ## Dependencies
 
-Integrate it into frameworks you already use without boilerplate
+You can integrate it into frameworks you already use.
 
 ```python
 # views.py
-from dependencies import Injector
+from dependencies import Injector, operation, this
 from dependencies.contrib.django import view
+from django.http import HttpResponse
+from django.shortcuts import redirect
 
 @view
-class PurchaseProductView(Injector):
-    post = PurchaseProduct.purchase.bind()
+class BuySubscriptionView(Injector):
 
+    buy_subscription = workflows.BuySubscription.buy
+    price_id = this.kwargs["id"]
+
+    @operation
+    def post(buy_subscription, price_id, user):
+        result = buy_subscription.run(price_id, user)
+        if result.is_success:
+            return redirect(result.value)
+        elif result.failed_on("check_balance"):
+            return HttpResponse("<h1>Error: not enough money</h1>")
+```
+
+And a framework of your choise will not even notice the change.
+
+```python
 # urls.py
+from .views import BuySubscriptionView
+
 urlpatterns = [
-    path('purchase/', PurchaseProductView.as_view()),
+    path("buy_subscription/<int:id>/", BuySubscriptionView.as_view()),
 ]
 ```
