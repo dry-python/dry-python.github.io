@@ -1,5 +1,6 @@
 [project]
 name = dry-python.org
+url_style = absolute
 excluded_assets = *~
 
 [servers.ghpages]
