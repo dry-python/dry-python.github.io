@@ -6,9 +6,13 @@
   "license": "BSD-2-Clause",
   "private": true,
   "dependencies": {
-    "tailwindcss": "^0.7.2"
+    "tailwindcss": "^0.7.2",
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^1.0.1",
     "file-loader": "^2.0.0",
     "mini-css-extract-plugin": "^0.4.5",
