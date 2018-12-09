@@ -6,15 +6,19 @@ import 'highlight.js/styles/github.css'
 
 import './index.css'
 
-
 Turbolinks.start()
 
-let chatButton = new Sidecar({room: 'dry-python/dry-python'})
+hljs.registerLanguage('python', python)
 
-hljs.registerLanguage('python', python);
+document.addEventListener('turbolinks:load', () => {
+  const chat = new Sidecar({
+    room: 'dry-python/dry-python',
+    targetElement: '.gitter-chat-embed',
+    activationElement: '.gitter-open-chat-button'
+  });
 
-document.addEventListener('turbolinks:load', function() {
-  let blocks = document.getElementsByTagName('code')
+  const blocks = document.getElementsByTagName('code')
+
   for (let block of blocks) {
     hljs.highlightBlock(block)
   }
