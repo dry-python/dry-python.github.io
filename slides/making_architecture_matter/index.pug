@@ -145,7 +145,7 @@ html
                   subscription = create_subscription(
                       profile, category, expires)
                   notification = send_notification(
-                      "subscription", profile, category.name)
+                      'subscription', profile, category.name)
         section
           h2 Dry Python
           p A set of libraries for pluggable business logic components.
@@ -158,8 +158,8 @@ html
 
               class Subscription:
                   @story
-                  @argument("category_id")
-                  @argument("price_id")
+                  @argument('category_id')
+                  @argument('price_id')
                   def buy(I):
                       I.find_category
                       I.find_price
