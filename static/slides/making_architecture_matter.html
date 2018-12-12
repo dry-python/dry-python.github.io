@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Making architecture matter</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1><a href="https://dry-python.org/">dry-python.org</a></h1><h2>Making architecture matter</h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is...</h2><p class="fragment"><b>hard</b></p><p class="fragment"><b>and frustrating</b></p><ol><li class="fragment">Framework independent</li><li class="fragment">Let's consider WEB for simplicity</li></ol></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Startup</h2><br><br><br><br><br><br><br><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python"> 85 @app.route('/subscriptions/')
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Dry-Python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Making architecture matter</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h1><a href="https://dry-python.org/">dry-python.org</a></h1><h2>Making architecture matter</h2><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>5 years experience in Python</li><li>Django Channels 1.0</li><li>Dry Python</li></ul></section><section><h2>Code is...</h2><p class="fragment"><b>hard</b></p><p class="fragment"><b>and frustrating</b></p><p class="fragment">Let's consider we're developing subscription button for a web service</p></section><section data-background-image="aff5c485c382439a300952a1903aa1b7.jpg" data-background-size="contain"><h2 style="color: white; background-color: black">Startup</h2><br><br><br><br><br><br><br><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python"> 85 @app.route('/subscriptions/')
  86 def buy_subscription(page):
 ...
 121     if props[-1].endswith('$'):
@@ -31,12 +31,12 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     subscription = create_subscription(
         profile, category, expires)
     notification = send_notification(
-        "subscription", profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, argument
+        'subscription', profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, argument
 
 class Subscription:
     @story
-    @argument("category_id")
-    @argument("price_id")
+    @argument('category_id')
+    @argument('price_id')
     def buy(I):
         I.find_category
         I.find_price
@@ -64,21 +64,42 @@ Context:
     category = Category.objects.get(
         pk=ctx.category_id)
     return Success(category=category)</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
-subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Boilerplate-free <b>stories</b> integration with different frameworks.</p></section><section><h2>Implementation</h2><pre><code class="python">@dataclass
-class Subscription:
-    load_category: Callable[..., Category]
-
+subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><h2>Usage</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
     @story
     def buy(I):
-        ...</code></pre><pre class="fragment"><code class="python">from dependencies import Injector
+        I.check_purchase
+    @story
+    def check_purchase(I):
+        I.find_promo_code</code></pre></li><li class="fragment">Failure will stop the execution of the whole story<pre><code class="python">def check_balance(self, ctx):
+    if ctx.profile.balance &lt; ctx.price.cost:
+        return Failure()
+    else:
+        return Success()</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Use <b>stories</b> with different frameworks without boilerplate.</p></section><section><h2>Delegate responsibility</h2><pre><code class="python">class Subscription:
+
+    def find_category(self, ctx):
+        category = self.load_category(ctx.category_id)
+        return Success(category=category)
+
+    def find_price(self, ctx):
+        price = self.load_price(ctx.price_id)
+        return Success(price=price)
+
+    def __init__(self, load_category, load_price):
+        self.load_category = load_category
+        self.load_price = load_price</code></pre></section><section><h2>Injection</h2><pre><code class="python">from dependencies import Injector, Package
+
+app = Package('app')
 
 class BuySubscription(Injector):
 
-    buy_subscription = services.Subscription.buy
-    load_category = repositories.load_category
-    load_price = repositories.load_price
-    load_profile = repositories.load_profile</code></pre></section><section><h2>Django views</h2><pre><code class="python">from dependencies import operation
+    buy_subscription = app.services.Subscription.buy
+    load_category = app.repositories.load_category
+    load_price = app.repositories.load_price
+    load_profile = app.repositories.load_profile
+
+BuySubscription.buy_subscription(category_id=1, price_id=1)</code></pre></section><section><h2>Django views</h2><pre><code class="python">from dependencies import operation
 from dependencies.contrib.django import view
+from django.http import HttpResponse, HttpResponseRedirect
 
 @view
 class BuySubscriptionView(BuySubscription):
@@ -87,7 +108,22 @@ class BuySubscriptionView(BuySubscription):
     def post(buy_subscription, category_id, price_id):
         result = buy_subscription.run(category_id, price_id)
         if result.is_success:
-            return redirect(result.value)</code></pre></section><section><h2>Celery Tasks</h2><pre><code class="python">from dependencies import operation
+            return HttpResponseRedirect(to=result.value)
+        elif result.failed_on('check_balance'):
+            return HttpResponse('&lt;h1&gt;Not enough money&lt;/h1&gt;')</code></pre></section><section><h2>Flask views</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.flask import method_view
+from flask import redirect
+
+@method_view
+class BuySubscriptionView(BuySubscription):
+
+    @operation
+    def post(buy_subscription, category_id, price_id):
+        result = buy_subscription.run(category_id, price_id)
+        if result.is_success:
+            return redirect(result.value)
+        elif result.failed_on('check_balance'):
+            return '&lt;h1&gt;Not enough money&lt;/h1&gt;'</code></pre></section><section><h2>Celery Tasks</h2><pre><code class="python">from dependencies import operation
 from dependencies.contrib.celery import task
 
 @task
@@ -97,4 +133,4 @@ class PutMoneyTask(PutMoney):
     def run(put_money, user, amount, task):
         result = put_money.run(user, amount)
         if result.is_failure:
-            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>Conditional substories</li><li>Delegates</li><li>Rollbacks</li><li>asyncio support</li><li>flask support</li><li>typing advantages</li><li>linters integration</li><li>language server</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>Conditional substories</li><li>Delegates</li><li>Rollbacks</li><li>asyncio support</li><li>pyramid support</li><li>typing advantages</li><li>linters integration</li><li>language server</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
