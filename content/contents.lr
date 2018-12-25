@@ -12,13 +12,12 @@ You can define business logic processes with clear DSL.
 
 ```python
 # workflows.py
-from stories import story, argument
+from stories import story, arguments
 
 class BuySubscription:
 
     @story
-    @argument("price_id")
-    @argument("user")
+    @arguments("price_id", "user")
     def buy(I):
 
         I.find_price
