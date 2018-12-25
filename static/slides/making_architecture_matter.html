@@ -31,12 +31,11 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     subscription = create_subscription(
         profile, category, expires)
     notification = send_notification(
-        'subscription', profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, argument
+        'subscription', profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, arguments
 
 class Subscription:
     @story
-    @argument('category_id')
-    @argument('price_id')
+    @arguments('category_id', 'price_id')
     def buy(I):
         I.find_category
         I.find_price
