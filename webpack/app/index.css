@@ -6,7 +6,7 @@
 /* TODO: Move this classes to the styles/navbar.css */
 
 .top-navbar-item {
-  @apply .text-grey-darker .text-sm .mr-4 .font-semibold .pb-4 .border-b-2 .border-solid .border-transparent;
+  @apply .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent;
 }
 
 .top-navbar-item:hover {
