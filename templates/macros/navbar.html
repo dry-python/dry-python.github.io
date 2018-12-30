@@ -1,11 +1,13 @@
 {% macro navbar() %}
-  <nav>
-    <ul>
-      {% for path, label in bag('navbar').items() %}
-        <li>
-          <a href="{{ path|url }}">{{ label }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
+  <div class="bg-white">
+    <div class="container mx-auto flex items-center py-4">
+      <nav class="w-2/5">
+        {% for path, label in bag('navbar').items() %}
+          <a href="{{ path|url }}" class="top-navbar-item">
+            {{ label }}
+          </a>
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
 {% endmacro %}
