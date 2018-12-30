@@ -6233,7 +6233,7 @@ table {
   font-size: .875rem;
   margin-right: 1rem;
   font-weight: 600;
-  padding-bottom: 1rem;
+  vertical-align: middle;
   border-bottom-width: 2px;
   border-style: solid;
   border-color: transparent;
