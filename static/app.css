@@ -102,17 +102,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   background-color: green;
 }
 
-/**
- * This injects Tailwind's base styles, which is a combination of
- * Normalize.css and some additional base styles.
- *
- * You can see the styles here:
- * https://github.com/tailwindcss/tailwindcss/blob/master/css/preflight.css
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/preflight";
- */
+a {
+  text-decoration: none;
+}
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -610,14 +602,6 @@ table {
   border-collapse: collapse;
 }
 
-/**
- * This injects any component classes registered by plugins.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/components";
- */
-
 .container {
   width: 100%;
 }
@@ -645,31 +629,6 @@ table {
     max-width: 1200px;
   }
 }
-
-/**
- * Here you would add any of your custom component classes; stuff that you'd
- * want loaded *before* the utilities so that the utilities could still
- * override them.
- *
- * Example:
- *
- * .btn { ... }
- * .form-input { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "components/buttons";
- * @import "components/forms";
- */
-
-/**
- * This injects all of Tailwind's utility classes, generated based on your
- * config file.
- *
- * If using `postcss-import`, use this import instead:
- *
- * @import "tailwindcss/utilities";
- */
 
 .list-reset {
   list-style: none;
@@ -6267,20 +6226,23 @@ table {
   z-index: auto;
 }
 
-/**
- * Here you would add any custom utilities you need that don't come out of the
- * box with Tailwind.
- *
- * Example :
- *
- * .bg-pattern-graph-paper { ... }
- * .skew-45 { ... }
- *
- * Or if using a preprocessor or `postcss-import`:
- *
- * @import "utilities/background-patterns";
- * @import "utilities/skew-transforms";
- */
+/* TODO: Move this classes to the styles/navbar.css */
+
+.top-navbar-item {
+  color: #606f7b;
+  font-size: .875rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.top-navbar-item:hover {
+  color: #22292f;
+  border-color: #22292f;
+}
 
 @media (min-width: 576px) {
   .sm\:list-reset {
