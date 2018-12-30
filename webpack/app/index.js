@@ -15,8 +15,10 @@ document.addEventListener('turbolinks:load', () => {
     room: 'dry-python/dry-python',
     targetElement: '.gitter-chat-embed',
     activationElement: '.gitter-open-chat-button'
-  });
+  })
+})
 
+document.addEventListener('turbolinks:load', () => {
   const blocks = document.getElementsByTagName('code')
 
   for (let block of blocks) {
