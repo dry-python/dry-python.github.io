@@ -1,3 +1,11 @@
 a {
   text-decoration: none;
 }
+
+.top-navbar-item {
+  @apply .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent;
+}
+
+.top-navbar-item:hover {
+  @apply .text-black .border-black;
+}

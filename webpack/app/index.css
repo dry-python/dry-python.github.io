@@ -3,12 +3,3 @@
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
-/* TODO: Move this classes to the styles/navbar.css */
-
-.top-navbar-item {
-  @apply .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent;
-}
-
-.top-navbar-item:hover {
-  @apply .text-black .border-black;
-}
