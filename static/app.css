@@ -102,8 +102,21 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   background-color: green;
 }
 
-a {
+.top-navbar-item {
   text-decoration: none;
+  color: #606f7b;
+  font-size: .875rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  vertical-align: middle;
+  border-bottom-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.top-navbar-item:hover {
+  color: #22292f;
+  border-color: #22292f;
 }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
@@ -6224,24 +6237,6 @@ table {
 
 .z-auto {
   z-index: auto;
-}
-
-/* TODO: Move this classes to the styles/navbar.css */
-
-.top-navbar-item {
-  color: #606f7b;
-  font-size: .875rem;
-  margin-right: 1rem;
-  font-weight: 600;
-  vertical-align: middle;
-  border-bottom-width: 2px;
-  border-style: solid;
-  border-color: transparent;
-}
-
-.top-navbar-item:hover {
-  color: #22292f;
-  border-color: #22292f;
 }
 
 @media (min-width: 576px) {
