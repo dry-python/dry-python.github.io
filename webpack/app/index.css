@@ -1,8 +1,8 @@
+@import "styles/progress-bar.css";
+@import "styles/navbar.css";
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
-@import "styles/progress-bar.css";
-@import "styles/navbar.css";
 /* TODO: Move this classes to the styles/navbar.css */
 
 .top-navbar-item {
