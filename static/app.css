@@ -102,7 +102,26 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   background-color: green;
 }
 
-.top-navbar-item {
+.navbar {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-left-group {
+  width: 60%;
+}
+
+.navbar-right-group {
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-item {
   text-decoration: none;
   color: #606f7b;
   font-size: .875rem;
@@ -114,7 +133,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   border-color: transparent;
 }
 
-.top-navbar-item:hover {
+.navbar-item:hover {
   color: #22292f;
   border-color: #22292f;
 }
