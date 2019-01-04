@@ -63,15 +63,24 @@ Context:
     category = Category.objects.get(
         pk=ctx.category_id)
     return Success(category=category)</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
-subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><h2>Usage</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
+subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><h2>Failures</h2><ol><li class="fragment">Define a number of reasons<pre><code class="python">@Subscription.buy.failures
+class Errors(Enum):
+    low_balance = auto()</code></pre></li><li class="fragment">Failure will stop the execution of the whole story<pre><code class="python">def check_balance(self, ctx):
+    if ctx.profile.balance &lt; ctx.price.cost:
+        return Failure(Errors.low_balance)
+    else:
+        return Success()</code></pre></li><li class="fragment">We check failure reason<pre><code class="python">result = Subscription().buy.run(category_id=2)
+assert result.failed_because(Errors.low_balance)</code></pre></li></ol></section><section><h2>Substories</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
     @story
     def buy(I):
-        I.check_purchase
+        I.calculate_discount
+        I.check_balance
     @story
-    def check_purchase(I):
-        I.find_promo_code</code></pre></li><li class="fragment">Failure will stop the execution of the whole story<pre><code class="python">def check_balance(self, ctx):
-    if ctx.profile.balance &lt; ctx.price.cost:
-        return Failure()
+    def calculate_discount(I):
+        I.find_promo_code
+        I.check_code_expiration</code></pre></li><li class="fragment">Each step can stop the execution of current substory<pre><code class="python">def check_code_expiration(self, ctx):
+    if ctx.promo_code.is_expired():
+        return Skip()
     else:
         return Success()</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Use <b>stories</b> with different frameworks without boilerplate.</p></section><section><h2>Delegate responsibility</h2><pre><code class="python">class Subscription:
 
