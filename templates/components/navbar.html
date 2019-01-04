@@ -1,10 +1,11 @@
 {% macro navbar() %}
-  <div class="bg-white">
-    <div class="container mx-auto flex items-center py-4">
-      <div class="mr-4">
-        <img src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"
-             class="h-8 w-8 rounded-full">
-      </div>
+  <div class="bg-white container mx-auto flex items-center py-4">
+    <div class="w-3/5">
+      <a href="/" class="top-navbar-item">
+        dry-python
+      </a>
+    </div>
+    <div class="w-2/5 flex justify-end">
       {% for path, label in bag('navbar').items() %}
         <a href="{{ path|url }}" class="top-navbar-item">
           {{ label }}
