@@ -1,0 +1,16 @@
+{
+  "name": "dry-python-linters",
+  "version": "1.0.0",
+  "description": "Run linters on CI",
+  "author": "Artem Malyshev",
+  "license": "BSD-2-Clause",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
+  "scripts": {
+    "lint:js": "eslint --ext .js,.json --ignore-path .gitignore ."
+  }
+}
