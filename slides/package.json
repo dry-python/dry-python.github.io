@@ -1,9 +1,6 @@
 {
   "name": "dry-python-talks",
-  "version": "1.0.0",
-  "description": "Talks about dry-python project",
   "author": "Artem Malyshev",
-  "license": "BSD-2-Clause",
   "private": true,
   "dependencies": {
     "highlight.js": "^9.12.0",
