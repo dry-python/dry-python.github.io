@@ -11,9 +11,9 @@
 }
 
 .navbar-item {
-  @apply .no-underline .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent;
+  @apply .no-underline .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent
 }
 
 .navbar-item:hover {
-  @apply .text-black .border-black;
+  @apply .text-black .border-black
 }
