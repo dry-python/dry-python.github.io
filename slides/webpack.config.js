@@ -36,8 +36,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'making_architecture_matter/index.pug',
-      filename: 'making_architecture_matter.html'
+      template: 'introducing-dry-python/index.pug',
+      filename: 'introducing-dry-python.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
