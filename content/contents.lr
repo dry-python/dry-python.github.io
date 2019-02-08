@@ -6,6 +6,8 @@ The easiest way to make your code simple to reason about.
 
 dry-python is a collection of libraries aimed to help you to build an application in your domain.
 
+![](home-background.jpg)
+
 ## Stories
 
 You can define business logic processes with clear DSL.
