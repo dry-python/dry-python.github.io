@@ -1,0 +1,14 @@
+published: 2019-02-27
+---
+title: stories 0.10 release
+---
+body:
+
+Changelog:
+
+* Add failure protocol of the story.  "Failure" argument should match protocol definition in the story.
+* Replace multiple "argument" decorators with single "arguments".
+* Raise "ContextContractError" when keyword argument given to "Success" already exists in the context.
+* Raise "ContextContractError" when the story can not find necessary arguments in the context.
+* Make context an immutable object.
+* Python 3.7 support.
