@@ -145,11 +145,21 @@ html
                   notification = send_notification(
                       'subscription', profile, category.name)
         section
-          h2 Dry Python
-          p A set of libraries for pluggable business logic components.
+          h2 Business object problems
+          ol
+            li.fragment Mixed state, implementation and specification
+            li.fragment Growth problem
+            li.fragment Top-down architecture
+        section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
+          p A set of libraries for pluggable business logic components.
+          p Answers how we decompose and organize business logic.
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
+          p Define a user story in the business transaction DSL.
+          p Separate state, implementation and specification.
+        section
+          h2 DSL
           pre
             code.python.
               from stories import story, arguments
@@ -269,7 +279,7 @@ html
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
           p Provide composition instead of inheritance.
-          p.fragment Use #[b stories] with different frameworks without boilerplate.
+          p Solves top-down approach problem.
         section
           h2 Delegate responsibility
           pre
@@ -357,7 +367,6 @@ html
         section
           h2 Plans
           ol
-            li Conditional substories
             li Delegates
             li Rollbacks
             li asyncio support
