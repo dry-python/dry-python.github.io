@@ -254,6 +254,26 @@ html
                   result = Subscription().buy.run(category_id=2)
                   assert result.failed_because(Errors.low_balance)
         section
+          h2 Contract
+          ol
+            li.fragment Define a number of variable validators
+              pre
+                code.python.
+                  from pydantic import BaseModel
+
+                  @Subscription.buy.contract
+                  class Context(BaseModel):
+                      user: User
+                      category_id: int
+                      category: Optional[Category]
+            li.fragment Return variables from step
+              pre
+                code.python.
+                  def find_category(self, ctx: "Context"):
+                      category = get_category(
+                          ctx.category_id)
+                      return Success(category=category)
+        section
           h2 Substories
           ol
             li.fragment Steps can be stories as well
