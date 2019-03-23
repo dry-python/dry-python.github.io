@@ -31,7 +31,7 @@ ZeroDivisionError: division by zero</code></pre></section><section data-backgrou
     subscription = create_subscription(
         profile, category, expires)
     notification = send_notification(
-        'subscription', profile, category.name)</code></pre></section><section><h2>Dry Python</h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><pre><code class="python">from stories import story, arguments
+        'subscription', profile, category.name)</code></pre></section><section><h2>Business object problems</h2><ol><li class="fragment">Mixed state, implementation and specification</li><li class="fragment">Growth problem</li><li class="fragment">Top-down architecture</li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"><p>A set of libraries for pluggable business logic components.</p><p>Answers how we decompose and organize business logic.</p></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><p>Define a user story in the business transaction DSL.</p><p>Separate state, implementation and specification.</p></section><section><h2>DSL</h2><pre><code class="python">from stories import story, arguments
 
 class Subscription:
     @story
@@ -70,7 +70,16 @@ class Errors(Enum):
         return Failure(Errors.low_balance)
     else:
         return Success()</code></pre></li><li class="fragment">We check failure reason<pre><code class="python">result = Subscription().buy.run(category_id=2)
-assert result.failed_because(Errors.low_balance)</code></pre></li></ol></section><section><h2>Substories</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
+assert result.failed_because(Errors.low_balance)</code></pre></li></ol></section><section><h2>Contract</h2><ol><li class="fragment">Define a number of variable validators<pre><code class="python">from pydantic import BaseModel
+
+@Subscription.buy.contract
+class Context(BaseModel):
+    user: User
+    category_id: int
+    category: Optional[Category]</code></pre></li><li class="fragment">Return variables from step<pre><code class="python">def find_category(self, ctx: "Context"):
+    category = get_category(
+        ctx.category_id)
+    return Success(category=category)</code></pre></li></ol></section><section><h2>Substories</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
     @story
     def buy(I):
         I.calculate_discount
@@ -82,7 +91,7 @@ assert result.failed_because(Errors.low_balance)</code></pre></li></ol></section
     if ctx.promo_code.is_expired():
         return Skip()
     else:
-        return Success()</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p class="fragment">Use <b>stories</b> with different frameworks without boilerplate.</p></section><section><h2>Delegate responsibility</h2><pre><code class="python">class Subscription:
+        return Success()</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p>Solves top-down approach problem.</p></section><section><h2>Delegate responsibility</h2><pre><code class="python">class Subscription:
 
     def find_category(self, ctx):
         category = self.load_category(ctx.category_id)
@@ -141,4 +150,4 @@ class PutMoneyTask(PutMoney):
     def run(put_money, user, amount, task):
         result = put_money.run(user, amount)
         if result.is_failure:
-            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>Conditional substories</li><li>Delegates</li><li>Rollbacks</li><li>asyncio support</li><li>pyramid support</li><li>typing advantages</li><li>linters integration</li><li>language server</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>Delegates</li><li>Rollbacks</li><li>asyncio support</li><li>pyramid support</li><li>typing advantages</li><li>linters integration</li><li>language server</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
