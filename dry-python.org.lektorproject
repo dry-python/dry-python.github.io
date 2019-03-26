@@ -8,3 +8,4 @@ target = ghpages+https://dry-python/dry-python.github.io?cname=dry-python.org
 
 [packages]
 lektor-webpack-support = 0.5
+lektor-google-analytics = 0.1.3
