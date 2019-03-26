@@ -2,6 +2,7 @@
 {% from 'components/copyright.html' import copyright %}
 {% from 'components/bundle.html' import bundle %}
 {% from 'components/gitter_sidecar.html' import gitter_sidecar %}
+{% from 'components/analytics.html' import analytics %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -22,4 +23,5 @@
     {{ copyright() }}
   </footer>
   {{ gitter_sidecar() }}
+  {{ analytics() }}
 </body>
