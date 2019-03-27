@@ -39,6 +39,10 @@ module.exports = {
       template: 'introducing-dry-python/index.pug',
       filename: 'introducing-dry-python.html'
     }),
+    new HtmlWebpackPlugin({
+      template: 'ddd-toolkit/index.pug',
+      filename: 'ddd-toolkit.html'
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css'
     })
