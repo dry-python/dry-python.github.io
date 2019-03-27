@@ -34,3 +34,24 @@ html
         section
           h2 Not about technology
           p You have to master the tool first, than you can focus on #[b DDD].
+        section
+          h2 What is a model?
+          p.fragment #[b HINT:] Not a UML diagram
+        section
+          h2 dataclasses
+          pre
+            code.python.
+             from dataclasses import dataclass
+             from datetime import datetime
+             from decimal import Decimal
+             from typing import NewType
+
+             PriceId = NewType("PriceId", int)
+
+             @dataclass
+             class Price:
+                 primary_key: PriceId
+                 category: CategoryId
+                 cost: Decimal
+                 period: ...
+                 active_from_date: datetime
