@@ -12,10 +12,11 @@
 
 .header-content__title {
   @apply text-4xl mb-4;
+  font-weight: inherit;
 }
 
 .header-content__description {
-  @apply text-base mb-3;
+  @apply text-xl font-normal mb-3;
 }
 
 .header-button-group {
