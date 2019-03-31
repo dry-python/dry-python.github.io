@@ -22,10 +22,12 @@
 .header-content__title {
   font-size: 2.25rem;
   margin-bottom: 1rem;
+  font-weight: inherit;
 }
 
 .header-content__description {
-  font-size: 1rem;
+  font-size: 1.25rem;
+  font-weight: 400;
   margin-bottom: .75rem;
 }
 
@@ -79,7 +81,6 @@
 .navbar-item {
   text-decoration: none;
   color: #606f7b;
-  font-size: .875rem;
   margin-right: 1rem;
   font-weight: 600;
   vertical-align: middle;
@@ -3017,6 +3018,10 @@ table {
   content: "";
   display: table;
   clear: both;
+}
+
+.font-source-sans {
+  font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
 .font-sans {
@@ -8608,6 +8613,10 @@ table {
     clear: both;
   }
 
+  .sm\:font-source-sans {
+    font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+
   .sm\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -14180,6 +14189,10 @@ table {
     content: "";
     display: table;
     clear: both;
+  }
+
+  .md\:font-source-sans {
+    font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   }
 
   .md\:font-sans {
@@ -19756,6 +19769,10 @@ table {
     clear: both;
   }
 
+  .lg\:font-source-sans {
+    font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+
   .lg\:font-sans {
     font-family: system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
@@ -25328,6 +25345,10 @@ table {
     content: "";
     display: table;
     clear: both;
+  }
+
+  .xl\:font-source-sans {
+    font-family: Source Sans Pro, -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   }
 
   .xl\:font-sans {
