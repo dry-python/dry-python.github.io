@@ -62,3 +62,5 @@ urlpatterns = [
     path("buy_subscription/<int:id>/", BuySubscriptionView.as_view()),
 ]
 ```
+---
+description: The easiest way to make your code simple to reason about.<br/>dry-python is a collection of libraries aimed to help you to build an application in your domain.

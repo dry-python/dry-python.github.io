@@ -7,25 +7,26 @@
 }
 
 .header-content {
-  @apply mx-auto text-center;
-  margin-top: 80px;
+  @apply mx-auto text-center py-24;
 }
 
 .header-content__title {
-  font-size: 33px;
+  @apply text-4xl mb-4;
 }
 
 .header-content__description {
-  margin: 20px auto 60px;
-  font-size: 17px;
+  @apply text-base mb-3;
 }
 
-.header-github {
-  @apply flex justify-center;
+.header-button-group {
+  @apply flex justify-center py-4;
 }
 
-.header-github__button {
+.header-button-group__button {
   transition: background 0.3s;
-  margin-bottom: 60px;
-  padding: 1rem 2rem;
+  @apply bg-transparent text-blue-dark font-semibold py-3 px-5 border border-blue rounded no-underline;
+}
+
+.header-button-group__button:hover {
+  @apply text-white bg-blue border-transparent;
 }

@@ -12,10 +12,13 @@
   <title>{% block title %}Welcome{% endblock %} | dry-python.org</title>
 </head>
 <body>
-  <header class="container header">
-    {{ navbar() }}
-  </header>
-  <div class="container mx-auto text">
+  <div class="header-container">
+    <header class="container header">
+      {{ navbar() }}
+      {% block header %}{% endblock header %}
+    </header>
+  </div>
+  <div class="container mx-auto text py-4">
     {% block body %}
     {% endblock %}
   </div>

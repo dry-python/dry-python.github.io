@@ -6,7 +6,7 @@
 
 {% block body %}
   {% for record in this.pagination.items %}
-    <div>
+    <div class="pb-5">
       <h2>{{ record.title }}</h2>
       <p>{{ record.published.strftime('%d.%m.%Y') }}</p>
       {{ record.body }}

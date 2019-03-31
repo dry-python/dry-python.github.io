@@ -1,39 +1,19 @@
-{% from 'components/navbar.html' import navbar %}
-{% from 'components/copyright.html' import copyright %}
-{% from 'components/bundle.html' import bundle %}
-{% from 'components/gitter_sidecar.html' import gitter_sidecar %}
-{% from 'components/analytics.html' import analytics %}
+{% extends 'layout.html' %}
 
-<!doctype html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{ bundle() }}
-  <title>{% block title %}Welcome{% endblock %} | dry-python.org</title>
-</head>
-<body>
-  <div class="header-container">
-    <header class="container header">
-      {{ navbar() }}
-      <div class="header-content container">
-        <h1 class="header-content__title">A set of libraries for pluggable business logic components.</h1>
-        <h2 class="header-content__description">
-          The easiest way to make your code simple to reason about.<br/>
-          dry-python is a collection of libraries aimed to help you to build an application in your domain.
-        </h2>
-      </div>
-      <div class="container header-github">
-        <a href="https://github.com/dry-python" class="header-github__button bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded no-underline">GITHUB</a>
-      </div>
-    </header>
+{% block title %}
+  {{ this.title }}
+{% endblock %}
+
+{% block header %}
+<div class="header-content container">
+  <h1 class="header-content__title">{{ this.title }}</h1>
+  <h2 class="header-content__description">{{ this.description|safe }}</h2>
+  <div class="container header-button-group">
+    <a href="https://github.com/dry-python" class="header-button-group__button">GitHub</a>
   </div>
-  <div class="container mx-auto text py-4">
-    {{ this.body }}
-  </div>
-  <footer class="container footer">
-    {{ copyright() }}
-  </footer>
-  {{ gitter_sidecar() }}
-  {{ analytics() }}
-</body>
+</div>
+{% endblock header %}
+
+{% block body %}
+  {{ this.body }}
+{% endblock %}
