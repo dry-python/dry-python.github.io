@@ -1,3 +1,7 @@
+{% from 'components/header.html' import header %}
+{% from 'components/navbar.html' import navbar %}
+{% from 'components/welcome/intro.html' import intro %}
+
 {% extends 'layout.html' %}
 
 {% block title %}
@@ -5,16 +9,11 @@
 {% endblock %}
 
 {% block header %}
-<div class="header-content container">
-  <h1 class="header-content__title">{{ this.title }}</h1>
-  <h2 class="header-content__description">{{ this.description|safe }}</h2>
-  <div class="container header-button-group">
-    <a href="https://github.com/dry-python" class="header-button-group__button">
-      GitHub
-    </a>
-  </div>
-</div>
-{% endblock header %}
+  {% call header() %}
+    {{ navbar() }}
+    {{ intro(this) }}
+  {% endcall %}
+{% endblock %}
 
 {% block body %}
   {{ this.body }}

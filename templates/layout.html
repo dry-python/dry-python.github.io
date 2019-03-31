@@ -1,3 +1,4 @@
+{% from 'components/header.html' import header %}
 {% from 'components/navbar.html' import navbar %}
 {% from 'components/copyright.html' import copyright %}
 {% from 'components/bundle.html' import bundle %}
@@ -13,12 +14,11 @@
   <title>{% block title %}Welcome{% endblock %} | dry-python.org</title>
 </head>
 <body class="font-source-sans text-lg">
-  <div class="header-container">
-    <header class="container header">
+  {% block header %}
+    {% call header() %}
       {{ navbar() }}
-      {% block header %}{% endblock header %}
-    </header>
-  </div>
+    {% endcall %}
+  {% endblock %}
   <div class="container mx-auto text py-4">
     {% block body %}
     {% endblock %}
