@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{ this.title }}
+{% endblock %}
+
+{% block body %}
+  {% for member in this.pagination.items %}
+    <div>
+      <img src="{{ member.avatar }}">
+      <p>{{ member.name }}</p>
+      <p>Since {{ member.active_since.strftime('%Y') }} — {{ member.location }}</p>
+      <p>{{ member.description }}</p>
+      <a href="https://github.com/{{ member.github_nickname }}">{{ member.github_nickname }}</a>
+    </div>
+  {% endfor %}
+{% endblock %}
