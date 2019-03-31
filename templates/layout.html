@@ -12,14 +12,14 @@
   <title>{% block title %}Welcome{% endblock %} | dry-python.org</title>
 </head>
 <body>
-  <header>
+  <header class="container header">
     {{ navbar() }}
   </header>
-  <div>
+  <div class="container mx-auto text">
     {% block body %}
     {% endblock %}
   </div>
-  <footer>
+  <footer class="container footer">
     {{ copyright() }}
   </footer>
   {{ gitter_sidecar() }}

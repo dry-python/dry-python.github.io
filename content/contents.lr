@@ -1,12 +1,8 @@
+_model: welcome
+---
 title: A set of libraries for pluggable business logic components.
 ---
 body:
-
-The easiest way to make your code simple to reason about.
-
-dry-python is a collection of libraries aimed to help you to build an application in your domain.
-
-![](home-background.jpg)
 
 ## Stories
 

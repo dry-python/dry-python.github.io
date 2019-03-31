@@ -1,0 +1,31 @@
+.header {
+  @apply mx-auto;
+}
+
+.header-container {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.header-content {
+  @apply mx-auto text-center;
+  margin-top: 80px;
+}
+
+.header-content__title {
+  font-size: 33px;
+}
+
+.header-content__description {
+  margin: 20px auto 60px;
+  font-size: 17px;
+}
+
+.header-github {
+  @apply flex justify-center;
+}
+
+.header-github__button {
+  transition: background 0.3s;
+  margin-bottom: 60px;
+  padding: 1rem 2rem;
+}
