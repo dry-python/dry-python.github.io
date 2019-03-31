@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet"
-        href="/static/app.css?h=6bd8d5aa"
+        href="/static/app.css?h=fb006a0e"
         data-turbolinks-track="reload">
   <script defer
           src="/static/app.js?h=9c817197"
@@ -22,9 +22,10 @@
  | dry-python.org</title>
 </head>
 <body>
-  <header>
-    
-  <div class="container navbar">
+  <div class="header-container">
+    <header class="container header">
+      
+  <nav class="container navbar">
     <div class="navbar-left-group">
       <a href="/" class="navbar-item">
         dry-python
@@ -48,17 +49,24 @@
           Blog
         </a>
       
+      <a href="https://github.com/dry-python" class="navbar-item">GitHub</a>
     </div>
-  </div>
+  </nav>
 
-  </header>
-  <div>
+      
+<div class="header-content container">
+  <h1 class="header-content__title">A set of libraries for pluggable business logic components.</h1>
+  <h2 class="header-content__description">The easiest way to make your code simple to reason about.<br/>dry-python is a collection of libraries aimed to help you to build an application in your domain.</h2>
+  <div class="container header-button-group">
+    <a href="https://github.com/dry-python" class="header-button-group__button">GitHub</a>
+  </div>
+</div>
+
+    </header>
+  </div>
+  <div class="container mx-auto text py-4">
     
-  <h2>A set of libraries for pluggable business logic components.</h2>
-  <p>The easiest way to make your code simple to reason about.</p>
-<p>dry-python is a collection of libraries aimed to help you to build an application in your domain.</p>
-<p><img src="/home-background.jpg" alt=""></p>
-<h2>Stories</h2>
+  <h2>Stories</h2>
 <p>You can define business logic processes with clear DSL.</p>
 <pre><code class="lang-python"># workflows.py
 from stories import story, arguments
@@ -109,7 +117,7 @@ urlpatterns = [
 
 
   </div>
-  <footer>
+  <footer class="container footer">
     
   &copy; Copyright 2018-2019 dry-python team.
 

@@ -2,6 +2,61 @@
   background-color: green;
 }
 
+.header {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header-container {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.header-content {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.header-content__title {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.header-content__description {
+  font-size: 1rem;
+  margin-bottom: .75rem;
+}
+
+.header-button-group {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.header-button-group__button {
+  transition: background .3s;
+  background-color: transparent;
+  color: #2779bd;
+  font-weight: 600;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  border-width: 1px;
+  border-color: #3490dc;
+  border-radius: .25rem;
+  text-decoration: none;
+}
+
+.header-button-group__button:hover {
+  color: #fff;
+  background-color: #3490dc;
+  border-color: transparent;
+}
+
 .navbar {
   margin-left: auto;
   margin-right: auto;
@@ -36,6 +91,27 @@
 .navbar-item:hover {
   color: #22292f;
   border-color: #22292f;
+}
+
+.text h2 {
+  margin-top: 1rem;
+  margin-bottom: .75rem;
+}
+
+.text h2:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.text p {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+.footer {
+  padding: 1rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
