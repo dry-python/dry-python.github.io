@@ -1,0 +1,32 @@
+.header {
+  @apply mx-auto;
+}
+
+.header-container {
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.header-content {
+  @apply mx-auto text-center py-24;
+}
+
+.header-content__title {
+  @apply text-4xl mb-4;
+}
+
+.header-content__description {
+  @apply text-base mb-3;
+}
+
+.header-button-group {
+  @apply flex justify-center py-4;
+}
+
+.header-button-group__button {
+  transition: background 0.3s;
+  @apply bg-transparent text-blue-dark font-semibold py-3 px-5 border border-blue rounded no-underline;
+}
+
+.header-button-group__button:hover {
+  @apply text-white bg-blue border-transparent;
+}

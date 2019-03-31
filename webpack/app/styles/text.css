@@ -1,0 +1,11 @@
+.text h2 {
+  @apply mt-4 mb-3;
+}
+
+.text h2:not(:first-child) {
+  @apply mt-8;
+}
+.text p {
+  @apply my-2;
+}
+

@@ -1,19 +1,19 @@
 .navbar {
-  @apply mx-auto flex items-center py-4
+  @apply mx-auto flex items-center py-4;
 }
 
 .navbar-left-group {
-  @apply w-3/5
+  @apply w-3/5;
 }
 
 .navbar-right-group {
-  @apply w-2/5 flex justify-end
+  @apply w-2/5 flex justify-end;
 }
 
 .navbar-item {
-  @apply .no-underline .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent
+  @apply .no-underline .text-grey-darker .text-sm .mr-4 .font-semibold .align-middle .border-b-2 .border-solid .border-transparent;
 }
 
 .navbar-item:hover {
-  @apply .text-black .border-black
+  @apply .text-black .border-black;
 }

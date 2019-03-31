@@ -1,5 +1,5 @@
 {% macro navbar() %}
-  <div class="container navbar">
+  <nav class="container navbar">
     <div class="navbar-left-group">
       <a href="/" class="navbar-item">
         dry-python
@@ -11,6 +11,7 @@
           {{ label }}
         </a>
       {% endfor %}
+      <a href="https://github.com/dry-python" class="navbar-item">GitHub</a>
     </div>
-  </div>
+  </nav>
 {% endmacro %}
