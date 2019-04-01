@@ -60,6 +60,81 @@ html
             a(href="https://dry-python.org/") dry-python
           p A set of libraries for pluggable business logic components.
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
+        section
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
+          p Define a user story in the business transaction DSL.
+          p Separate state, implementation and specification.
+        section
+          h2 Specification DSL
+          pre
+            code.python.
+              from stories import story, arguments
+
+              class Subscription:
+                  @story
+                  @arguments('category_id', 'price_id')
+                  def buy(I):
+                      I.find_category
+                      I.find_price
+                      I.find_profile
+                      I.check_balance
+                      I.persist_payment
+                      I.persist_subscription
+                      I.send_subscription_notification
+        section
+          h2 State Contract
+          pre
+            code.python.
+              from pydantic import BaseModel
+
+              @Subscription.buy.contract
+              class Context(BaseModel):
+                  user: User
+                  category_id: int
+                  category: Optional[Category]
+        section
+          h2 Steps implementation
+          pre
+            code.python.
+              def find_category(self, ctx: Contract):
+                  category = Category.objects.get(pk=ctx.category_id)
+                  return Success(category=category)
+        section
+          h2 Story Execution
+          pre
+            code.python.
+              >>> Subscription().buy(category_id=2)
+              Subscription.buy:
+                find_category
+                check_price
+                check_purchase (PromoCode.validate)
+                  find_code (skipped)
+                check_balance
+                  find_profile
+
+              Context:
+                category_id = 1318  # Story argument
+                user = #{"<"}User: 3292#{">"} # Story argument
+                category = #{"<"}Category: 1318#{">"}
+                  # Set by Subscription.find_category
+        section(data-background-image=require("../introducing-dry-python/pics/debug-toolbar.png") data-background-size="contain")
+          h2 DEBUG TOOLBAR
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+        section(data-background-image=require("../introducing-dry-python/pics/pytest.png") data-background-size="contain")
+          h2(style="color: white") py.test
+        section(data-background-image=require("../introducing-dry-python/pics/sentry.png") data-background-size="contain")
+          h2 Sentry
+        section
+          h2 ELK
         section(data-background-image=require("./pics/aggregate-root-1.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-2.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-3.jpg") data-background-size="contain")
