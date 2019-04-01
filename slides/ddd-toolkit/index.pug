@@ -47,11 +47,11 @@ html
              from typing import NewType
 
              PriceId = NewType("PriceId", int)
+             CategoryId = NewType("CategoryId", int)
 
              @dataclass
              class Price:
                  primary_key: PriceId
                  category: CategoryId
                  cost: Decimal
-                 period: ...
                  active_from_date: datetime
