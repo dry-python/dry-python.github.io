@@ -41,17 +41,17 @@ html
           h2 dataclasses
           pre
             code.python.
-             from dataclasses import dataclass
-             from datetime import datetime
-             from decimal import Decimal
-             from typing import NewType
+              from dataclasses import dataclass
+              from datetime import datetime
+              from decimal import Decimal
+              from typing import NewType
 
-             PriceId = NewType("PriceId", int)
-             CategoryId = NewType("CategoryId", int)
+              PriceId = NewType("PriceId", int)
+              CategoryId = NewType("CategoryId", int)
 
-             @dataclass
-             class Price:
-                 primary_key: PriceId
-                 category: CategoryId
-                 cost: Decimal
-                 active_from_date: datetime
+              @dataclass
+              class Price:
+                  primary_key: PriceId
+                  category: CategoryId
+                  cost: Decimal
+                  active_from_date: datetime
