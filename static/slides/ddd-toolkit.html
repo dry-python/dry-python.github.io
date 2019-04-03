@@ -32,16 +32,15 @@ Context:
   user = &lt;User: 3292&gt; # Story argument
   category = &lt;Category: 1318&gt;
     # Set by Subscription.find_category</code></pre></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>ELK</h2></section><section data-background-image="2f8fdc259c046cefdd4211db709ef31e.jpg" data-background-size="contain"></section><section><p>TODO: app/aggregates/ python package picture</p></section><section data-background-image="865ecfe3219b7f6cf803154b2ca0ac15.jpg" data-background-size="contain"></section><section data-background-image="3e46dde7d79e42928005ac9621dcf5b0.jpg" data-background-size="contain"></section><section data-background-image="f52dca54c7d19aa4e400bc02d4286a36.jpg" data-background-size="contain"></section><section data-background-image="10ba34ef6a86d1beaae211015976e82d.jpg" data-background-size="contain"></section><section data-background-image="1d67e254d9328fd7e779fe489f2c0782.jpg" data-background-size="contain"></section><section><h2>dataclasses</h2><pre><code class="python">from dataclasses import dataclass
-from datetime import datetime
-from decimal import Decimal
-from typing import NewType
+from typing import List, NewType
 
-PriceId = NewType("PriceId", int)
-CategoryId = NewType("CategoryId", int)
+OrderId = NewType("OrderId", int)
 
 @dataclass
-class Price:
-    primary_key: PriceId
-    category: CategoryId
-    cost: Decimal
-    active_from_date: datetime</code></pre></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><p>TODO: app/repositories/ python package picture</p></section><section><p>TODO: mappers aggregate to ORM</p></section><section><p>TODO: mappers aggregate to Swagger</p></section><section><p>TODO: mappers aggregate to GraphQL</p></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: interfaces and DI</p></section><section><p>TODO: mocks and testing</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section><p>TODO: The end</p></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+class LineItem:
+    product_id: ProductId
+
+@dataclass
+class Order:
+    primary_key: OrderId
+    items: List[LineItem]</code></pre></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><p>TODO: app/repositories/ python package picture</p></section><section><p>TODO: mappers aggregate to ORM</p></section><section><p>TODO: mappers aggregate to Swagger</p></section><section><p>TODO: mappers aggregate to GraphQL</p></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: interfaces and DI</p></section><section><p>TODO: mocks and testing</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section><p>TODO: The end</p></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
