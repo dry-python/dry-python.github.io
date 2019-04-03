@@ -43,4 +43,15 @@ class LineItem:
 @dataclass
 class Order:
     primary_key: OrderId
-    items: List[LineItem]</code></pre></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><p>TODO: app/repositories/ python package picture</p></section><section><p>TODO: mappers aggregate to ORM</p></section><section><p>TODO: mappers aggregate to Swagger</p></section><section><p>TODO: mappers aggregate to GraphQL</p></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: interfaces and DI</p></section><section><p>TODO: mocks and testing</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section><p>TODO: The end</p></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+    items: List[LineItem]</code></pre></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png"><p>Declarative mappers from ORM models to domain entities. And back again!</p></section><section><p>TODO: app/repositories/ python package picture</p></section><section><p>Django ORM</p><pre><code class="python">from mappers impot Mapper
+from app.aggregates import Order, OrderId, User
+from app.models import OrderModel, UserModel
+
+mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+
+@mapper.reader
+def load_subscription(id: OrderId, user: User) -> Order:
+    friends = UserModel.objects.filter(
+        purchases=OuterRef("pk"), friends=user.primary_key)
+    return OrderModel.objects.filter(pk=id).annotate(
+        purchased_by_friends=Exists(friends)).get()</code></pre></section><section><p>TODO: mappers aggregate to Swagger</p></section><section><p>TODO: mappers aggregate to GraphQL</p></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: interfaces and DI</p></section><section><p>TODO: mocks and testing</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section><p>TODO: The end</p></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
