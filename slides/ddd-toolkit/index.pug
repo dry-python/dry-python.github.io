@@ -166,9 +166,26 @@ html
                   items: List[LineItem]
         section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg") data-background-size="contain")
         section
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
+          p Declarative mappers from ORM models to domain entities. And back again!
+        section
           p TODO: app/repositories/ python package picture
         section
-          p TODO: mappers aggregate to ORM
+          p Django ORM
+          pre
+            code.python.
+              from mappers impot Mapper
+              from app.aggregates import Order, OrderId, User
+              from app.models import OrderModel, UserModel
+
+              mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+
+              @mapper.reader
+              def load_subscription(id: OrderId, user: User) -> Order:
+                  friends = UserModel.objects.filter(
+                      purchases=OuterRef("pk"), friends=user.primary_key)
+                  return OrderModel.objects.filter(pk=id).annotate(
+                      purchased_by_friends=Exists(friends)).get()
         section
           p TODO: mappers aggregate to Swagger
         section
