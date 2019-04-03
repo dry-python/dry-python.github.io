@@ -25,7 +25,7 @@
 
 .header-button-group__button {
   transition: background 0.3s;
-  @apply bg-transparent text-blue-dark font-semibold py-3 px-5 border border-blue rounded no-underline;
+  @apply bg-transparent text-blue-dark font-semibold py-3 px-5 mx-5 border border-blue rounded no-underline;
 }
 
 .header-button-group__button:hover {

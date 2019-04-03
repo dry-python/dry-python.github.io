@@ -1,0 +1,5 @@
+{% macro button(url) %}
+  <a href="{{ url }}" class="header-button-group__button">
+    {{ caller() }}
+  </a>
+{% endmacro %}
