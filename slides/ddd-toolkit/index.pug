@@ -152,19 +152,18 @@ html
           pre
             code.python.
               from dataclasses import dataclass
-              from datetime import datetime
-              from decimal import Decimal
-              from typing import NewType
+              from typing import List, NewType
 
-              PriceId = NewType("PriceId", int)
-              CategoryId = NewType("CategoryId", int)
+              OrderId = NewType("OrderId", int)
 
               @dataclass
-              class Price:
-                  primary_key: PriceId
-                  category: CategoryId
-                  cost: Decimal
-                  active_from_date: datetime
+              class LineItem:
+                  product_id: ProductId
+
+              @dataclass
+              class Order:
+                  primary_key: OrderId
+                  items: List[LineItem]
         section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg") data-background-size="contain")
         section
           p TODO: app/repositories/ python package picture
