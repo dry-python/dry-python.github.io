@@ -203,7 +203,7 @@ html
               ├── templates
               └── views
         section
-          p Django ORM
+          h2 Django ORM
           pre
             code.python.
               from mappers impot Mapper
@@ -219,7 +219,19 @@ html
                   return OrderModel.objects.filter(pk=id).annotate(
                       purchased_by_friends=Exists(friends)).get()
         section
-          p TODO: mappers aggregate to Swagger
+          h2 Swagger definitions
+          pre
+            code.python.
+              from mappers import Mapper
+              from bravado import swagger_model
+              from app.aggregates import Price
+
+              spec = swagger_model.load_file("price_service.yml")
+              mapper = Mapper(Price, spec.definitions["Price"])
+
+              @mapper.reader
+              def load_price(id: PriceId) -> Price:
+                  return requests.get(f"http://172.16.1.7/get/{id}")
         section
           p TODO: mappers aggregate to GraphQL
         section
