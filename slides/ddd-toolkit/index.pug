@@ -67,7 +67,17 @@ html
           p Define a user story in the business transaction DSL.
           p Separate state, implementation and specification.
         section
-          p TODO: app/services/ python package picture
+          h2 Layout
+          pre
+            code.
+              project
+              ├── admin
+              ├── forms
+              ├── migrations
+              ├── models
+              ├── #[b services]
+              ├── templates
+              └── views
         section
           h2 Specification DSL
           pre
@@ -140,13 +150,24 @@ html
         section
           h2 ELK
         section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg") data-background-size="contain")
-        section
-          p TODO: app/aggregates/ python package picture
         section(data-background-image=require("./pics/aggregate-root-1.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-2.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-3.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-4.jpg") data-background-size="contain")
         section(data-background-image=require("./pics/aggregate-root-5.jpg") data-background-size="contain")
+        section
+          h2 Layout
+          pre
+            code.
+              project
+              ├── admin
+              ├── #[b aggregates]
+              ├── forms
+              ├── migrations
+              ├── models
+              ├── services
+              ├── templates
+              └── views
         section
           h2 dataclasses
           pre
@@ -169,7 +190,19 @@ html
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
           p Declarative mappers from ORM models to domain entities. And back again!
         section
-          p TODO: app/repositories/ python package picture
+          h2 Layout
+          pre
+            code.
+              project
+              ├── admin
+              ├── aggregates
+              ├── forms
+              ├── migrations
+              ├── models
+              ├── #[b repositories]
+              ├── services
+              ├── templates
+              └── views
         section
           p Django ORM
           pre
