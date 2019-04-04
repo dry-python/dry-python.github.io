@@ -233,7 +233,23 @@ html
               def load_price(id: PriceId) -> Price:
                   return requests.get(f"http://172.16.1.7/get/{id}")
         section
-          p TODO: mappers aggregate to GraphQL
+          h2 GraphQL queries
+          pre
+            code.python.
+              from mappers import Mapper
+              from gql import gql, Client, build_schema
+              from app.models import Invoice
+
+              schema = build_schema("invoice_service.graphql")
+              mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+              @mapper.reader
+              def load_invoice(id: InvoiceId) -> Invoice:
+                  return Client(schema=schema).execute(gql("""
+                    {
+                      loadInvoice(id: %d)
+                    }
+                  """ % (id,)))
         section
           p TODO: Pusher -> Ably migration. Why value objects matters.
         section
