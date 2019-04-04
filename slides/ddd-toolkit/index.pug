@@ -247,9 +247,9 @@ html
               def load_invoice(id: InvoiceId) -> Invoice:
                   return Client(schema=schema).execute(gql("""
                     {
-                      loadInvoice(id: %d)
+                      loadInvoice(id: %(id)d)
                     }
-                  """ % (id,)))
+                  """, {"id": id}))
         section(data-background-image=require("./pics/pusher-to-ably.png") data-background-size="contain")
         section
           h2 Tests & Mocks
