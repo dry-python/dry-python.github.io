@@ -85,11 +85,11 @@ html
 
               class Subscription:
                   @story
-                  @arguments('category_id', 'price_id')
+                  @arguments("invoice_id", "user")
                   def buy(I):
-                      I.find_category
+                      I.find_order
                       I.find_price
-                      I.find_profile
+                      I.find_invoice
                       I.check_balance
                       I.persist_payment
                       I.persist_subscription
@@ -100,18 +100,33 @@ html
             code.python.
               from pydantic import BaseModel
 
+              class Subscription:
+                  @story
+                  def buy(I):
+                      ...
+
               @Subscription.buy.contract
               class Context(BaseModel):
                   user: User
-                  category_id: int
-                  category: Optional[Category]
+                  invoice_id: int
+                  invoice: Optional[Invoice]
         section
           h2 Steps implementation
           pre
             code.python.
-              def find_category(self, ctx: Contract):
-                  category = Category.objects.get(pk=ctx.category_id)
-                  return Success(category=category)
+              from stories import Failure, Success
+
+              class Subscription:
+
+                  def find_invoice(self, ctx: Context):
+                      invoice = Invoice.objects.get(pk=ctx.invoice_id)
+                      return Success(invoice=invoice)
+
+                  def check_balance(self, ctx: Context):
+                      if ctx.user.can_pay(ctx.invoice):
+                          return Success()
+                      else:
+                          return Failure()
         section
           h2 Story Execution
           pre
