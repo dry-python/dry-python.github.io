@@ -268,7 +268,21 @@ html
                       UserStream(User(1))
                   )
         section
-          p TODO: interfaces and DI
+          h2 Dependency Injection
+          pre
+            code.python.
+              from dependencies import Injector, Package
+
+              app = Package("project")
+
+              class BuySubscription(Injector):
+
+                  buy_subscription = app.services.Subscription.buy
+                  load_order = app.repositories.load_order
+                  load_price = app.repositories.load_price
+                  load_invoice = app.repositories.load_invoice
+
+              BuySubscription.buy_subscription(category_id=1, price_id=1)
         section
           h2 Refactoring roadmap
           ul
