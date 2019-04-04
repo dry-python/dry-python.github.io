@@ -252,7 +252,21 @@ html
                   """ % (id,)))
         section(data-background-image=require("./pics/pusher-to-ably.png") data-background-size="contain")
         section
-          p TODO: mocks and testing
+          h2 Tests & Mocks
+          pre
+            code.python.
+              def test_before(monkeypatch):
+                  monkeypatch.setattr(pusher, "Pusher", Mock())
+                  # ...
+                  pusher.Pusher.trigger.assert_called_once_with(
+                      "private-user-1"
+                  )
+
+              def test_after(emitter):
+                  # ...
+                  emitter.trigger.assert_called_once_with(
+                      UserStream(User(1))
+                  )
         section
           p TODO: interfaces and DI
         section
