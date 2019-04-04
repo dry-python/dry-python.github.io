@@ -206,14 +206,14 @@ html
           h2 Django ORM
           pre
             code.python.
-              from mappers impot Mapper
+              from mappers import Mapper
               from app.aggregates import Order, OrderId, User
               from app.models import OrderModel, UserModel
 
               mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
 
               @mapper.reader
-              def load_subscription(id: OrderId, user: User) -> Order:
+              def load_order(id: OrderId, user: User) -> Order:
                   friends = UserModel.objects.filter(
                       purchases=OuterRef("pk"), friends=user.primary_key)
                   return OrderModel.objects.filter(pk=id).annotate(
