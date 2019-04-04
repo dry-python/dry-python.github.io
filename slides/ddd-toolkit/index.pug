@@ -265,7 +265,7 @@ html
               def test_after(emitter):
                   # ...
                   emitter.trigger.assert_called_once_with(
-                      UserStream(User(1))
+                      UserStream(User(primary_key=1))
                   )
         section
           h2 Dependency Injection
