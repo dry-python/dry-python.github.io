@@ -87,4 +87,17 @@ mapper = Mapper(Price, spec.definitions["Price"])
 
 @mapper.reader
 def load_price(id: PriceId) -> Price:
-    return requests.get(f"http://172.16.1.7/get/{id}")</code></pre></section><section><p>TODO: mappers aggregate to GraphQL</p></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: mocks and testing</p></section><section><p>TODO: interfaces and DI</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section data-background-image="20d08f27a15381221fdc43d57c52831f.png" data-background-size="contain"></section><section><h2>Questions?</h2></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+    return requests.get(f"http://172.16.1.7/get/{id}")</code></pre></section><section><h2>GraphQL queries</h2><pre><code class="python">from mappers import Mapper
+from gql import gql, Client, build_schema
+from app.models import Invoice
+
+schema = build_schema("invoice_service.graphql")
+mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+@mapper.reader
+def load_invoice(id: InvoiceId) -> Invoice:
+    return Client(schema=schema).execute(gql("""
+      {
+        loadInvoice(id: %d)
+      }
+    """ % (id,)))</code></pre></section><section><p>TODO: Pusher -> Ably migration. Why value objects matters.</p></section><section><p>TODO: mocks and testing</p></section><section><p>TODO: interfaces and DI</p></section><section><h2>Refactoring roadmap</h2><ul><li class="fragment">No DDD at all</li><li class="fragment">Stories without contracts</li><li class="fragment">contracts and aggregates</li><li class="fragment">mappers</li><li class="fragment">DI</li></ul></section><section data-background-image="20d08f27a15381221fdc43d57c52831f.png" data-background-size="contain"></section><section><h2>Questions?</h2></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
