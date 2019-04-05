@@ -9,23 +9,38 @@
 
 class Subscription:
     @story
-    @arguments('category_id', 'price_id')
+    @arguments("invoice_id", "user")
     def buy(I):
-        I.find_category
+        I.find_order
         I.find_price
-        I.find_profile
+        I.find_invoice
         I.check_balance
         I.persist_payment
         I.persist_subscription
         I.send_subscription_notification</code></pre></section><section><h2>State Contract</h2><pre><code class="python">from pydantic import BaseModel
 
+class Subscription:
+    @story
+    def buy(I):
+        ...
+
 @Subscription.buy.contract
 class Context(BaseModel):
     user: User
-    category_id: int
-    category: Optional[Category]</code></pre></section><section><h2>Steps implementation</h2><pre><code class="python">def find_category(self, ctx: Contract):
-    category = Category.objects.get(pk=ctx.category_id)
-    return Success(category=category)</code></pre></section><section><h2>Story Execution</h2><pre><code class="python">>>> Subscription().buy(category_id=2)
+    invoice_id: int
+    invoice: Optional[Invoice]</code></pre></section><section><h2>Steps implementation</h2><pre><code class="python">from stories import Failure, Success
+
+class Subscription:
+
+    def find_invoice(self, ctx: Context):
+        invoice = Invoice.objects.get(pk=ctx.invoice_id)
+        return Success(invoice=invoice)
+
+    def check_balance(self, ctx: Context):
+        if ctx.user.can_pay(ctx.invoice):
+            return Success()
+        else:
+            return Failure()</code></pre></section><section><h2>Story Execution</h2><pre><code class="python">>>> Subscription().buy(category_id=2)
 Subscription.buy:
   find_category
   check_price
