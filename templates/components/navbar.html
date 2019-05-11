@@ -1,11 +1,21 @@
+{% from 'components/menu_icon.html' import menu_icon %}
+
 {% macro navbar() %}
-  <nav class="container navbar">
+  <nav class="container navbar"
+       data-controller="navbar">
     <div class="navbar-left-group">
       <a href="/" class="navbar-item">
         dry-python
       </a>
     </div>
-    <div class="navbar-right-group">
+    <div class="block lg:hidden">
+      <button class="navbar-button"
+              data-action="navbar#toggle">
+        {{ menu_icon('Menu') }}
+      </button>
+    </div>
+    <div class="navbar-right-group"
+         data-target="navbar.menuItems">
       {% for path, label in bag('navbar').items() %}
         <a href="{{ path|url }}" class="navbar-item">
           {{ label }}

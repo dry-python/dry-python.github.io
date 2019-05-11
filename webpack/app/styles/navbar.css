@@ -17,3 +17,11 @@
 .navbar-item:hover {
   @apply .text-black .border-black;
 }
+
+.navbar-button {
+  @apply flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light;
+}
+
+.navbar-button:hover {
+  @apply text-white border-white;
+}
