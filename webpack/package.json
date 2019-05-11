@@ -5,11 +5,13 @@
   "dependencies": {
     "gitter-sidecar": "^1.4.2",
     "highlight.js": "^9.13.1",
+    "stimulus": "^1.1.1",
     "tailwindcss": "^0.7.2",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.2.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.1",
