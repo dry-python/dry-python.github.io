@@ -12,10 +12,10 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:400,400i,600,600i" rel="stylesheet">
   
   <link rel="stylesheet"
-        href="/static/app.css?h=e66b4dee"
+        href="/static/app.css?h=3f8a810d"
         data-turbolinks-track="reload">
   <script defer
-          src="/static/app.js?h=210dac51"
+          src="/static/app.js?h=34617586"
           data-turbolinks-track="reload">
   </script>
 
@@ -30,13 +30,26 @@
     <header class="container header">
       
       
-  <nav class="container navbar">
+  <nav class="container navbar"
+       data-controller="navbar">
     <div class="navbar-left-group">
       <a href="/" class="navbar-item">
         dry-python
       </a>
     </div>
-    <div class="navbar-right-group">
+    <div class="block lg:hidden">
+      <button class="navbar-button"
+              data-action="navbar#toggle">
+        
+  <svg class="menu-icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <title>Menu</title>
+    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+  </svg>
+
+      </button>
+    </div>
+    <div class="navbar-right-group"
+         data-target="navbar.menuItems">
       
         <a href="/news/" class="navbar-item">
           News
