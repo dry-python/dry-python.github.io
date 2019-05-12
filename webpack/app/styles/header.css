@@ -10,12 +10,12 @@
   @apply mx-auto text-center py-24;
 }
 
-.header-content__title {
+.header-content-title {
   @apply text-4xl mb-4;
   font-weight: inherit;
 }
 
-.header-content__description {
+.header-content-description {
   @apply text-xl font-normal mb-3;
 }
 
@@ -23,11 +23,11 @@
   @apply flex justify-center py-4;
 }
 
-.header-button-group__button {
+.header-button-group-button {
   transition: background 0.3s;
   @apply bg-transparent text-blue-dark font-semibold py-3 px-5 mx-5 border border-blue rounded no-underline;
 }
 
-.header-button-group__button:hover {
+.header-button-group-button:hover {
   @apply text-white bg-blue border-transparent;
 }

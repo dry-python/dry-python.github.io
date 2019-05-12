@@ -1,8 +1,9 @@
 {% from 'components/button.html' import button %}
+
 {% macro intro(page) %}
   <div class="header-content container">
-    <h1 class="header-content__title">{{ page.title }}</h1>
-    <h2 class="header-content__description">{{ page.description|safe }}</h2>
+    <h1 class="header-content-title">{{ page.title }}</h1>
+    <h2 class="header-content-description">{{ page.description|safe }}</h2>
     <div class="container header-button-group">
       {% call button('https://github.com/dry-python') %}
         GitHub
