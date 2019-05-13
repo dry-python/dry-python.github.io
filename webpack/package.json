@@ -23,7 +23,7 @@
     "style-loader": "^0.23.1",
     "vscode-css-languageserver-bin": "^1.4.0",
     "vscode-html-languageserver-bin": "^1.4.0",
-    "webpack": "^4.26.1",
+    "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
   }
 }
