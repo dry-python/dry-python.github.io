@@ -3,7 +3,7 @@
   "author": "Artem Malyshev",
   "private": true,
   "devDependencies": {
-    "eslint": "^5.12.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "stylelint": "^9.9.0",
