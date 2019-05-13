@@ -39,7 +39,7 @@
 }
 
 .header-button-group-button {
-  transition: background .3s;
+  transition: background .3s, border .3s, color .3s;
   background-color: transparent;
   color: #2779bd;
   font-weight: 600;
