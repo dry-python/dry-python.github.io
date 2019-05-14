@@ -7,7 +7,7 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = {
   entry: {
-    app: './app/index.js'
+    app: './dry-python/index.js'
   },
   output: {
     path: path.resolve(__dirname, '../assets/static/'),

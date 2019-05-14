@@ -1,0 +1,5 @@
+import './index.css'
+import './app/turbolinks.js'
+import './app/stimulus.js'
+import './app/gitterSidecar.js'
+import './app/highlight.js'

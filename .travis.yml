@@ -4,12 +4,14 @@ dist: xenial
 sudo: true
 cache: pip
 install:
+  - (cd app && npm install)
   - (cd slides && npm install)
   - pip install poetry
   - poetry install
 script:
+  - (cd app && npm run webpack)
   - (cd slides && npm run webpack)
-  - poetry run lektor build -f webpack
+  - poetry run lektor build
 deploy:
   provider: script
   script: poetry run lektor deploy ghpages
