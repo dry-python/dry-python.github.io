@@ -11,7 +11,7 @@
 }
 
 .navbar-item {
-  @apply no-underline text-grey-darker mr-4 font-semibold align-middle border-b-2 border-solid border-transparent;
+  @apply no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent;
 }
 
 .navbar-item:hover {
@@ -19,7 +19,7 @@
 }
 
 .navbar-button {
-  @apply flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light;
+  @apply flex items-center px-3 py-2 border rounded text-teal-400 border-teal-500;
 }
 
 .navbar-button:hover {
