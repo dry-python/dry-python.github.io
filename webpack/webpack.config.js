@@ -1,5 +1,8 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const postCssImport = require('postcss-import')
+const tailwindcss = require('tailwindcss')
+const autoprefixer = require('autoprefixer')
 
 
 module.exports = {
@@ -16,7 +19,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [postCssImport, tailwindcss, autoprefixer]
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
