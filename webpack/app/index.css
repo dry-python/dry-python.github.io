@@ -4,6 +4,6 @@
 @import "styles/navbar.css";
 @import "styles/text.css";
 @import "styles/footer.css";
-@tailwind preflight;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
