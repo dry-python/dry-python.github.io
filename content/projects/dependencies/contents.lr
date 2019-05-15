@@ -1,0 +1,15 @@
+_model: project
+---
+name: dependencies
+---
+description: Dependency Injection for Humans.  It provides a simple low-impact implementation of an IoC container and resolution support for your classes.
+---
+logo: https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png
+---
+github: https://github.com/dry-python/dependencies
+---
+documentation: https://dependencies.readthedocs.io
+---
+gitter: https://gitter.im/dry-python/dependencies
+---
+order: 1

@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{ this.title }}
+{% endblock %}
+
+{% block body %}
+  {% for project in this.pagination.items %}
+    {# FIXME: Move to the component. #}
+    <div>
+      <img src="{{ project.logo }}">
+      <p>{{ project.description }}</p>
+      <a href="{{ project.github }}">GitHub</a>
+      <a href="{{ project.documentation }}">Documentation</a>
+      <a href="{{ project.gitter }}">Gitter</a>
+    </div>
+  {% endfor %}
+{% endblock %}
