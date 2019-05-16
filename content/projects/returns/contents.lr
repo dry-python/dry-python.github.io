@@ -1,0 +1,15 @@
+_model: project
+---
+name: returns
+---
+description: Make your functions return something meaningful, typed, and safe!
+---
+logo: https://raw.githubusercontent.com/dry-python/brand/master/logo/returns.png
+---
+github: https://github.com/dry-python/returns
+---
+documentation: https://returns.readthedocs.io
+---
+gitter: https://gitter.im/dry-python/returns
+---
+order: 1
