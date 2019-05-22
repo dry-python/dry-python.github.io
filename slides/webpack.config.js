@@ -41,11 +41,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'introducing-dry-python/index.pug',
+      template: 'introducing-dry-python.pug',
       filename: 'introducing-dry-python.html'
     }),
     new HtmlWebpackPlugin({
-      template: 'ddd-toolkit/index.pug',
+      template: 'ddd-toolkit.pug',
       filename: 'ddd-toolkit.html'
     }),
     new MiniCssExtractPlugin({
