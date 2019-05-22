@@ -1,8 +1,5 @@
 @import "styles/progress-bar.css";
 @import "styles/header.css";
-@import "styles/navbar.css";
-@import "styles/text.css";
-@import "styles/footer.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

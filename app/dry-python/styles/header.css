@@ -1,33 +1,9 @@
-.header {
-  @apply mx-auto;
-}
+/* FIXME: A better name of classes. */
 
 .header-container {
   background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-.header-content {
-  @apply mx-auto text-center py-24;
-}
-
-.header-content-title {
-  @apply text-4xl mb-4;
-  font-weight: inherit;
-}
-
-.header-content-description {
-  @apply text-xl font-normal mb-3;
-}
-
-.header-button-group {
-  @apply flex justify-center py-4;
-}
-
 .header-button-group-button {
   transition: background 0.3s, border 0.3s, color 0.3s;
-  @apply bg-transparent text-blue-900 font-semibold py-3 px-5 mx-5 border border-blue-500 rounded no-underline;
-}
-
-.header-button-group-button:hover {
-  @apply text-white bg-blue-500 border-transparent;
 }
