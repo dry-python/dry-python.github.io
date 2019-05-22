@@ -1,6 +1,6 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../assets/static/slides/'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   mode: 'production',
   devtool: 'source-map',
@@ -17,7 +17,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.js$/,
@@ -25,31 +25,31 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.pug$/,
-        use: 'pug-loader'
+        use: 'pug-loader',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|png|jpg|gif)$/,
-        use: 'file-loader'
-      }
-    ]
+        use: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'introducing-dry-python.pug',
-      filename: 'introducing-dry-python.html'
+      filename: 'introducing-dry-python.html',
     }),
     new HtmlWebpackPlugin({
       template: 'ddd-toolkit.pug',
-      filename: 'ddd-toolkit.html'
+      filename: 'ddd-toolkit.html',
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
-    })
-  ]
-}
+      filename: '[name].css',
+    }),
+  ],
+};

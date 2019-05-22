@@ -1,17 +1,17 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const postCssImport = require('postcss-import')
-const tailwindcss = require('tailwindcss')
-const autoprefixer = require('autoprefixer')
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const postCssImport = require('postcss-import');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 
 
 module.exports = {
   entry: {
-    app: './dry-python/index.js'
+    app: './dry-python/index.js',
   },
   output: {
     path: path.resolve(__dirname, '../assets/static/'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   mode: 'production',
   devtool: 'source-map',
@@ -27,10 +27,10 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [postCssImport, tailwindcss, autoprefixer]
-            }
-          }
-        ]
+              plugins: [postCssImport, tailwindcss, autoprefixer],
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,
@@ -39,19 +39,19 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf|png|jpg)$/,
-        use: 'file-loader'
-      }
-    ]
+        use: 'file-loader',
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].css'
-    })
-  ]
-}
+      filename: '[name].css',
+    }),
+  ],
+};
