@@ -2,137 +2,14 @@
   background-color: green;
 }
 
-.header {
-  margin-left: auto;
-  margin-right: auto;
-}
+/* FIXME: A better name of classes. */
 
 .header-container {
   background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-.header-content {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-.header-content-title {
-  font-size: 2.25rem;
-  margin-bottom: 1rem;
-  font-weight: inherit;
-}
-
-.header-content-description {
-  font-size: 1.25rem;
-  font-weight: 400;
-  margin-bottom: 0.75rem;
-}
-
-.header-button-group {
-  display: flex;
-  justify-content: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .header-button-group-button {
   transition: background 0.3s, border 0.3s, color 0.3s;
-  background-color: transparent;
-  color: #2a4365;
-  font-weight: 600;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  border-width: 1px;
-  border-color: #4299e1;
-  border-radius: 0.25rem;
-  text-decoration: none;
-}
-
-.header-button-group-button:hover {
-  color: #fff;
-  background-color: #4299e1;
-  border-color: transparent;
-}
-
-.navbar {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.navbar-left-group {
-  width: 60%;
-}
-
-.navbar-right-group {
-  width: 40%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.navbar-item {
-  text-decoration: none;
-  color: #1a202c;
-  margin-right: 1rem;
-  font-weight: 600;
-  vertical-align: middle;
-  border-bottom-width: 2px;
-  border-style: solid;
-  border-color: transparent;
-}
-
-.navbar-item:hover {
-  color: #000;
-  border-color: #000;
-}
-
-.navbar-button {
-  display: flex;
-  align-items: center;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-width: 1px;
-  border-radius: 0.25rem;
-  color: #4fd1c5;
-  border-color: #38b2ac;
-}
-
-.navbar-button:hover {
-  color: #fff;
-  border-color: #fff;
-}
-
-.text h2 {
-  margin-top: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.text h2:not(:first-child) {
-  margin-top: 2rem;
-}
-
-.text p {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.footer {
-  padding: 1rem;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

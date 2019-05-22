@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:400,400i,600,600i" rel="stylesheet">
   
   <link rel="stylesheet"
-        href="/static/app.css?h=de956705"
+        href="/static/app.css?h=dcf76d75"
         data-turbolinks-track="reload">
   <script defer
           src="/static/app.js?h=39edd880"
@@ -27,18 +27,18 @@
   
     
   <div class="header-container">
-    <header class="container header">
+    <header class="container mx-auto">
       
       
-  <nav class="container navbar"
+  <nav class="container mx-auto flex items-center py-4"
        data-controller="navbar">
-    <div class="navbar-left-group">
-      <a href="/" class="navbar-item">
+    <div class="w-3/5">
+      <a href="/" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
         dry-python
       </a>
     </div>
     <div class="block lg:hidden">
-      <button class="navbar-button"
+      <button class="flex items-center px-3 py-2 border rounded text-teal-400 border-teal-500 hover:text-white hover:border-white"
               data-action="navbar#toggle">
         
   <svg viewBox="0 0 20 20"
@@ -50,27 +50,32 @@
 
       </button>
     </div>
-    <div class="navbar-right-group"
+    <div class="w-2/5 flex justify-end"
          data-target="navbar.menuItems">
       
-        <a href="/projects/" class="navbar-item">
+        <a href="/projects/" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
           Projects
         </a>
       
-        <a href="/news/" class="navbar-item">
+        <a href="/news/" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
           News
         </a>
       
-        <a href="/talks/" class="navbar-item">
+        <a href="/talks/" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
           Talks
         </a>
       
-        <a href="/team/" class="navbar-item">
+        <a href="/team/" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
           Team
         </a>
       
-      <a href="https://github.com/dry-python" class="navbar-item">GitHub</a>
-      <a href="https://drylabs.io" class="navbar-item">Drylabs</a>
+      <a href="https://github.com/dry-python" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
+        GitHub
+      </a>
+      
+      <a href="https://drylabs.io" class="no-underline text-gray-900 mr-4 font-semibold align-middle border-b-2 border-solid border-transparent hover:text-black hover:border-black">
+        Drylabs
+      </a>
     </div>
   </nav>
 
@@ -83,7 +88,7 @@
     
     
   </div>
-  <footer class="container footer">
+  <footer class="container p-4 text-center mx-auto">
     
   Drylabs maintains dry-python and helps those who want to use it
   inside their organizations. Read more at <a href="https://drylabs.io/">drylabs.io</a>
