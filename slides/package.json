@@ -16,7 +16,7 @@
     "mini-css-extract-plugin": "^0.6.0",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
-    "webpack": "^4.32.0",
+    "webpack": "^4.32.1",
     "webpack-cli": "^3.3.2"
   },
   "scripts": {
