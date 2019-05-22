@@ -1,0 +1,21 @@
+{% macro community_cards() %}
+  <div class="md:flex p-6">
+    {% for card in bag('community_cards') %}
+      {% set module = 'components/icons/' + card + '.html' %}
+      {% from module import icon %}
+      <div class="text-left">
+        <h2 class="flex p-4 text-lg text-center">
+          <a href="{{ bag('community_cards', card, 'url') }}">
+            <div class="h-8 w-8 mx-1">
+              {{ icon(card) }}
+            </div>
+          </a>
+          {{ bag('community_cards', card, 'title') }}
+        </h2>
+        <p>
+          {{ bag('community_cards', card, 'description') }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}
