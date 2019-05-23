@@ -16,6 +16,6 @@
   },
   "scripts": {
     "lint:js": "eslint --ext .js --ignore-path .gitignore .",
-    "lint:css": "stylelint '**/*.css'"
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.css'"
   }
 }
