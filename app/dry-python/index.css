@@ -1,5 +1,6 @@
 @import "styles/progress-bar.css";
 @import "styles/header.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
