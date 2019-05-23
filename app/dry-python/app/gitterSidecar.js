@@ -12,7 +12,9 @@ document.addEventListener('turbolinks:load', () => {
   // Gitter chat popup quickly open and close.  We put "display:
   // none;" style directly on the element node to prevent it.  After
   // we initiate the chat we need to remove it.
-  for (const elem of document.getElementsByClassName('gitter-chat-embed')) {
+  const chat = document.getElementsByClassName('gitter-chat-embed');
+
+  Array.from(chat).forEach((elem) => {
     elem.removeAttribute('style');
-  }
+  });
 });

@@ -7,7 +7,7 @@ hljs.registerLanguage('python', python);
 document.addEventListener('turbolinks:load', () => {
   const blocks = document.getElementsByTagName('code');
 
-  for (const block of blocks) {
+  Array.from(blocks).forEach((block) => {
     hljs.highlightBlock(block);
-  }
+  });
 });
