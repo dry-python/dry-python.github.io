@@ -4,11 +4,13 @@ dist: xenial
 sudo: true
 cache: pip
 install:
+  - npm install
   - (cd app && npm install)
   - (cd slides && npm install)
   - pip install poetry
   - poetry install
 script:
+  - npm run lint:css
   - (cd app && npm run webpack)
   - (cd slides && npm run webpack)
   - poetry run lektor build
