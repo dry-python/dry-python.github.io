@@ -9,6 +9,7 @@
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.17.2",
     "javascript-typescript-langserver": "^2.11.3",
+    "pug-lint": "^2.5.0",
     "stylelint": "^10.0.1",
     "stylelint-config-standard": "^18.3.0",
     "vscode-css-languageserver-bin": "^1.4.0",
@@ -16,6 +17,7 @@
   },
   "scripts": {
     "lint:js": "eslint --ext .js --ignore-path .gitignore .",
-    "lint:css": "stylelint --ignore-path .gitignore '**/*.css'"
+    "lint:css": "stylelint --ignore-path .gitignore '**/*.css'",
+    "lint:pug": "pug-lint **/*.pug"
   }
 }

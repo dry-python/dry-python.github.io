@@ -12,6 +12,7 @@ install:
 script:
   - npm run lint:js
   - npm run lint:css
+  - npm run lint:pug
   - (cd app && npm run webpack)
   - (cd slides && npm run webpack)
   - poetry run lektor build
