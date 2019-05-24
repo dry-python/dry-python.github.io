@@ -1,6 +1,10 @@
 import Sidecar from 'gitter-sidecar';
 
 document.addEventListener('turbolinks:load', () => {
+  // Gitter sidecar is a singleton with a stateful constructor.  We
+  // does not use returned object any where and can not avoid usage of
+  // the `new` keyword.
+  // eslint-disable-next-line no-new
   new Sidecar({
     room: 'dry-python/dry-python',
     targetElement: '.gitter-chat-embed',
