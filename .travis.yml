@@ -1,3 +1,4 @@
+---
 language: python
 python: 3.7
 dist: xenial
@@ -13,7 +14,7 @@ script:
   - npm run lint:js
   - npm run lint:css
   - npm run lint:pug
-  - poetry run yamllint '**/*.yml'
+  - poetry run yamllint --strict $(git ls-files '*.yaml' '*.yml')
   - (cd app && npm run webpack)
   - (cd slides && npm run webpack)
   - poetry run lektor build
