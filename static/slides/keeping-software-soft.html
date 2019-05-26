@@ -1,0 +1,23 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Keeping Software Soft"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Keeping Software Soft</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h2>Keeping Software Soft</h2><h4><a href="https://github.com/proofit404">Artem Malyshev</a></h4></section><section data-background-image="aeb65fa2de1c0896782fd5008bf3d33b.jpg" data-background-size="contain" data-background-position="right" data-background-color="#000000"><br></section><section><h2>BIO</h2><ul><li>Co-Founder at <a href="https://drylabs.io/">drylabs.io</a></li><li><a href="https://dry-python.org/">dry-python.org</a></li><li>Django Channels 1.0</li><li>5 years of experience in Python</li></ul></section><section data-background-image="f59f3c8af01ae12346e23c4ec6b68d06.png" data-background-size="contain" data-background-color="#2E677B"><br></section><section data-background-image="20bc26206f6e89782a910352143e4b58.png" data-background-size="contain"><br></section><section data-background-image="40d4f5d2ae486b9de54b3c462b5c8ae3.gif" data-background-size="contain"><br></section><section><h2>Implicit API</h2><pre><code class="python">class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    permission_classes = (CanSubscribe,)
+    filter_class = SubscriptionFilter</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="74cfa36f8f806f2a3ac6ae29e5e574a0.png" data-background-size="contain"><br></section><section><pre><code class="python">from google_cloud_messaging import send_message
+
+@signal
+def send_sms(event):
+    text = 'A new subscription was made'
+    on_commit(lambda: send_message(text))</code></pre></section><section><h2>Grep test</h2><img class="plain" src="e2f59b14516ed3a8739109bf04799057.png"></section><section><h2>Framework Lifecycle API</h2><img class="plain fragment" src="f888deb7a91526a1a0ba5e9a75ecc32d.png"></section><section><pre><code class="gherkin">Scenario: Publishing the article
+    Given I'm an author user
+    And I have an article
+    When I go to the article page</code></pre><pre><code class="python">@given('I am an author user')
+def author_user(auth, author):
+    auth['user'] = author.user
+
+@given('I have an article')
+def article(author):
+    return create_test_article(author=author)
+
+@when('I go to the article page')
+def go_to_article(article, browser):
+    browser.visit(f'/manage/articles/{article.id}/')</code></pre></section><section data-background-image="2cb8eb7a333f341bce653635d00802ce.jpg" data-background-size="contain" data-background-position="left" data-background-color="#000000"><br></section><section><p>spring nest-js dry-rb dry-python</p></section><section data-background-image="a1f23609bebc96401bace638f89491da.jpg" data-background-size="contain" data-background-position="left" data-background-color="#000000"><br></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
