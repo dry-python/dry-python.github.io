@@ -4,6 +4,8 @@
 {% from 'components/bundle.html' import bundle %}
 {% from 'components/gitter-sidecar.html' import gitter_sidecar %}
 {% from 'components/analytics.html' import analytics %}
+{% from 'components/body.html' import body %}
+{% from 'components/footer.html' import footer %}
 <!doctype html>
 <head>
   <meta charset="utf-8">
@@ -19,13 +21,13 @@
       {{ navbar() }}
     {% endcall %}
   {% endblock %}
-  <div class="container mx-auto text py-4">
+  {% call body() %}
     {% block body %}
     {% endblock %}
-  </div>
-  <footer class="container p-4 text-center mx-auto">
+  {% endcall %}
+  {% call footer() %}
     {{ copyright() }}
-  </footer>
+  {% endcall %}
   {{ gitter_sidecar() }}
   {{ analytics() }}
 </body>
