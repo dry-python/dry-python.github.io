@@ -73,14 +73,14 @@ html
           h2 Implicit API
           pre
             code.python.
-              class Subscriptions(viewsets.ModelViewSet):
-                  queryset = Subscription.objects.all()
-                  serializer_class = SubscriptionSerializer
-                  permission_classes = (CanSubscribe,)
-                  filter_class = SubscriptionFilter
+              class Purchases(viewsets.ModelViewSet):
+                  queryset = Purchase.objects.all()
+                  serializer_class = PurchaseSerializer
+                  permission_classes = (CanPurchase,)
+                  filter_class = PurchaseFilter
           pre
             code.python.
-              router.register('/api/subscriptions/', Subscriptions)
+              router.register('/api/purchases/', Purchases)
           ol
             li.fragment What exactly does this class do?
             li.fragment How to use it?
@@ -92,16 +92,14 @@ html
             code.python.
               from google_cloud_messaging import send_message
 
-              @signal
+              @observer
               def send_sms(event):
-                  text = 'A new subscription was made'
+                  text = 'You purchase something!'
                   on_commit(lambda: send_message(text))
-          ol
-            li.fragment В документации нет ни слова про вызов нашей функции
-            li.fragment Не ясно как передать в неё нужные нам аргументы
-        section
-          h2 Grep test
-          img(src=require("./pics/grep-test.png")).plain
+          img(src=require("./pics/grep-test.png")).fragment.plain
+          aside.notes
+            p В документации нет ни слова про вызов нашей функции
+            p Не ясно как передать в неё нужные нам аргументы
         section
           h2 Framework Lifecycle API
           ol
