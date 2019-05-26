@@ -60,25 +60,26 @@ html
           h2 Framework Lifecycle API
           img(src=require("./pics/react-hooks.png")).plain.fragment
         section
+          h2 Business-friendly tools
           pre
             code.gherkin.
               Scenario: Publishing the article
-                  Given I'm an author user
-                  And I have an article
-                  When I go to the article page
+                Given I am an author user
+                And I have an article
+                When I go to the article page
           pre
             code.python.
               @given('I am an author user')
-              def author_user(auth, author):
-                  auth['user'] = author.user
+              def author_user(ctx):
+                  ctx['user'] = Author()
 
               @given('I have an article')
-              def article(author):
-                  return create_test_article(author=author)
+              def article(ctx):
+                  ctx['article'] = create_article(author=ctx['user'])
 
               @when('I go to the article page')
-              def go_to_article(article, browser):
-                  browser.visit(f'/manage/articles/{article.id}/')
+              def go_to_article(ctx):
+                  Browser().visit(f"/articles/{ctx['article'].id}/")
         section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
           br
         section
