@@ -15,6 +15,8 @@ html
           h2 Keeping Software Soft
           h4
             a(href="https://github.com/proofit404") Artem Malyshev
+          h6
+            a(href="https://twitter.com/proofit404") @proofit404
         section(data-background-image=require("./pics/martin-fowler.jpg") data-background-size="contain" data-background-position="right" data-background-color="#000000")
           br
         section
@@ -29,21 +31,39 @@ html
         section(data-background-image=require("./pics/reading-other-peoples-code.png") data-background-size="contain")
           br
         section
-          p несторуктурированный проект на фласке синатре
+          img(src=require("./pics/flask.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/express.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/sinatra.png") height="100" style=" padding-right: 70px;").plain
+          aside.notes
+            p несторуктурированный проект на фласке синатре
+        section(data-background-image=require("./pics/long-function.jpg") data-background-size="contain")
+          br
+          aside.notes
+            p тут мы json валидируем
+            p тут мы в базу ходим
+            p а тут в письма рассылаем
+            p всё в функциях по 1000 строк кода
         section
-          p тут мы json валидируем
-          p тут мы в базу ходим
-          p а тут в письма рассылаем
-          p всё в функциях по 1000 строк кода
+          h2 pros
+          ol
+            li.fragment Relatively easy to read
+          h2.fragment cons
+          ol
+            li.fragment Really hard to change
+            li.fragment We can not see the whole picture
+          aside.notes
+            p в результате
+            p легко читать
+            p тяжело менять
+            p чтобы добавить какую-нибудь фигню надо перелопатить весь проект
         section
-          p в результате
-          p легко читать
-          p тяжело менять
-          p чтобы добавить какую-нибудь фигню надо перелопатить весь проект
-        section
-          p eсть стартапы с django rails nestjs spring
-          p там за людей уже подумали как структурировать код
-          p казалось бы решение проблемы
+          img(src=require("./pics/django.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/ruby-on-rails.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/spring.png") height="100" style=" padding-right: 70px;").plain
+          aside.notes
+            p eсть стартапы с django rails nestjs spring
+            p там за людей уже подумали как структурировать код
+            p казалось бы решение проблемы
         section(data-background-image=require("./pics/trello-issue.png") data-background-size="contain" data-background-color="#003F4A")
           p вот приходишь ты в такой стартап, получаешь таску
           p идёшь в код
@@ -126,10 +146,10 @@ html
         section
           p ддд есть а инструментов не так много
         section
-          img(src=require("./pics/trailblazer.png") height="100" width="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/dry-rb.png") height="100" width="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/hanami.png") height="100" width="100" style=" padding-right: 70px;").plain
-          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" width="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/trailblazer.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/dry-rb.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/hanami.png") height="100" style=" padding-right: 70px;").plain
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" style=" padding-right: 70px;").plain
         section
           p мы начали пилить dry-python
           p набор библиотек, который навязывает писать бизнеслогику
