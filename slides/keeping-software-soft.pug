@@ -113,12 +113,83 @@ html
               @when('I go to the article page')
               def go_to_article(ctx):
                   Browser().visit(f"/articles/{ctx['article'].id}/")
+        section
+          p какое у них свойство?
+          p весь воркфлоу описан на понятном человеческом языке отдельно от реализации
+          p реализация каждого шага ничего не знает про соседний
+          p соответственно шаги легко переиспользовать в любом порядке
+          p их легко менять
         section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
           br
+        section
+          p что такое ddd
+        section
+          p ддд есть а инструментов не так много
         section
           img(src=require("./pics/trailblazer.png") height="100" width="100" style=" padding-right: 70px;").plain
           img(src=require("./pics/dry-rb.png") height="100" width="100" style=" padding-right: 70px;").plain
           img(src=require("./pics/hanami.png") height="100" width="100" style=" padding-right: 70px;").plain
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" width="100" style=" padding-right: 70px;").plain
+        section
+          p мы начали пилить dry-python
+          p набор библиотек, который навязывает писать бизнеслогику
+        section
+          p сториз
+        section
+          p пример dsl
+          p именно dsl начали делать больше случайно
+          p но потом получили профиты (о них дальше)
+          p это работает ...
+        section
+          p пример реализации шагов
+        section
+          p решение:
+          p начали отвязывать код того проекта написанного на обсерверах
+          p мы так же получили раздельные шаги с хорошым переиспользованием
+          p DDD - тот самый ясный язык
+        section
+          p жили не тужили всё было хорошо
+          p всё было в постгресе
+          p все данные и правила с ними связанные в realtion mapper
+          p пришёл бизнес
+          p сказал что так-то так-то интегрируемся переезжаем
+          p половина данных переехала в firebase
+        section
+          p google firebase это
+        section
+          p в результате отвалилась вся возможность работы с данными
+          p проблема: нет явно прописанных правил о данных, которыми живёт проект
+          p DDD: нет модели
+        section
+          p attrs/dataclasses dry-structures lombok
+        section
+          p начали прописывать в этих самых датаклассах контракты данных
+        section
+          p захотелось чтобы рантайм проверял эти контракты во время попадания этих переменных в контекст
+          p а не писать эти проверки как часть сценариев каждый раз
+        section
+          p уныло перегонять руками таблички бд и ответы api в нормальное представление
+          p начали писать мапперс
+          p умеем в django, sqlalchemy, swagger, graphql
+        section
+          p решение: писать логику отвязанной от data store implementation
+        section
+          p жили не тужили
+          p был у нас пушер
+        section
+          p пушер это ...
+        section
+          p как обычно используют сторонние библиотеки в проекте?
+          p импортируем на прямую пихаем им данные так как они того хотят
+          p в тестах stubим библиотеку и ассертим данные которые им скормили
+        section
+          p пришёл бизнес
+          p хотим горантию доставки сообщений
+          p переезжаем на ably
+        section
+          p да у них даже апи похоже
+          p только вот у нас в шагах всё шурупами прикручено к pusher
+          p давайте ходить по всему проекту менять - на :
+          p а ещё как будто этого мало поменяем полмилиона ассертов в тастах
         section(data-background-image=require("./pics/robert-martin.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
           br
