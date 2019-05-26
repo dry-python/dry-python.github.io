@@ -48,6 +48,10 @@ module.exports = {
       template: 'ddd-toolkit.pug',
       filename: 'ddd-toolkit.html',
     }),
+    new HtmlWebpackPlugin({
+      template: 'keeping-software-soft.pug',
+      filename: 'keeping-software-soft.html',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),

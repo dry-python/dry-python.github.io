@@ -1,0 +1,87 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="description" content="Keeping Software Soft")
+    meta(name="author" content="Artem Malyshev")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Keeping Software Soft
+  body
+    .reveal
+      .slides
+        section
+          h2 Keeping Software Soft
+          h4
+            a(href="https://github.com/proofit404") Artem Malyshev
+        section(data-background-image=require("./pics/martin-fowler.jpg") data-background-size="contain" data-background-position="right" data-background-color="#000000")
+          br
+        section
+          h2 BIO
+          ul
+            li Co-Founder at #[a(href="https://drylabs.io/") drylabs.io]
+            li #[a(href="https://dry-python.org/") dry-python.org]
+            li Django Channels 1.0
+            li 5 years of experience in Python
+        section(data-background-image=require("./pics/startup-process.png") data-background-size="contain" data-background-color="#2E677B")
+          br
+        section(data-background-image=require("./pics/reading-other-peoples-code.png") data-background-size="contain")
+          br
+        section(data-background-image=require("./pics/jira.gif") data-background-size="contain")
+          br
+        section
+          h2 Implicit API
+          pre
+            code.python.
+              class SubscriptionViewSet(viewsets.ModelViewSet):
+                  queryset = Subscription.objects.all()
+                  serializer_class = SubscriptionSerializer
+                  permission_classes = (CanSubscribe,)
+                  filter_class = SubscriptionFilter
+          ol
+            li.fragment What exactly does this class do?
+            li.fragment How to use it?
+        section(data-background-image=require("./pics/method-flowchart.png") data-background-size="contain")
+          br
+        section
+          pre
+            code.python.
+              from google_cloud_messaging import send_message
+
+              @signal
+              def send_sms(event):
+                  text = 'A new subscription was made'
+                  on_commit(lambda: send_message(text))
+        section
+          h2 Grep test
+          img(src=require("./pics/grep-test.png")).plain
+        section
+          h2 Framework Lifecycle API
+          img(src=require("./pics/react-hooks.png")).plain.fragment
+        section
+          pre
+            code.gherkin.
+              Scenario: Publishing the article
+                  Given I'm an author user
+                  And I have an article
+                  When I go to the article page
+          pre
+            code.python.
+              @given('I am an author user')
+              def author_user(auth, author):
+                  auth['user'] = author.user
+
+              @given('I have an article')
+              def article(author):
+                  return create_test_article(author=author)
+
+              @when('I go to the article page')
+              def go_to_article(article, browser):
+                  browser.visit(f'/manage/articles/{article.id}/')
+        section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
+          br
+        section
+          p spring nest-js dry-rb dry-python
+        section(data-background-image=require("./pics/robert-martin.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
+          br
