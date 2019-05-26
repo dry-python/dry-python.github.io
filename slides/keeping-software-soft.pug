@@ -28,23 +28,44 @@ html
           br
         section(data-background-image=require("./pics/reading-other-peoples-code.png") data-background-size="contain")
           br
+        section
+          p несторуктурированный проект на фласке синатре
+        section
+          p тут мы json валидируем
+          p тут мы в базу ходим
+          p а тут в письма рассылаем
+          p всё в функциях по 1000 строк кода
+        section
+          p в результате
+          p легко читать
+          p тяжело менять
+          p чтобы добавить какую-нибудь фигню надо перелопатить весь проект
+        section
+          p eсть стартапы с django rails nestjs spring
+          p там за людей уже подумали как структурировать код
+          p казалось бы решение проблемы
         section(data-background-image=require("./pics/trello-issue.png") data-background-size="contain" data-background-color="#003F4A")
-          br
+          p вот приходишь ты в такой стартап, получаешь таску
+          p идёшь в код
         section
           h2 Implicit API
           pre
             code.python.
-              class SubscriptionViewSet(viewsets.ModelViewSet):
+              class Subscriptions(viewsets.ModelViewSet):
                   queryset = Subscription.objects.all()
                   serializer_class = SubscriptionSerializer
                   permission_classes = (CanSubscribe,)
                   filter_class = SubscriptionFilter
+          pre
+            code.python.
+              router.register('/api/subscriptions/', Subscriptions)
           ol
             li.fragment What exactly does this class do?
             li.fragment How to use it?
         section(data-background-image=require("./pics/method-flowchart.png") data-background-size="contain")
           br
         section
+          h2 Function to change
           pre
             code.python.
               from google_cloud_messaging import send_message
@@ -53,12 +74,24 @@ html
               def send_sms(event):
                   text = 'A new subscription was made'
                   on_commit(lambda: send_message(text))
+          ol
+            li.fragment В документации нет ни слова про вызов нашей функции
+            li.fragment Не ясно как передать в неё нужные нам аргументы
         section
           h2 Grep test
           img(src=require("./pics/grep-test.png")).plain
         section
           h2 Framework Lifecycle API
+          ol
+            li.fragment тяжело читать
+            li.fragment проще править
+            li.fragment надо держать в голове полную картину работы фреймворка
           img(src=require("./pics/react-hooks.png")).plain.fragment
+        section
+          p в каждом примере мы понятия не имеем что вообще делает наше приложение
+          p это может быть и бложек и торговая площадка
+          p наши проекты не имеют связи в внешним миром
+          p очень много неявных знаний в головах разработчиках
         section
           h2 Business-friendly tools
           pre
