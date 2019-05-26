@@ -101,17 +101,26 @@ html
             p В документации нет ни слова про вызов нашей функции
             p Не ясно как передать в неё нужные нам аргументы
         section
-          h2 Framework Lifecycle API
+          h2 pros
           ol
-            li.fragment тяжело читать
-            li.fragment проще править
-            li.fragment надо держать в голове полную картину работы фреймворка
-          img(src=require("./pics/react-hooks.png")).plain.fragment
-        section
-          p в каждом примере мы понятия не имеем что вообще делает наше приложение
-          p это может быть и бложек и торговая площадка
-          p наши проекты не имеют связи в внешним миром
-          p очень много неявных знаний в головах разработчиках
+            li.fragment Relatively easy to change
+          h2.fragment cons
+          ol
+            li.fragment Really hard to read
+            li.fragment You should keep in mind framework rules
+            li.fragment Implicit knowledge grow
+            li.fragment We still can not see the whole picture
+          aside.notes
+            p тяжело читать
+            p проще править
+            p надо держать в голове полную картину работы фреймворка
+        section(data-background-image=require("./pics/lost-in-translation.jpg") data-background-size="contain")
+          br
+          aside.notes
+            p в каждом примере мы понятия не имеем что вообще делает наше приложение
+            p это может быть и бложек и торговая площадка
+            p наши проекты не имеют связи в внешним миром
+            p очень много неявных знаний в головах разработчиках
         section
           h2 Business-friendly tools
           pre
@@ -134,25 +143,39 @@ html
               def go_to_article(ctx):
                   Browser().visit(f"/articles/{ctx['article'].id}/")
         section
-          p какое у них свойство?
-          p весь воркфлоу описан на понятном человеческом языке отдельно от реализации
-          p реализация каждого шага ничего не знает про соседний
-          p соответственно шаги легко переиспользовать в любом порядке
-          p их легко менять
+          h2 pros
+          ol
+            li.fragment Clean flow in the source code
+            li.fragment Separate step implementation
+            li.fragment Each step knows nothing about a neighbor
+            li.fragment Easy reuse of code
+          h2.fragment cons
+          ol
+            li.fragment Does not relate to programming so much
+          aside.notes
+            p какое у них свойство?
+            p весь воркфлоу описан на понятном человеческом языке отдельно от реализации
+            p реализация каждого шага ничего не знает про соседний
+            p соответственно шаги легко переиспользовать в любом порядке
+            p их легко менять
         section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
           br
-        section
-          p что такое ddd
-        section
-          p ддд есть а инструментов не так много
+          aside.notes
+            p что такое ddd
+            p ддд есть а инструментов не так много
         section
           img(src=require("./pics/trailblazer.png") height="100" style=" padding-right: 70px;").plain
           img(src=require("./pics/dry-rb.png") height="100" style=" padding-right: 70px;").plain
           img(src=require("./pics/hanami.png") height="100" style=" padding-right: 70px;").plain
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" style=" padding-right: 70px;").plain
         section
-          p мы начали пилить dry-python
-          p набор библиотек, который навязывает писать бизнеслогику
+          h2
+            a(href="https://dry-python.org/") dry-python
+          p A set of libraries for pluggable business logic components.
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
+          aside.notes
+            p мы начали пилить dry-python
+            p набор библиотек, который навязывает писать бизнеслогику
         section
           p сториз
         section
