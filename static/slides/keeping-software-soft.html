@@ -59,12 +59,12 @@ class Order:
     primary_key: OrderId
     items: List[LineItem]</code></pre><aside class="notes"><p>начали прописывать в этих самых датаклассах контракты данных</p></aside></section><section><h2>State Contract</h2><pre><code class="python">from pydantic import BaseModel
 
-class Subscription:
+class Purchase:
     @story
     def buy(I):
         ...
 
-@Subscription.buy.contract
+@Purchase.buy.contract
 class Context(BaseModel):
     user: User
     invoice_id: InvoiceId
@@ -101,4 +101,21 @@ def load_invoice(id: InvoiceId) -> Invoice:
       {
         loadInvoice(id: %(id)d)
       }
-    """, {"id": id}))</code></pre></section><section><p>жили не тужили</p><p>был у нас пушер</p></section><section><p>пушер это ...</p></section><section><p>как обычно используют сторонние библиотеки в проекте?</p><p>импортируем на прямую пихаем им данные так как они того хотят</p><p>в тестах stubим библиотеку и ассертим данные которые им скормили</p></section><section><p>пришёл бизнес</p><p>хотим горантию доставки сообщений</p><p>переезжаем на ably</p></section><section><p>да у них даже апи похоже</p><p>только вот у нас в шагах всё шурупами прикручено к pusher</p><p>давайте ходить по всему проекту менять - на :</p><p>а ещё как будто этого мало поменяем полмилиона ассертов в тастах</p></section><section><p>мы расширили модель данных до stream и event</p><p>добавили интерфейсов для посылки сообщений</p><p>пропихнули их через DI в сториз</p><p>переписали asserts на stream и event</p><p>реализовали новый интерфейс на ably</p></section><section><p>как же мне полегчало когда 2 недели после этого мы навыкатывали новых фич</p><p>в пятницу вечером опять пришёл бизнес</p><p>"фронтендеры не успевают переехать на ably, откатываем на pusher, но чтоб все фичи за 2 недели были"</p><p>Я говорю - 5 минут делов</p></section><section><p>была проблема - внутри шагов всё привязано конкретным сторонним библиотекам</p><p>решение - интерфейсы нас спасут</p><p>предотвратят от протекания ограничений конкретной тулзы в бизнес логики</p></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br><aside class="notes"><p>жили не тужили</p><p>но чего-то не хватало</p><p>запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл</p></aside></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2><aside class="notes"><p>кто ломал сиай?</p><p>отычно тесты падают assertion error true is not false</p><p>спасибо помог!</p><p>мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла</p></aside></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2><aside class="notes"><p>напилили интеграцию с sentry</p></aside></section><section data-background-image="322f6c659ff69a70b4a9392f80eba983.gif" data-background-size="contain"><h2>ELK</h2><aside class="notes"><p>напилим интеграцию с elk</p></aside></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"><br><aside class="notes"><p>подитожим</p><p>было большое приложение с месивом из хаков</p><p>получили меньшее приложение с ясной картиной мира</p><p>соглашения не работаят, работают инструменты</p></aside></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+    """, {"id": id}))</code></pre></section><section><img class="plain" src="cdb3a22e833e649bb814bd0a32002328.png"><aside class="notes"><p>жили не тужили</p><p>был у нас пушер</p><p>пушер это ...</p></aside></section><section><h2>How to use third-party library</h2><pre><code class="python">from pusher import Pusher
+
+class Purchase:
+    def send_purchase_notification(ctx):
+        Pusher().trigger("private-user-1")</code></pre><pre><code class="python">def test_before(monkeypatch):
+    monkeypatch.setattr(pusher, "Pusher", Mock())
+    # ...
+    pusher.Pusher.trigger.assert_called_once_with(
+        "private-user-1"
+    )</code></pre><aside class="notes"><p>как обычно используют сторонние библиотеки в проекте?</p><p>импортируем на прямую пихаем им данные так как они того хотят</p><p>в тестах stubим библиотеку и ассертим данные которые им скормили</p></aside></section><section><img class="plain" src="ebaffe0760c8e607e0686f435ffdcd9e.png"><aside class="notes"><p>пришёл бизнес</p><p>хотим горантию доставки сообщений</p><p>переезжаем на ably</p></aside></section><section><h2>How to use it with DI</h2><pre><code class="python">class Purchase:
+    def send_purchase_notification(ctx):
+        self.trigger_message(UserStream(ctx.user))
+
+    trigger_message: Emitter</code></pre><pre><code class="python">def test_after(emitter):
+    # ...
+    Purchase.trigger_message.assert_called_once_with(
+        UserStream(User(primary_key=1))
+    )</code></pre><aside class="notes"><p>да у них даже апи похоже</p><p>только вот у нас в шагах всё шурупами прикручено к pusher</p><p>давайте ходить по всему проекту менять - на :</p><p>а ещё как будто этого мало поменяем полмилиона ассертов в тастах</p><p>мы расширили модель данных до stream и event</p><p>добавили интерфейсов для посылки сообщений</p><p>пропихнули их через DI в сториз</p><p>переписали asserts на stream и event</p><p>реализовали новый интерфейс на ably</p><p>как же мне полегчало когда 2 недели после этого мы навыкатывали новых фич</p><p>в пятницу вечером опять пришёл бизнес</p><p>"фронтендеры не успевают переехать на ably, откатываем на pusher, но чтоб все фичи за 2 недели были"</p><p>Я говорю - 5 минут делов</p><p>была проблема - внутри шагов всё привязано конкретным сторонним библиотекам</p><p>решение - интерфейсы нас спасут</p><p>предотвратят от протекания ограничений конкретной тулзы в бизнес логики</p></aside></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br><aside class="notes"><p>жили не тужили</p><p>но чего-то не хватало</p><p>запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл</p></aside></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2><aside class="notes"><p>кто ломал сиай?</p><p>отычно тесты падают assertion error true is not false</p><p>спасибо помог!</p><p>мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла</p></aside></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2><aside class="notes"><p>напилили интеграцию с sentry</p></aside></section><section data-background-image="322f6c659ff69a70b4a9392f80eba983.gif" data-background-size="contain"><h2>ELK</h2><aside class="notes"><p>напилим интеграцию с elk</p></aside></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"><br><aside class="notes"><p>подитожим</p><p>было большое приложение с месивом из хаков</p><p>получили меньшее приложение с ясной картиной мира</p><p>соглашения не работаят, работают инструменты</p></aside></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
