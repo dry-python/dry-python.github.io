@@ -129,7 +129,7 @@ html
                 Given I am an author user
                 And I have an article
                 When I go to the article page
-          pre
+          pre.fragment
             code.python.
               @given('I am an author user')
               def author_user(ctx):
@@ -177,39 +177,117 @@ html
             p мы начали пилить dry-python
             p набор библиотек, который навязывает писать бизнеслогику
         section
-          p сториз
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
+          p Define a user story in the business transaction DSL.
+          p Separate state, implementation and specification.
         section
-          p пример dsl
-          p именно dsl начали делать больше случайно
-          p но потом получили профиты (о них дальше)
-          p это работает ...
+          h2 Specification DSL
+          pre
+            code.python.
+              from stories import story, arguments
+
+              class Purchase:
+                  @story
+                  @arguments("invoice_id", "user")
+                  def buy(I):
+                      I.find_order
+                      I.find_price
+                      I.find_invoice
+                      I.check_balance
+                      I.persist_payment
+                      I.persist_purchase
+                      I.send_purchase_notification
+          aside.notes
+            p пример dsl
+            p именно dsl начали делать больше случайно
+            p но потом получили профиты (о них дальше)
+            p это работает ...
         section
-          p пример реализации шагов
+          h2 Steps implementation
+          pre
+            code.python.
+              from stories import Failure, Success
+
+              class Purchase:
+                  # ...
+
+                  def find_invoice(self, ctx):
+                      invoice = Invoice.objects.get(pk=ctx.invoice_id)
+                      return Success(invoice=invoice)
+
+                  def check_balance(self, ctx):
+                      if ctx.user.can_pay(ctx.invoice):
+                          return Success()
+                      else:
+                          return Failure()
+          aside.notes
+            p пример реализации шагов
+            p решение:
+            p начали отвязывать код того проекта написанного на обсерверах
+            p мы так же получили раздельные шаги с хорошым переиспользованием
+            p DDD - тот самый ясный язык
         section
-          p решение:
-          p начали отвязывать код того проекта написанного на обсерверах
-          p мы так же получили раздельные шаги с хорошым переиспользованием
-          p DDD - тот самый ясный язык
+          img(src=require("./pics/postgresql.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/firebase.png") height="100" style=" padding-right: 70px;").plain
+          aside.notes
+            p жили не тужили всё было хорошо
+            p всё было в постгресе
+            p все данные и правила с ними связанные в realtion mapper
+            p пришёл бизнес
+            p сказал что так-то так-то интегрируемся переезжаем
+            p половина данных переехала в firebase
         section
-          p жили не тужили всё было хорошо
-          p всё было в постгресе
-          p все данные и правила с ними связанные в realtion mapper
-          p пришёл бизнес
-          p сказал что так-то так-то интегрируемся переезжаем
-          p половина данных переехала в firebase
+            h2 Problems
+            h4 we does not have tooling to work with data
+            h4 there is no data contracts writted in code
+            aside.notes
+              p в результате отвалилась вся возможность работы с данными
+              p проблема: нет явно прописанных правил о данных, которыми живёт проект
+              p DDD: нет модели
         section
-          p google firebase это
+          img(src=require("./pics/attrs.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/dry-rb.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/lombok.png") height="100" style=" padding-right: 70px;").plain
+          aside.notes
+            p attrs/dataclasses dry-structures lombok
         section
-          p в результате отвалилась вся возможность работы с данными
-          p проблема: нет явно прописанных правил о данных, которыми живёт проект
-          p DDD: нет модели
+          h2 dataclasses
+          pre
+            code.python.
+              from dataclasses import dataclass
+              from typing import List, NewType
+
+              OrderId = NewType("OrderId", int)
+
+              @dataclass
+              class LineItem:
+                  product_id: ProductId
+
+              @dataclass
+              class Order:
+                  primary_key: OrderId
+                  items: List[LineItem]
+          aside.notes
+            p начали прописывать в этих самых датаклассах контракты данных
         section
-          p attrs/dataclasses dry-structures lombok
-        section
-          p начали прописывать в этих самых датаклассах контракты данных
-        section
-          p захотелось чтобы рантайм проверял эти контракты во время попадания этих переменных в контекст
-          p а не писать эти проверки как часть сценариев каждый раз
+          h2 State Contract
+          pre
+            code.python.
+              from pydantic import BaseModel
+
+              class Subscription:
+                  @story
+                  def buy(I):
+                      ...
+
+              @Subscription.buy.contract
+              class Context(BaseModel):
+                  user: User
+                  invoice_id: InvoiceId
+                  invoice: Optional[Invoice]
+          aside.notes
+            p захотелось чтобы рантайм проверял эти контракты во время попадания этих переменных в контекст
+            p а не писать эти проверки как часть сценариев каждый раз
         section
           p уныло перегонять руками таблички бд и ответы api в нормальное представление
           p начали писать мапперс
