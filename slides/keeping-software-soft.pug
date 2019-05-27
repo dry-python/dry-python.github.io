@@ -388,19 +388,37 @@ html
           p была проблема - внутри шагов всё привязано конкретным сторонним библиотекам
           p решение - интерфейсы нас спасут
           p предотвратят от протекания ограничений конкретной тулзы в бизнес логики
-        section
-          p жили не тужили
-          p но чего-то не хватало
-          p запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл
-        section
-          p кто ломал сиай?
-          p отычно тесты падают assertion error true is not false
-          p спасибо помог!
-          p мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла
-        section
-          p напилили интеграцию с sentry
-        section
-          p напилим интеграцию с elk
+        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+          h2 DEBUG TOOLBAR
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          aside.notes
+            p жили не тужили
+            p но чего-то не хватало
+            p запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл
+        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+          h2(style="color: white") py.test
+          aside.notes
+            p кто ломал сиай?
+            p отычно тесты падают assertion error true is not false
+            p спасибо помог!
+            p мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла
+        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+          h2 Sentry
+          aside.notes
+            p напилили интеграцию с sentry
+        section(data-background-image=require("./pics/elk-logs-ui.gif") data-background-size="contain")
+          h2 ELK
+          aside.notes
+            p напилим интеграцию с elk
         section(data-background-image=require("./pics/keep-calm-and-ddd.png") data-background-size="contain" data-background-color="#C10C06")
           br
           aside.notes
