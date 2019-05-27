@@ -289,11 +289,72 @@ html
             p захотелось чтобы рантайм проверял эти контракты во время попадания этих переменных в контекст
             p а не писать эти проверки как часть сценариев каждый раз
         section
-          p уныло перегонять руками таблички бд и ответы api в нормальное представление
-          p начали писать мапперс
-          p умеем в django, sqlalchemy, swagger, graphql
+          h2 pros
+          ol
+            li.fragment Explicit data contracts and relations in code
+            li.fragment Data store independent
+            li.fragment Catch errors when they occurs
+            li.fragment Not when they propagate to exception
+          h2.fragment cons
+          ol
+            li.fragment Working with data sources manually
+          aside.notes
+            p уныло перегонять руками таблички бд и ответы api в нормальное представление
+            p решение: писать логику отвязанной от data store implementation
         section
-          p решение: писать логику отвязанной от data store implementation
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
+          p Declarative mappers from ORM models to domain entities. And back again!
+          aside.notes
+            p начали писать мапперс
+            p умеем в django, sqlalchemy, swagger, graphql
+        section
+          h2 Django ORM
+          pre
+            code.python.
+              from mappers import Mapper
+              from app.aggregates import Order, OrderId, User
+              from app.models import OrderModel, UserModel
+
+              mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+
+              @mapper.reader
+              def load_order(id: OrderId, user: User) -> Order:
+                  friends = UserModel.objects.filter(
+                      purchases=OuterRef("pk"), friends=user.primary_key)
+                  return OrderModel.objects.filter(pk=id).annotate(
+                      purchased_by_friends=Exists(friends)).get()
+        section
+          h2 Swagger definitions
+          pre
+            code.python.
+              from mappers import Mapper
+              from bravado import swagger_model
+              from app.aggregates import Price
+
+              spec = swagger_model.load_file("price_service.yml")
+              mapper = Mapper(Price, spec.definitions["Price"])
+
+              @mapper.reader
+              def load_price(id: PriceId) -> Price:
+                  return requests.get(f"http://172.16.1.7/get/{id}")
+        section
+          h2 GraphQL queries
+          pre
+            code.python.
+              from mappers import Mapper
+              from gql import gql, Client, build_schema
+              from app.models import Invoice
+
+              schema = build_schema("invoice_service.graphql")
+              mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+              @mapper.reader
+              def load_invoice(id: InvoiceId) -> Invoice:
+                  return Client(schema=schema).execute(gql("""
+                    {
+                      loadInvoice(id: %(id)d)
+                    }
+                  """, {"id": id}))
         section
           p жили не тужили
           p был у нас пушер
