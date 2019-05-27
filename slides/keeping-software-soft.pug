@@ -275,12 +275,12 @@ html
             code.python.
               from pydantic import BaseModel
 
-              class Subscription:
+              class Purchase:
                   @story
                   def buy(I):
                       ...
 
-              @Subscription.buy.contract
+              @Purchase.buy.contract
               class Context(BaseModel):
                   user: User
                   invoice_id: InvoiceId
@@ -356,38 +356,71 @@ html
                     }
                   """, {"id": id}))
         section
-          p жили не тужили
-          p был у нас пушер
+          img(src=require("./pics/pusher.png")).plain
+          aside.notes
+            p жили не тужили
+            p был у нас пушер
+            p пушер это ...
         section
-          p пушер это ...
+          h2 How to use third-party library
+          pre
+            code.python.
+              from pusher import Pusher
+
+              class Purchase:
+                  def send_purchase_notification(ctx):
+                      Pusher().trigger("private-user-1")
+          pre
+            code.python.
+              def test_before(monkeypatch):
+                  monkeypatch.setattr(pusher, "Pusher", Mock())
+                  # ...
+                  pusher.Pusher.trigger.assert_called_once_with(
+                      "private-user-1"
+                  )
+          aside.notes
+            p как обычно используют сторонние библиотеки в проекте?
+            p импортируем на прямую пихаем им данные так как они того хотят
+            p в тестах stubим библиотеку и ассертим данные которые им скормили
         section
-          p как обычно используют сторонние библиотеки в проекте?
-          p импортируем на прямую пихаем им данные так как они того хотят
-          p в тестах stubим библиотеку и ассертим данные которые им скормили
+          img(src=require("./pics/ably.png")).plain
+          aside.notes
+            p пришёл бизнес
+            p хотим горантию доставки сообщений
+            p переезжаем на ably
         section
-          p пришёл бизнес
-          p хотим горантию доставки сообщений
-          p переезжаем на ably
-        section
-          p да у них даже апи похоже
-          p только вот у нас в шагах всё шурупами прикручено к pusher
-          p давайте ходить по всему проекту менять - на :
-          p а ещё как будто этого мало поменяем полмилиона ассертов в тастах
-        section
-          p мы расширили модель данных до stream и event
-          p добавили интерфейсов для посылки сообщений
-          p пропихнули их через DI в сториз
-          p переписали asserts на stream и event
-          p реализовали новый интерфейс на ably
-        section
-          p как же мне полегчало когда 2 недели после этого мы навыкатывали новых фич
-          p в пятницу вечером опять пришёл бизнес
-          p "фронтендеры не успевают переехать на ably, откатываем на pusher, но чтоб все фичи за 2 недели были"
-          p Я говорю - 5 минут делов
-        section
-          p была проблема - внутри шагов всё привязано конкретным сторонним библиотекам
-          p решение - интерфейсы нас спасут
-          p предотвратят от протекания ограничений конкретной тулзы в бизнес логики
+          h2 How to use it with DI
+          pre
+            code.python.
+              class Purchase:
+                  def send_purchase_notification(ctx):
+                      self.trigger_message(UserStream(ctx.user))
+
+                  trigger_message: Emitter
+          pre
+            code.python.
+              def test_after(emitter):
+                  # ...
+                  Purchase.trigger_message.assert_called_once_with(
+                      UserStream(User(primary_key=1))
+                  )
+          aside.notes
+            p да у них даже апи похоже
+            p только вот у нас в шагах всё шурупами прикручено к pusher
+            p давайте ходить по всему проекту менять - на :
+            p а ещё как будто этого мало поменяем полмилиона ассертов в тастах
+            p мы расширили модель данных до stream и event
+            p добавили интерфейсов для посылки сообщений
+            p пропихнули их через DI в сториз
+            p переписали asserts на stream и event
+            p реализовали новый интерфейс на ably
+            p как же мне полегчало когда 2 недели после этого мы навыкатывали новых фич
+            p в пятницу вечером опять пришёл бизнес
+            p "фронтендеры не успевают переехать на ably, откатываем на pusher, но чтоб все фичи за 2 недели были"
+            p Я говорю - 5 минут делов
+            p была проблема - внутри шагов всё привязано конкретным сторонним библиотекам
+            p решение - интерфейсы нас спасут
+            p предотвратят от протекания ограничений конкретной тулзы в бизнес логики
         section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
           h2 DEBUG TOOLBAR
           br
