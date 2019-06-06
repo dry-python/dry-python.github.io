@@ -10,7 +10,7 @@
 {% block body %}
   {% for project in this.pagination.items %}
     {# FIXME: Move to the component. #}
-    <div>
+    <div class="py-4">
       <img src="{{ project.logo }}">
       <p>{{ project.description }}</p>
       {% call link(project.github) %}
