@@ -1,0 +1,18 @@
+{% from 'components/navbar-item.html' import navbar_item as link %}
+{# FIXME: Rename navbar-item to the generic component #}
+
+{% macro project_card(project) %}
+  <div class="py-4">
+    <img src="{{ project.logo }}">
+    <p>{{ project.description }}</p>
+    {% call link(project.github) %}
+      GitHub
+    {% endcall %}
+    {% call link(project.documentation) %}
+      Documentation
+    {% endcall %}
+    {% call link(project.gitter) %}
+      Gitter
+    {% endcall %}
+  </div>
+{% endmacro %}
