@@ -1,11 +1,11 @@
 {% from 'components/icons/hamburger.html' import icon as menu_icon %}
-{% from 'components/navbar-item.html' import navbar_item %}
+{% from 'components/link.html' import link %}
 
 {% macro navbar() %}
   <nav class="container mx-auto flex items-center py-4"
        data-controller="navbar">
     <div class="w-3/5">
-      {% call navbar_item('/') %}
+      {% call link('/') %}
         dry-python
       {% endcall %}
     </div>
@@ -18,14 +18,14 @@
     <div class="w-2/5 flex justify-end"
          data-target="navbar.menuItems">
       {% for path, label in bag('navbar').items() %}
-        {% call navbar_item(path|url) %}
+        {% call link(path|url) %}
           {{ label }}
         {% endcall %}
       {% endfor %}
-      {% call navbar_item('https://github.com/dry-python') %}
+      {% call link('https://github.com/dry-python') %}
         GitHub
       {% endcall %}
-      {% call navbar_item('https://drylabs.io') %}
+      {% call link('https://drylabs.io') %}
         Drylabs
       {% endcall %}
     </div>
