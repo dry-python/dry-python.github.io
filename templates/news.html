@@ -1,3 +1,5 @@
+{% from 'components/news-record.html' import news_record %}
+
 {% extends 'layout.html' %}
 
 {% block title %}
@@ -6,10 +8,6 @@
 
 {% block body %}
   {% for record in this.pagination.items %}
-    <div class="pb-5">
-      <h2>{{ record.title }}</h2>
-      <p>{{ record.published.strftime('%d.%m.%Y') }}</p>
-      {{ record.body }}
-    </div>
+    {{ news_record(record) }}
   {% endfor %}
 {% endblock %}
