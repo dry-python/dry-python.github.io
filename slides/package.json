@@ -17,7 +17,7 @@
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
     "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.3"
   },
   "scripts": {
     "webpack": "webpack"
