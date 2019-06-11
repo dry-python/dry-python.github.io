@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postCssImport = require('postcss-import');
 const tailwindcss = require('tailwindcss');
 const autoprefixer = require('autoprefixer');
+const purgecss = require('@fullhuman/postcss-purgecss');
 
 
 module.exports = {
@@ -27,7 +28,20 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: [postCssImport, tailwindcss, autoprefixer],
+              plugins: [
+                postCssImport,
+                tailwindcss,
+                autoprefixer,
+                purgecss({
+                  content: [`${path.join(__dirname, '..', 'templates')}/**/*.html`],
+                  defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
+                  // NOTE: Remove this ignore rules when we will
+                  // initialize source code highlight without
+                  // javascript.
+                  whitelist: ['lang-python'],
+                  whitelistPatterns: [/hljs*/],
+                }),
+              ],
             },
           },
         ],
