@@ -39,7 +39,7 @@ module.exports = {
                   // initialize source code highlight without
                   // javascript.
                   whitelist: ['lang-python'],
-                  whitelistPatterns: [/hljs*/],
+                  whitelistPatterns: [/hljs*/, /turbolinks*/],
                 }),
               ],
             },
