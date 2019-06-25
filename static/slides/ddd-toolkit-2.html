@@ -78,7 +78,16 @@ class Purchase:
 class Context(BaseModel):
     user: User
     invoice_id: InvoiceId
-    invoice: Optional[Invoice]</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Explicit data contracts and relations in code</li><li class="fragment">Data store independent</li><li class="fragment">Catch errors when they occur</li><li class="fragment">Not when they propagate to exception</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Working with data sources manually</li></ol></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png"><p>Declarative mappers from ORM models to domain entities. And back again!</p></section><section><h2>Django ORM</h2><pre><code class="python">from mappers import Mapper
+    invoice: Optional[Invoice]</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Explicit data contracts and relations in code</li><li class="fragment">Data store independent</li><li class="fragment">Catch errors when they occur</li><li class="fragment">Not when they propagate to exception</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Working with data sources manually</li></ol></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png"><p>Declarative mappers from ORM models to domain entities. And back again!</p></section><section><h2>Layout</h2><pre><code>project
+├── admin
+├── aggregates
+├── forms
+├── migrations
+├── models
+├── <b>repositories</b>
+├── services
+├── templates
+└── views</code></pre></section><section><h2>Django ORM</h2><pre><code class="python">from mappers import Mapper
 from app.aggregates import Order, OrderId, User
 from app.models import OrderModel, UserModel
 
@@ -129,4 +138,14 @@ class Purchase:
     # ...
     Purchase.trigger_message.assert_called_once_with(
         UserStream(User(primary_key=1))
-    )</code></pre></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+    )</code></pre></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p>Solves top-down approach problem.</p></section><section><h2>Layout</h2><pre><code>project
+├── admin
+├── aggregates
+├── forms
+├── migrations
+├── models
+├── repositories
+├── services
+├── templates
+├── <b>implementation</b>
+└── views</code></pre></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
