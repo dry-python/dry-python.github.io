@@ -97,24 +97,24 @@ html
             code.python.
               from stories import story, arguments
 
-              class Subscription:
+              class Purchase:
                   @story
                   @arguments("invoice_id", "user")
-                  def buy(I):
+                  def make(I):
                       I.find_order
                       I.find_price
                       I.find_invoice
                       I.check_balance
                       I.persist_payment
-                      I.persist_subscription
-                      I.send_subscription_notification
+                      I.persist_purchase
+                      I.send_purchase_notification
         section
           h2 Steps implementation
           pre
             code.python.
               from stories import Failure, Success
 
-              class Subscription:
+              class Purchase:
                   # ...
 
                   def find_invoice(self, ctx):
@@ -130,10 +130,10 @@ html
           h2 Story Execution
           pre
             code.python.
-              >>> Subscription().buy(category_id=2)
-              Subscription.buy:
-                find_category
-                check_price
+              >>> Purchase().make(category_id=2)
+              Purchase.make:
+                find_order
+                find_price
                 check_purchase (PromoCode.validate)
                   find_code (skipped)
                 check_balance
@@ -143,7 +143,7 @@ html
                 category_id = 1318  # Story argument
                 user = #{"<"}User: 3292#{">"} # Story argument
                 category = #{"<"}Category: 1318#{">"}
-                  # Set by Subscription.find_category
+                  # Set by Purchase.find_category
         section
           h2 pros
           ol
@@ -217,10 +217,10 @@ html
 
               class Purchase:
                   @story
-                  def buy(I):
+                  def make(I):
                       # ...
 
-              @Purchase.buy.contract
+              @Purchase.make.contract
               class Context(BaseModel):
                   user: User
                   invoice_id: InvoiceId
