@@ -356,6 +356,22 @@ html
               ├── templates
               ├── #[b implementation]
               └── views
+        section
+          h2 Injection
+          pre
+            code.python.
+              from dependencies import Injector, Package
+
+              app = Package('app')
+
+              class MakePurchase(Injector):
+
+                  make_purchase = app.services.Purchase.make
+                  load_category = app.repositories.load_category
+                  load_price = app.repositories.load_price
+                  load_profile = app.repositories.load_profile
+
+              MakePurchase.make_purchase(category_id=1, price_id=1)
         section(data-background-image=require("./pics/keep-calm-and-ddd.png") data-background-size="contain" data-background-color="#C10C06")
         section
           h2 Get in touch
