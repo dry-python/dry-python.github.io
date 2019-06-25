@@ -117,11 +117,11 @@ html
               class Subscription:
                   # ...
 
-                  def find_invoice(self, ctx: Context):
+                  def find_invoice(self, ctx):
                       invoice = Invoice.objects.get(pk=ctx.invoice_id)
                       return Success(invoice=invoice)
 
-                  def check_balance(self, ctx: Context):
+                  def check_balance(self, ctx):
                       if ctx.user.can_pay(ctx.invoice):
                           return Success()
                       else:
