@@ -52,6 +52,10 @@ module.exports = {
       template: 'keeping-software-soft.pug',
       filename: 'keeping-software-soft.html',
     }),
+    new HtmlWebpackPlugin({
+      template: 'ddd-toolkit-2.pug',
+      filename: 'ddd-toolkit-2.html',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
