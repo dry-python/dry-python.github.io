@@ -11,33 +11,33 @@
 ├── templates
 └── views</code></pre></section><section><h2>Specification DSL</h2><pre><code class="python">from stories import story, arguments
 
-class Subscription:
+class Purchase:
     @story
     @arguments("invoice_id", "user")
-    def buy(I):
+    def make(I):
         I.find_order
         I.find_price
         I.find_invoice
         I.check_balance
         I.persist_payment
-        I.persist_subscription
-        I.send_subscription_notification</code></pre></section><section><h2>Steps implementation</h2><pre><code class="python">from stories import Failure, Success
+        I.persist_purchase
+        I.send_purchase_notification</code></pre></section><section><h2>Steps implementation</h2><pre><code class="python">from stories import Failure, Success
 
-class Subscription:
+class Purchase:
     # ...
 
-    def find_invoice(self, ctx: Context):
+    def find_invoice(self, ctx):
         invoice = Invoice.objects.get(pk=ctx.invoice_id)
         return Success(invoice=invoice)
 
-    def check_balance(self, ctx: Context):
+    def check_balance(self, ctx):
         if ctx.user.can_pay(ctx.invoice):
             return Success()
         else:
-            return Failure()</code></pre></section><section><h2>Story Execution</h2><pre><code class="python">>>> Subscription().buy(category_id=2)
-Subscription.buy:
-  find_category
-  check_price
+            return Failure()</code></pre></section><section><h2>Story Execution</h2><pre><code class="python">>>> Purchase().make(category_id=2)
+Purchase.make:
+  find_order
+  find_price
   check_purchase (PromoCode.validate)
     find_code (skipped)
   check_balance
@@ -47,7 +47,7 @@ Context:
   category_id = 1318  # Story argument
   user = &lt;User: 3292&gt; # Story argument
   category = &lt;Category: 1318&gt;
-    # Set by Subscription.find_category</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Clean flow in the source code</li><li class="fragment">Separate step implementation</li><li class="fragment">Each step knows nothing about a neighbor</li><li class="fragment">Easy reuse of code</li><li class="fragment">Allows to instrument code easily</li></ol></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section data-background-image="322f6c659ff69a70b4a9392f80eba983.gif" data-background-size="contain"><h2>ELK</h2></section><section data-background-image="2f8fdc259c046cefdd4211db709ef31e.jpg" data-background-size="contain"></section><section><img class="plain" src="3bbbf9a76da55505df1596dbbfe3d393.png" height="150" style=" padding-right: 70px;"><img class="plain" src="e87a433c735dc2a18650f483dd211a72.png" height="150" style=" padding-right: 70px;"><ul><li class="fragment">We do not have the tooling to work with data</li><li class="fragment">There are no data contracts written in code</li></ul></section><section><img class="plain" src="f32ac17f4679c123040dc386b9258a94.png"></section><section><h2>Layout</h2><pre><code>project
+    # Set by Purchase.find_category</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Clean flow in the source code</li><li class="fragment">Separate step implementation</li><li class="fragment">Each step knows nothing about a neighbor</li><li class="fragment">Easy reuse of code</li><li class="fragment">Allows to instrument code easily</li></ol></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section data-background-image="322f6c659ff69a70b4a9392f80eba983.gif" data-background-size="contain"><h2>ELK</h2></section><section data-background-image="2f8fdc259c046cefdd4211db709ef31e.jpg" data-background-size="contain"></section><section><img class="plain" src="3bbbf9a76da55505df1596dbbfe3d393.png" height="150" style=" padding-right: 70px;"><img class="plain" src="e87a433c735dc2a18650f483dd211a72.png" height="150" style=" padding-right: 70px;"><ul><li class="fragment">We do not have the tooling to work with data</li><li class="fragment">There are no data contracts written in code</li></ul></section><section><img class="plain" src="f32ac17f4679c123040dc386b9258a94.png"></section><section><h2>Layout</h2><pre><code>project
 ├── admin
 ├── <b>aggregates</b>
 ├── forms
@@ -71,10 +71,10 @@ class Order:
 
 class Purchase:
     @story
-    def buy(I):
+    def make(I):
         # ...
 
-@Purchase.buy.contract
+@Purchase.make.contract
 class Context(BaseModel):
     user: User
     invoice_id: InvoiceId
@@ -91,7 +91,7 @@ class Context(BaseModel):
 from app.aggregates import Order, OrderId, User
 from app.models import OrderModel, UserModel
 
-mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+mapper = Mapper(Order, OrderModel, {"primary_key": "id"})
 
 @mapper.reader
 def load_order(id: OrderId, user: User) -> Order:
@@ -148,4 +148,15 @@ class Purchase:
 ├── services
 ├── templates
 ├── <b>implementation</b>
-└── views</code></pre></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
+└── views</code></pre></section><section><h2>Injection</h2><pre><code class="python">from dependencies import Injector, Package
+
+app = Package('app')
+
+class MakePurchase(Injector):
+
+    make_purchase = app.services.Purchase.make
+    load_category = app.repositories.load_category
+    load_price = app.repositories.load_price
+    load_profile = app.repositories.load_profile
+
+MakePurchase.make_purchase(category_id=1, price_id=1)</code></pre></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
