@@ -129,7 +129,7 @@ class Purchase:
     # ...
     pusher.Pusher.trigger.assert_called_once_with(
         "private-user-1"
-    )</code></pre></section><section><h2>How to use it with DI</h2><pre><code class="python">@dataclass
+    )</code></pre></section><section><img class="plain" src="ebaffe0760c8e607e0686f435ffdcd9e.png"></section><section><h2>How to use it with DI</h2><pre><code class="python">@dataclass
 class Purchase:
     def send_purchase_notification(ctx):
         self.trigger_message(UserStream(ctx.user))
