@@ -261,7 +261,7 @@ html
               from app.aggregates import Order, OrderId, User
               from app.models import OrderModel, UserModel
 
-              mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+              mapper = Mapper(Order, OrderModel, {"primary_key": "id"})
 
               @mapper.reader
               def load_order(id: OrderId, user: User) -> Order:
