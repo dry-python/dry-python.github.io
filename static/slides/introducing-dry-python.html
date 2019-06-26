@@ -56,7 +56,7 @@ Context:
   category_id = 1318  # Story argument
   user = &lt;User: 3292&gt; # Story argument
   category = &lt;Category: 1318&gt;
-    # Set by Subscription.find_category</code></pre></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="47641827d2ab3c50d8b8976d9dd59c05.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">class Subscription:
+    # Set by Subscription.find_category</code></pre></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">class Subscription:
     @story
     def buy(I):
         I.find_category</code></pre></li><li class="fragment">Execute object methods according to plan<pre><code class="python">def find_category(self, ctx):
