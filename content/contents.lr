@@ -52,7 +52,7 @@ class BuySubscriptionView(Injector):
             return HttpResponse("<h1>Error: not enough money</h1>")
 ```
 
-And a framework of your choise will not even notice the change.
+And a framework of your choice will not even notice the change.
 
 ```python
 # urls.py
