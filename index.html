@@ -190,7 +190,7 @@ class BuySubscriptionView(Injector):
         elif result.failed_on(&quot;check_balance&quot;):
             return HttpResponse(&quot;&lt;h1&gt;Error: not enough money&lt;/h1&gt;&quot;)
 </code></pre>
-<p>And a framework of your choise will not even notice the change.</p>
+<p>And a framework of your choice will not even notice the change.</p>
 <pre><code class="lang-python"># urls.py
 from .views import BuySubscriptionView
 
