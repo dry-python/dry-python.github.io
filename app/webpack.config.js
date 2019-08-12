@@ -34,7 +34,7 @@ module.exports = {
                 autoprefixer,
                 purgecss({
                   content: [`${path.join(__dirname, '..', 'templates')}/**/*.html`],
-                  defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
+                  defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
                   // NOTE: Remove this ignore rules when we will
                   // initialize source code highlight without
                   // javascript.
