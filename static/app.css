@@ -9,7 +9,6 @@
 }
 
 .header-button-group-button {
-  -webkit-transition: background 0.3s, border 0.3s, color 0.3s;
   transition: background 0.3s, border 0.3s, color 0.3s;
 }
 
@@ -572,23 +571,19 @@ img {
 }
 
 .flex {
-  display: -webkit-box;
   display: flex;
 }
 
 .items-center {
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .justify-end {
-  -webkit-box-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .justify-center {
-  -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .font-normal {
@@ -768,7 +763,6 @@ img {
 @media (min-width: 768px) {
 
   .md\:flex {
-    display: -webkit-box;
     display: flex;
   }
 }
