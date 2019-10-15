@@ -10,7 +10,7 @@ Lektor = "^3.1"
 lektor-google-analytics = "^0.1.3"
 
 [tool.poetry.dev-dependencies]
-yamllint = "^1.17"
+yamllint = "^1.18"
 
 [build-system]
 requires = ["poetry>=0.12"]
