@@ -224,14 +224,14 @@ description = "A linter for YAML files."
 name = "yamllint"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.19.0"
+version = "1.20.0"
 
 [package.dependencies]
 pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "da17a6c50c8576c237e81941c2d69154202328f2b98cd77f09160bfb4686a7a6"
+content-hash = "8e4661b042f0dfa27a8350e925544a2043c5001e9ced3ba900beaccab50e8606"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -258,4 +258,4 @@ requests = ["11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4", 
 urllib3 = ["b246607a25ac80bedac05c6f282e3cdaf3afb65420fd024ac94435cabe6e18d1", "dbe59173209418ae49d485b87d1681aefa36252ee85884c31346debd19463232"]
 watchdog = ["965f658d0732de3188211932aeb0bb457587f04f63ab4c1e33eab878e9de961d"]
 werkzeug = ["865856ebb55c4dcd0630cdd8f3331a1847a819dda7e8c750d3db6f2aa6c0209c", "a0b915f0815982fb2a09161cb8f31708052d0951c3ba433ccc5e1aa276507ca6"]
-yamllint = ["0260121ed6a428b98bbadb7b6b66e9cd00114382e3d7ad06fa80e0754414cf15", "c65f6df10e2752054ac89fbe7b32abc00864aecb747cf40c73fe445aea1da5f1"]
+yamllint = ["7318e189027951983c3cb4d6bcaa1e75deef7c752320ca3ce84e407f2551e8ce", "76912b6262fd7e0815d7b14c4c2bb2642c754d0aa38f2d3e4b4e21c77872a3bf"]
