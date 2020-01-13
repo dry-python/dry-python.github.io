@@ -1,7 +1,0 @@
-published: 2019-05-31
----
-title: stories 0.10.1 release
----
-body:
-
-We shipped a little stories bugfix release. Fix pytest reporter to work with fixture functions and pytest-bdd plugin properly.
