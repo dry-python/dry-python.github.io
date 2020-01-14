@@ -1,7 +1,7 @@
-[#]*[#]
-assets/static/
-node_modules/
 *.egg-info
 *.pyc
 *.pyo
 *~
+[#]*[#]
+assets/static/
+node_modules/
