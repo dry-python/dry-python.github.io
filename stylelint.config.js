@@ -1,13 +1,11 @@
 module.exports = {
-  extends: 'stylelint-config-standard',
+  extends: "stylelint-config-standard",
   rules: {
-    'at-rule-no-unknown': [
+    "at-rule-no-unknown": [
       true,
       {
-        ignoreAtRules: [
-          'tailwind',
-        ],
-      },
-    ],
-  },
+        ignoreAtRules: ["tailwind"]
+      }
+    ]
+  }
 };

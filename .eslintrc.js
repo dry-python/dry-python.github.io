@@ -1,13 +1,11 @@
 module.exports = {
-  extends: 'airbnb-base',
+  extends: "airbnb-base",
   env: {
     browser: true
   },
-  parser: 'babel-eslint',
-  plugins: [
-    'babel',
-  ],
+  parser: "babel-eslint",
+  plugins: ["babel"],
   rules: {
-    'babel/semi': 1,
-  },
+    "babel/semi": 1
+  }
 };

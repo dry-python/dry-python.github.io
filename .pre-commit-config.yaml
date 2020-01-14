@@ -7,3 +7,7 @@ repos:
       - id: end-of-file-fixer
       - id: file-contents-sorter
         files: .gitignore
+  - repo: https://github.com/prettier/prettier
+    rev: 1.19.1
+    hooks:
+      - id: prettier
