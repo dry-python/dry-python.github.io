@@ -4,7 +4,7 @@
 
 30.08.2019
 
-We are pleased to announce returns v0.11 release!
+We are happy to announce returns v0.11 release!
 
 Take a look at new pipe function semantics, tap and identity functions, and much more!
 
