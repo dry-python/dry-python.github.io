@@ -7,7 +7,23 @@ repos:
       - id: end-of-file-fixer
       - id: file-contents-sorter
         files: .gitignore
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v1.26.1
+    hooks:
+      - id: pyupgrade
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v1.9.0
+    hooks:
+      - id: reorder-python-imports
+  - repo: https://github.com/psf/black
+    rev: 19.10b0
+    hooks:
+      - id: black
   - repo: https://github.com/prettier/prettier
     rev: 1.19.1
     hooks:
       - id: prettier
+  - repo: https://github.com/PyCQA/flake8
+    rev: 3.7.9
+    hooks:
+      - id: flake8
