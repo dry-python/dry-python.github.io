@@ -48,6 +48,14 @@ version = "1.4.10"
 license = ["editdistance"]
 
 [[package]]
+category = "dev"
+description = "Pythonic task execution"
+name = "invoke"
+optional = false
+python-versions = "*"
+version = "1.4.0"
+
+[[package]]
 category = "main"
 description = "A very fast and expressive template engine."
 name = "jinja2"
@@ -266,7 +274,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "4d3d5ff7cb385fea37ab020f960af0abd705b30645fba3ac5aba30037dc7aedb"
+content-hash = "5329815f21d3d75f1a0e58bd434d7940feb64a3a14b749aa6168596be1cad523"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -288,6 +296,11 @@ htmlmin = [
 identify = [
     {file = "identify-1.4.10-py2.py3-none-any.whl", hash = "sha256:418f3b2313ac0b531139311a6b426854e9cbdfcfb6175447a5039aa6291d8b30"},
     {file = "identify-1.4.10.tar.gz", hash = "sha256:8ad99ed1f3a965612dcb881435bf58abcfbeb05e230bb8c352b51e8eac103360"},
+]
+invoke = [
+    {file = "invoke-1.4.0-py2-none-any.whl", hash = "sha256:4668a4a594a47f2da2f0672ec2f7b1566f809cebf10bcd95ce2de9ecf39b95d1"},
+    {file = "invoke-1.4.0-py3-none-any.whl", hash = "sha256:e04faba8ea7cdf6f5c912be42dcafd5c1074b7f2f306998992c4bfb40a9a690b"},
+    {file = "invoke-1.4.0.tar.gz", hash = "sha256:ae7b4513638bde9afcda0825e9535599637a3f65bd819a27098356027bb17c8a"},
 ]
 jinja2 = [
     {file = "Jinja2-2.10.3-py2.py3-none-any.whl", hash = "sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f"},
