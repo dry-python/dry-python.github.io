@@ -25,6 +25,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
+google_analytics:
+  - "UA-136933644-1"
 nav:
   - "Home": index.md
   - "Projects": projects.md
