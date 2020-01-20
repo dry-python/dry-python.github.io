@@ -3,11 +3,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  context: path.resolve(__dirname, "slides"),
   entry: {
     reveal: "./index.js"
   },
   output: {
-    path: path.resolve(__dirname, "../assets/static/slides/"),
+    path: path.resolve(__dirname, "./site/static/slides/"),
     filename: "[name].js"
   },
   mode: "production",

@@ -27,6 +27,7 @@ markdown_extensions:
       custom_checkbox: true
 google_analytics:
   - "UA-136933644-1"
+  - "auto"
 nav:
   - "Home": index.md
   - "Projects": projects.md

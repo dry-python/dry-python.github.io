@@ -10,3 +10,9 @@ def lint(c):
     c.run("npm run lint:md")
     c.run("npm run lint:pug")
     c.run("vale '--glob=*.md' docs")
+
+
+@task
+def build(c):
+    c.run("poetry run mkdocs build")
+    c.run("npm run build:slides")

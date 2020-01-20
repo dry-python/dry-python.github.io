@@ -3,5 +3,5 @@
 *.pyo
 *~
 [#]*[#]
-assets/static/
 node_modules/
+site/
