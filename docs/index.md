@@ -13,6 +13,7 @@ dry-python is a collection of libraries aimed to help you to build an applicatio
 You can define business logic processes with clear DSL.
 
 ```pycon
+
 >>> from stories import story, arguments
 
 >>> class BuySubscription:
@@ -25,6 +26,7 @@ You can define business logic processes with clear DSL.
 ...         I.persist_subscription
 ...         I.send_subscription_notification
 ...         I.show_category
+
 ```
 
 ## Dependencies
@@ -32,6 +34,7 @@ You can define business logic processes with clear DSL.
 You can integrate it into frameworks you already use.
 
 ```pycon
+
 >>> from dependencies import Injector, operation, this
 >>> from dependencies.contrib.django import view
 >>> from django.http import HttpResponse
@@ -49,16 +52,19 @@ You can integrate it into frameworks you already use.
 ...             return redirect(result.value)
 ...         elif result.failed_on("check_balance"):
 ...             return HttpResponse("<h1>Error: not enough money</h1>")
+
 ```
 
 And a framework of your choice will not even notice the change.
 
 ```pycon
+
 >>> from .views import BuySubscriptionView
 
 >>> urlpatterns = [
 ...     path("buy_subscription/<int:id>/", BuySubscriptionView.as_view()),
 ... ]
+
 ```
 
 Drylabs maintains dry-python and helps those who want to use it inside their organizations. Read more at drylabs.io

@@ -10,6 +10,9 @@ mkdocs = "^1.0.4"
 mkdocs-material = "^4.6.0"
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^1.21.0"
-yamllint = "^1.20.0"
+dependencies = "^0.15"
+django = "^3.0.2"
 invoke = "^1.4.0"
+pre-commit = "^1.21.0"
+stories = "^0.10.1"
+yamllint = "^1.20.0"
