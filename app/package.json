@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "gitter-sidecar": "^1.5.0",
-    "highlight.js": "^9.17.1",
+    "highlight.js": "^9.18.0",
     "stimulus": "^1.1.1",
     "tailwindcss": "^1.1.4",
     "turbolinks": "^5.2.0"
