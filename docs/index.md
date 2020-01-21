@@ -59,7 +59,7 @@ And a framework of your choice will not even notice the change.
 
 ```pycon
 
->>> from .views import BuySubscriptionView
+>>> from app.views import BuySubscriptionView
 
 >>> urlpatterns = [
 ...     path("buy_subscription/<int:id>/", BuySubscriptionView.as_view()),
