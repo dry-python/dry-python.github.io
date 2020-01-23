@@ -1,0 +1,36 @@
+---
+trigger:
+  - develop
+jobs:
+  - job: "Ship it"
+    pool:
+      vmImage: "ubuntu-latest"
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.8"
+        displayName: Install Python.
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: Install NodeJS.
+      - script: |
+          curl https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh
+          echo '##vso[task.prependpath]$(system.defaultWorkingDirectory)/bin'
+        displayName: Install Vale.
+      - script: "curl -sSL https://raw.githubusercontent.com\
+          /python-poetry/poetry/master/get-poetry.py | python"
+        displayName: Install poetry.
+      - script: poetry install
+        displayName: Install python dependencies.
+      - script: npm install
+        displayName: Install javascript dependencies.
+      - script: poetry run invoke lint
+        displayName: Run linters.
+      - script: poetry run invoke build
+        displayName: Run build.
+      - script: poetry run invoke deploy
+        condition: |
+          and(succeeded(),
+              eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+        displayName: Run deploy.
