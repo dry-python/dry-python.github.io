@@ -2,7 +2,7 @@
 trigger:
   - develop
 jobs:
-  - job: "Ship it"
+  - job: "Build"
     pool:
       vmImage: "ubuntu-latest"
     steps:
