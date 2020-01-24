@@ -21,4 +21,4 @@ def build(c):
 
 @task
 def deploy(c):
-    c.run("poetry run mkdocs gh-deploy")
+    c.run("poetry run mkdocs gh-deploy --remote-branch master")
