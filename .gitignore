@@ -1,7 +1,8 @@
-[#]*[#]
-assets/static/
-node_modules/
 *.egg-info
 *.pyc
 *.pyo
 *~
+[#]*[#]
+__pycache__/
+node_modules/
+site/

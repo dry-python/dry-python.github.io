@@ -1,9 +1,0 @@
-/* FIXME: A better name of classes. */
-
-.header-container {
-  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-}
-
-.header-button-group-button {
-  transition: background 0.3s, border 0.3s, color 0.3s;
-}

@@ -1,0 +1,46 @@
+---
+strict: true
+site_name: dry-python
+site_description: A set of libraries for pluggable business logic components.
+theme:
+  name: "material"
+  palette:
+    primary: "white"
+    accent: "light-blue"
+  logo: "https://raw.githubusercontent.com\
+    /dry-python/brand/master/logo/dry-python.png"
+  favicon: "https://raw.githubusercontent.com\
+    /dry-python/brand/master/logo/dry-python.ico"
+  language: "en"
+repo_name: dry-python
+repo_url: "https://github.com/dry-python"
+edit_uri: ""
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+google_analytics:
+  - "UA-136933644-1"
+  - "auto"
+nav:
+  - "Home": index.md
+  - "Projects": projects.md
+  - "News": news.md
+  - "Talks": talks.md
+  - "Team": team.md
+  # A UI hack to split Table of Content into two visual parts.
+  - "": "/"
+  - "": "/"
+  - "": "/"
+  - "": "/"
+  - "": "/"
+  - "GitHub": "https://github.com/dry-python"
+  - "Twitter": "https://twitter.com/dry_py"
+  - "Gitter": "https://gitter.im/dry-python/dry-python"
+  - "LinkedIn": "https://www.linkedin.com/company/drylabs/"
