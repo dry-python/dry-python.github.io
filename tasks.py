@@ -17,3 +17,8 @@ def lint(c):
 def build(c):
     c.run("poetry run mkdocs build")
     c.run("npm run build:slides")
+
+
+@task
+def deploy(c):
+    c.run("poetry run mkdocs gh-deploy")
