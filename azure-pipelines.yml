@@ -35,4 +35,8 @@ jobs:
         condition: |
           and(succeeded(),
               eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+        env:
+          GIT_COMMITTER_NAME: $(git.name)
+          GIT_COMMITTER_EMAIL: $(git.email)
+          GIT_COMMITTER_PASSWORD: $(git.password)
         displayName: Run deploy.
