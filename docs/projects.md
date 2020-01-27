@@ -51,13 +51,13 @@ Write short and fully-typed lambdas where you need them.
 - [Issue Tracker](https://github.com/dry-python/lambdas/issues)
 - [Documentation](https://lambdas.readthedocs.io/en/latest/)
 
-## Scripts
+## Editors
 
 A set of tools to automate clients' code upgrade as much as possible.
 
-- [Source Code](https://github.com/dry-python/scripts)
-- [Issue Tracker](https://github.com/dry-python/scripts/issues)
-- [Discussion](https://gitter.im/dry-python/scripts)
+- [Source Code](https://github.com/dry-python/editors)
+- [Issue Tracker](https://github.com/dry-python/editors/issues)
+- [Discussion](https://gitter.im/dry-python/editors)
 
 ## Bookshelf
 
