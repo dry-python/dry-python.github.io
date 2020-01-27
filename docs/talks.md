@@ -1,5 +1,11 @@
 # Talks
 
+## dry-python stories & Machine Learning
+
+[Video](https://www.youtube.com/watch?v=sjbiKdikybY)
+
+[Slides](https://speakerdeck.com/moscowdjango/dry-python-stories-and-machine-learning)
+
 ## Domain Driven Design Toolkit 2
 
 [Video](https://www.youtube.com/watch?v=AlE-JKp9bIA)
