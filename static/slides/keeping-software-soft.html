@@ -1,0 +1,121 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Keeping Software Soft"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Keeping Software Soft</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h2>Keeping Software Soft</h2><h4><a href="https://github.com/proofit404">Artem Malyshev</a></h4><h6><a href="https://twitter.com/proofit404">@proofit404</a></h6></section><section data-background-image="{&quot;default&quot;:&quot;aeb65fa2de1c0896782fd5008bf3d33b.jpg&quot;}" data-background-size="contain" data-background-position="right" data-background-color="#000000"><br></section><section><h2>BIO</h2><ul><li>Co-Founder at <a href="https://drylabs.io/">drylabs.io</a></li><li><a href="https://dry-python.org/">dry-python.org</a></li><li>Django Channels 1.0</li><li>5 years of experience in Python</li></ul></section><section data-background-image="{&quot;default&quot;:&quot;f59f3c8af01ae12346e23c4ec6b68d06.png&quot;}" data-background-size="contain" data-background-color="#2E677B"><br></section><section data-background-image="{&quot;default&quot;:&quot;20bc26206f6e89782a910352143e4b58.png&quot;}" data-background-size="contain"><br></section><section><img class="plain" src="{&quot;default&quot;:&quot;d2f574f2f5969574d22416673cb3b4f2.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;98ff4822d03ab0f5746653f56441d38e.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;c1aa1da6346bdb04a0ac8b161090b0f0.png&quot;}" height="100" style=" padding-right: 70px;"><aside class="notes"><p>несторуктурированный проект на фласке синатре</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;53997124e1acc9aa28c273b0daa540b3.jpg&quot;}" data-background-size="contain"><br><aside class="notes"><p>тут мы json валидируем</p><p>тут мы в базу ходим</p><p>а тут в письма рассылаем</p><p>всё в функциях по 1000 строк кода</p></aside></section><section><h2>pros</h2><ol><li class="fragment">Relatively easy to read</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Really hard to change</li><li class="fragment">We can not see the whole picture</li></ol><aside class="notes"><p>в результате</p><p>легко читать</p><p>тяжело менять</p><p>чтобы добавить какую-нибудь фигню надо перелопатить весь проект</p></aside></section><section><img class="plain" src="{&quot;default&quot;:&quot;4829eb617b1dfe8a8fc19d68afdbb26a.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;e4b772f4e234cec8f795709cbb47c35f.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;2b9750505975ac3e35a15f65a5f22d6c.png&quot;}" height="100" style=" padding-right: 70px;"><aside class="notes"><p>eсть стартапы с django rails nestjs spring</p><p>там за людей уже подумали как структурировать код</p><p>казалось бы решение проблемы</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;6daa36da08983dfbecfbaddeba0310e4.png&quot;}" data-background-size="contain" data-background-color="#002B45"><br><aside class="notes"><p>вот приходишь ты в такой стартап, получаешь таску</p><p>идёшь в код</p></aside></section><section><h2>Implicit API</h2><pre><code class="python">class Purchases(viewsets.ModelViewSet):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
+    permission_classes = (CanPurchase,)
+    filter_class = PurchaseFilter</code></pre><pre><code class="python">router.register('/api/purchases/', Purchases)</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="{&quot;default&quot;:&quot;74cfa36f8f806f2a3ac6ae29e5e574a0.png&quot;}" data-background-size="contain"><br></section><section><h2>Function to change</h2><pre><code class="python">from google_cloud_messaging import send_message
+
+@observer
+def send_sms(event):
+    text = 'You purchase something!'
+    on_commit(lambda: send_message(text))</code></pre><img class="fragment plain" src="{&quot;default&quot;:&quot;3fd0f970cfcd2f6c03462f23b1046b93.png&quot;}"><aside class="notes"><p>В документации нет ни слова про вызов нашей функции</p><p>Не ясно как передать в неё нужные нам аргументы</p></aside></section><section><h2>pros</h2><ol><li class="fragment">Relatively easy to change</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Really hard to read</li><li class="fragment">You should keep in mind framework rules</li><li class="fragment">Implicit knowledge grow</li><li class="fragment">We still can not see the whole picture</li></ol><aside class="notes"><p>тяжело читать</p><p>проще править</p><p>надо держать в голове полную картину работы фреймворка</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;ad18e6114ad2316686c00b3688b8ef5c.jpg&quot;}" data-background-size="contain"><br><aside class="notes"><p>в каждом примере мы понятия не имеем что вообще делает наше приложение</p><p>это может быть и бложек и торговая площадка</p><p>наши проекты не имеют связи в внешним миром</p><p>очень много неявных знаний в головах разработчиках</p></aside></section><section><h2>Business-friendly tools</h2><pre><code class="gherkin">Scenario: Publishing the article
+  Given I am an author user
+  And I have an article
+  When I go to the article page</code></pre><pre class="fragment"><code class="python">@given('I am an author user')
+def author_user(ctx):
+    ctx['user'] = Author()
+
+@given('I have an article')
+def article(ctx):
+    ctx['article'] = create_article(author=ctx['user'])
+
+@when('I go to the article page')
+def go_to_article(ctx):
+    Browser().visit(f"/articles/{ctx['article'].id}/")</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Clean flow in the source code</li><li class="fragment">Separate step implementation</li><li class="fragment">Each step knows nothing about a neighbor</li><li class="fragment">Easy reuse of code</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Does not relate to programming so much</li></ol><aside class="notes"><p>какое у них свойство?</p><p>весь воркфлоу описан на понятном человеческом языке отдельно от реализации</p><p>реализация каждого шага ничего не знает про соседний</p><p>соответственно шаги легко переиспользовать в любом порядке</p><p>их легко менять</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;2cb8eb7a333f341bce653635d00802ce.jpg&quot;}" data-background-size="contain" data-background-position="left" data-background-color="#000000"><br><aside class="notes"><p>что такое ddd</p><p>ддд есть а инструментов не так много</p></aside></section><section><img class="plain" src="{&quot;default&quot;:&quot;e9d2f1be2ecde86268e9986d5faab8be.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;c0084f1e1f33df25ec33ed2e12d076bc.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;fa7601d4fe607d2a1c8e8406e09aed5f.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" style=" padding-right: 70px;"></section><section><h2><a href="https://dry-python.org/">dry-python</a></h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"><aside class="notes"><p>мы начали пилить dry-python</p><p>набор библиотек, который навязывает писать бизнеслогику</p></aside></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><p>Define a user story in the business transaction DSL.</p><p>Separate state, implementation and specification.</p></section><section><h2>Specification DSL</h2><pre><code class="python">from stories import story, arguments
+
+class Purchase:
+    @story
+    @arguments("invoice_id", "user")
+    def buy(I):
+        I.find_order
+        I.find_price
+        I.find_invoice
+        I.check_balance
+        I.persist_payment
+        I.persist_purchase
+        I.send_purchase_notification</code></pre><aside class="notes"><p>пример dsl</p><p>именно dsl начали делать больше случайно</p><p>но потом получили профиты (о них дальше)</p><p>это работает ...</p></aside></section><section><h2>Steps implementation</h2><pre><code class="python">from stories import Failure, Success
+
+class Purchase:
+    # ...
+
+    def find_invoice(self, ctx):
+        invoice = Invoice.objects.get(pk=ctx.invoice_id)
+        return Success(invoice=invoice)
+
+    def check_balance(self, ctx):
+        if ctx.user.can_pay(ctx.invoice):
+            return Success()
+        else:
+            return Failure()</code></pre><aside class="notes"><p>пример реализации шагов</p><p>решение:</p><p>начали отвязывать код того проекта написанного на обсерверах</p><p>мы так же получили раздельные шаги с хорошым переиспользованием</p><p>DDD - тот самый ясный язык</p></aside></section><section><img class="plain" src="{&quot;default&quot;:&quot;3bbbf9a76da55505df1596dbbfe3d393.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;e87a433c735dc2a18650f483dd211a72.png&quot;}" height="100" style=" padding-right: 70px;"><aside class="notes"><p>жили не тужили всё было хорошо</p><p>всё было в постгресе</p><p>все данные и правила с ними связанные в realtion mapper</p><p>пришёл бизнес</p><p>сказал что так-то так-то интегрируемся переезжаем</p><p>половина данных переехала в firebase</p></aside></section><section><h2>Problems</h2><h4>We do not have the tooling to work with data</h4><h4>There are no data contracts written in code</h4><aside class="notes"><p>в результате отвалилась вся возможность работы с данными</p><p>проблема: нет явно прописанных правил о данных, которыми живёт проект</p><p>DDD: нет модели</p></aside></section><section><img class="plain" src="{&quot;default&quot;:&quot;f32ac17f4679c123040dc386b9258a94.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;c0084f1e1f33df25ec33ed2e12d076bc.png&quot;}" height="100" style=" padding-right: 70px;"><img class="plain" src="{&quot;default&quot;:&quot;f21fb31c961c800f105259b13454e2e3.png&quot;}" height="100" style=" padding-right: 70px;"><aside class="notes"><p>attrs/dataclasses dry-structures lombok</p></aside></section><section><h2>dataclasses</h2><pre><code class="python">from dataclasses import dataclass
+from typing import List, NewType
+
+OrderId = NewType("OrderId", int)
+
+@dataclass
+class LineItem:
+    product_id: ProductId
+
+@dataclass
+class Order:
+    primary_key: OrderId
+    items: List[LineItem]</code></pre><aside class="notes"><p>начали прописывать в этих самых датаклассах контракты данных</p></aside></section><section><h2>State Contract</h2><pre><code class="python">from pydantic import BaseModel
+
+class Purchase:
+    @story
+    def buy(I):
+        ...
+
+@Purchase.buy.contract
+class Context(BaseModel):
+    user: User
+    invoice_id: InvoiceId
+    invoice: Optional[Invoice]</code></pre><aside class="notes"><p>захотелось чтобы рантайм проверял эти контракты во время попадания этих переменных в контекст</p><p>а не писать эти проверки как часть сценариев каждый раз</p></aside></section><section><h2>pros</h2><ol><li class="fragment">Explicit data contracts and relations in code</li><li class="fragment">Data store independent</li><li class="fragment">Catch errors when they occur</li><li class="fragment">Not when they propagate to exception</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Working with data sources manually</li></ol><aside class="notes"><p>уныло перегонять руками таблички бд и ответы api в нормальное представление</p><p>решение: писать логику отвязанной от data store implementation</p></aside></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png"><p>Declarative mappers from ORM models to domain entities. And back again!</p><aside class="notes"><p>начали писать мапперс</p><p>умеем в django, sqlalchemy, swagger, graphql</p></aside></section><section><h2>Django ORM</h2><pre><code class="python">from mappers import Mapper
+from app.aggregates import Order, OrderId, User
+from app.models import OrderModel, UserModel
+
+mapper = Mapper(Order, OrderModel, {"primary_key": "pk"})
+
+@mapper.reader
+def load_order(id: OrderId, user: User) -> Order:
+    friends = UserModel.objects.filter(
+        purchases=OuterRef("pk"), friends=user.primary_key)
+    return OrderModel.objects.filter(pk=id).annotate(
+        purchased_by_friends=Exists(friends)).get()</code></pre></section><section><h2>Swagger definitions</h2><pre><code class="python">from mappers import Mapper
+from bravado import swagger_model
+from app.aggregates import Price
+
+spec = swagger_model.load_file("price_service.yml")
+mapper = Mapper(Price, spec.definitions["Price"])
+
+@mapper.reader
+def load_price(id: PriceId) -> Price:
+    return requests.get(f"http://172.16.1.7/get/{id}")</code></pre></section><section><h2>GraphQL queries</h2><pre><code class="python">from mappers import Mapper
+from gql import gql, Client, build_schema
+from app.models import Invoice
+
+schema = build_schema("invoice_service.graphql")
+mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+@mapper.reader
+def load_invoice(id: InvoiceId) -> Invoice:
+    return Client(schema=schema).execute(gql("""
+      {
+        loadInvoice(id: %(id)d)
+      }
+    """, {"id": id}))</code></pre></section><section><img class="plain" src="{&quot;default&quot;:&quot;cdb3a22e833e649bb814bd0a32002328.png&quot;}"><aside class="notes"><p>жили не тужили</p><p>был у нас пушер</p><p>пушер это ...</p></aside></section><section><h2>How to use third-party library</h2><pre><code class="python">from pusher import Pusher
+
+class Purchase:
+    def send_purchase_notification(ctx):
+        Pusher().trigger("private-user-1")</code></pre><pre><code class="python">def test_before(monkeypatch):
+    monkeypatch.setattr(pusher, "Pusher", Mock())
+    # ...
+    pusher.Pusher.trigger.assert_called_once_with(
+        "private-user-1"
+    )</code></pre><aside class="notes"><p>как обычно используют сторонние библиотеки в проекте?</p><p>импортируем на прямую пихаем им данные так как они того хотят</p><p>в тестах stubим библиотеку и ассертим данные которые им скормили</p></aside></section><section><img class="plain" src="{&quot;default&quot;:&quot;ebaffe0760c8e607e0686f435ffdcd9e.png&quot;}"><aside class="notes"><p>пришёл бизнес</p><p>хотим горантию доставки сообщений</p><p>переезжаем на ably</p></aside></section><section><h2>How to use it with DI</h2><pre><code class="python">class Purchase:
+    def send_purchase_notification(ctx):
+        self.trigger_message(UserStream(ctx.user))
+
+    trigger_message: Emitter</code></pre><pre><code class="python">def test_after(emitter):
+    # ...
+    Purchase.trigger_message.assert_called_once_with(
+        UserStream(User(primary_key=1))
+    )</code></pre><aside class="notes"><p>да у них даже апи похоже</p><p>только вот у нас в шагах всё шурупами прикручено к pusher</p><p>давайте ходить по всему проекту менять - на :</p><p>а ещё как будто этого мало поменяем полмилиона ассертов в тастах</p><p>мы расширили модель данных до stream и event</p><p>добавили интерфейсов для посылки сообщений</p><p>пропихнули их через DI в сториз</p><p>переписали asserts на stream и event</p><p>реализовали новый интерфейс на ably</p><p>как же мне полегчало когда 2 недели после этого мы навыкатывали новых фич</p><p>в пятницу вечером опять пришёл бизнес</p><p>"фронтендеры не успевают переехать на ably, откатываем на pusher, но чтоб все фичи за 2 недели были"</p><p>Я говорю - 5 минут делов</p><p>была проблема - внутри шагов всё привязано конкретным сторонним библиотекам</p><p>решение - интерфейсы нас спасут</p><p>предотвратят от протекания ограничений конкретной тулзы в бизнес логики</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;0b268941b08e07b82b1982ba847f31ec.png&quot;}" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br><aside class="notes"><p>жили не тужили</p><p>но чего-то не хватало</p><p>запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;335b1cb95d5010bb26e11d96f39114bc.png&quot;}" data-background-size="contain"><h2 style="color: white">py.test</h2><aside class="notes"><p>кто ломал сиай?</p><p>отычно тесты падают assertion error true is not false</p><p>спасибо помог!</p><p>мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;4427b3c017312108535dcfd25fd5898c.png&quot;}" data-background-size="contain"><h2>Sentry</h2><aside class="notes"><p>напилили интеграцию с sentry</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;322f6c659ff69a70b4a9392f80eba983.gif&quot;}" data-background-size="contain"><h2>ELK</h2><aside class="notes"><p>напилим интеграцию с elk</p></aside></section><section data-background-image="{&quot;default&quot;:&quot;59b4ce188835d8bb41dc6867d467abdc.png&quot;}" data-background-size="contain" data-background-color="#C10C06"><br><aside class="notes"><p>подитожим</p><p>было большое приложение с месивом из хаков</p><p>получили меньшее приложение с ясной картиной мира</p><p>соглашения не работаят, работают инструменты</p></aside></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Introducing dry-python"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Introducing dry-python</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h2>Introducing</h2><h1><a href="https://dry-python.org/">dry-python</a></h1><h4>Artem Malyshev</h4></section><section><h2>BIO</h2><ul><li>Co-Founder at <a href="https://drylabs.io/">drylabs.io</a></li><li><a href="https://dry-python.org/">dry-python.org</a></li><li>Django Channels 1.0</li><li>5 years of experience in Python</li></ul></section><section><h2>Code is...</h2><p class="fragment"><b>hard</b></p><p class="fragment"><b>and frustrating</b></p><p class="fragment">Let's consider we're developing subscription button for a web service</p></section><section data-background-image="{&quot;default&quot;:&quot;aff5c485c382439a300952a1903aa1b7.jpg&quot;}" data-background-size="contain"><h2 style="color: white; background-color: black">Startup</h2><br><br><br><br><br><br><br><br></section><section><h2>Micro framework</h2><ol><li class="fragment">Long handlers</li><li class="fragment">Lots of "if" statements</li></ol></section><section><h2>Long handlers</h2><pre><code class="python"> 85 @app.route('/subscriptions/')
+ 86 def buy_subscription(page):
+...
+121     if props[-1].endswith('$'):
+122 -&gt;      props[-1] = props[-1][:-1]
+123</code></pre><pre class="fragment"><code class="python">Traceback (most recent call last):
+  File "views.py", line 1027, in buy_subscription
+ZeroDivisionError: division by zero</code></pre></section><section data-background-image="{&quot;default&quot;:&quot;b4353ae91abb68108aaf28f8c3a76c5c.jpg&quot;}" data-background-size="contain"><h2 style="color: white; background-color: black">Enterprise</h2><br><br><br><br><br><br><br><br></section><section><h2>Big framework</h2><ol><li class="fragment">You need method flowchart</li><li class="fragment">Zig-zag in the traceback</li><li class="fragment">Framework internals leak</li></ol></section><section><h2>Implicit API</h2><pre><code class="python">class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+    permission_classes = (CanSubscribe,)
+    filter_class = SubscriptionFilter</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section data-background-image="{&quot;default&quot;:&quot;74cfa36f8f806f2a3ac6ae29e5e574a0.png&quot;}" data-background-size="contain"><br></section><section><h2>Framework internals leak</h2><pre><code class="python">class SubscriptionSerializer(Serializer):
+    category_id = IntegerField()
+    price_id = IntegerField()</code></pre><pre class="fragment"><code class="python">def recreate_nested_writable_fields(self, instance):
+    for field, values in self.writable_fields_to_recreate():
+        related_manager = getattr(instance, field)
+        related_manager.all().delete()
+        for data in values:
+            obj = related_manager.model.objects.create(
+                to=instance, **data)
+            related_manager.add(obj)</code></pre></section><section><h2>As a result code is...</h2><ol><li class="fragment">Fragile</li><li class="fragment">Hard to reason about</li><li class="fragment">Time-consuming</li></ol></section><section><img src="{&quot;default&quot;:&quot;7d06605fa014b5fade560eaa463937b4.png&quot;}"></section><section><blockquote><p>If your code is crap, stickies on the wall won't help.</p><a href="https://twitter.com/henrikkniberg">@HenrikKniberg</a><img src="{&quot;default&quot;:&quot;8b5cce5f4a93c75cc2e5028723fba061.jpg&quot;}"></blockquote></section><section><h2>Service layer</h2><p>Defines an application's boundary with a layer of services that establishes a set of available operations and coordinates the application's response in each operation.</p><p><b>by Randy Stafford</b></p></section><section><h2>Business objects</h2><pre><code class="python">def buy_subscription(category_id, price_id, user):
+
+    category = find_category(category_id)
+    price = find_price(price_id)
+    profile = find_profile(user)
+    if profile.balance &lt; price.cost:
+        raise ValueError
+    decrease_balance(profile, price.cost)
+    save_profile(profile)
+    expires = calculate_period(price.period)
+    subscription = create_subscription(
+        profile, category, expires)
+    notification = send_notification(
+        'subscription', profile, category.name)</code></pre></section><section><h2>Business object problems</h2><ol><li class="fragment">Mixed state, implementation and specification</li><li class="fragment">Growth problem</li><li class="fragment">Top-down architecture</li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"><p>A set of libraries for pluggable business logic components.</p><p>Answers how we decompose and organize business logic.</p></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><p>Define a user story in the business transaction DSL.</p><p>Separate state, implementation and specification.</p></section><section><h2>DSL</h2><pre><code class="python">from stories import story, arguments
+
+class Subscription:
+    @story
+    @arguments('category_id', 'price_id')
+    def buy(I):
+        I.find_category
+        I.find_price
+        I.find_profile
+        I.check_balance
+        I.persist_payment
+        I.persist_subscription
+        I.send_subscription_notification</code></pre></section><section><h2>Context</h2><pre><code class="python">(Pdb) ctx
+Subscription.buy:
+  find_category
+  check_price
+  check_purchase (PromoCode.validate)
+    find_code (skipped)
+  check_balance
+    find_profile
+
+Context:
+  category_id = 1318  # Story argument
+  user = &lt;User: 3292&gt; # Story argument
+  category = &lt;Category: 1318&gt;
+    # Set by Subscription.find_category</code></pre></section><section data-background-image="{&quot;default&quot;:&quot;0b268941b08e07b82b1982ba847f31ec.png&quot;}" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="{&quot;default&quot;:&quot;335b1cb95d5010bb26e11d96f39114bc.png&quot;}" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="{&quot;default&quot;:&quot;4427b3c017312108535dcfd25fd5898c.png&quot;}" data-background-size="contain"><h2>Sentry</h2></section><section><h2>Usage</h2><ol><li class="fragment">Story decorator build an execution plan<pre><code class="python">class Subscription:
+    @story
+    def buy(I):
+        I.find_category</code></pre></li><li class="fragment">Execute object methods according to plan<pre><code class="python">def find_category(self, ctx):
+    category = Category.objects.get(
+        pk=ctx.category_id)
+    return Success(category=category)</code></pre></li><li class="fragment">We call the story method<pre><code class="python">subs = Subscription()
+subs.buy(category_id=1, price_id=1)</code></pre></li></ol></section><section><h2>Failures</h2><ol><li class="fragment">Define a number of reasons<pre><code class="python">@Subscription.buy.failures
+class Errors(Enum):
+    low_balance = auto()</code></pre></li><li class="fragment">Failure will stop the execution of the whole story<pre><code class="python">def check_balance(self, ctx):
+    if ctx.profile.balance &lt; ctx.price.cost:
+        return Failure(Errors.low_balance)
+    else:
+        return Success()</code></pre></li><li class="fragment">We check failure reason<pre><code class="python">result = Subscription().buy.run(category_id=2)
+assert result.failed_because(Errors.low_balance)</code></pre></li></ol></section><section><h2>Contract</h2><ol><li class="fragment">Define a number of variable validators<pre><code class="python">from pydantic import BaseModel
+
+@Subscription.buy.contract
+class Context(BaseModel):
+    user: User
+    category_id: int
+    category: Optional[Category]</code></pre></li><li class="fragment">Return variables from step<pre><code class="python">def find_category(self, ctx: "Context"):
+    category = get_category(
+        ctx.category_id)
+    return Success(category=category)</code></pre></li></ol></section><section><h2>Substories</h2><ol><li class="fragment">Steps can be stories as well<pre><code class="python">class Subscription:
+    @story
+    def buy(I):
+        I.calculate_discount
+        I.check_balance
+    @story
+    def calculate_discount(I):
+        I.find_promo_code
+        I.check_code_expiration</code></pre></li><li class="fragment">Each step can stop the execution of current substory<pre><code class="python">def check_code_expiration(self, ctx):
+    if ctx.promo_code.is_expired():
+        return Skip()
+    else:
+        return Success()</code></pre></li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p>Solves top-down approach problem.</p></section><section><h2>Delegate responsibility</h2><pre><code class="python">class Subscription:
+
+    def find_category(self, ctx):
+        category = self.load_category(ctx.category_id)
+        return Success(category=category)
+
+    def find_price(self, ctx):
+        price = self.load_price(ctx.price_id)
+        return Success(price=price)
+
+    def __init__(self, load_category, load_price):
+        self.load_category = load_category
+        self.load_price = load_price</code></pre></section><section><h2>Injection</h2><pre><code class="python">from dependencies import Injector, Package
+
+app = Package('app')
+
+class BuySubscription(Injector):
+
+    buy_subscription = app.services.Subscription.buy
+    load_category = app.repositories.load_category
+    load_price = app.repositories.load_price
+    load_profile = app.repositories.load_profile
+
+BuySubscription.buy_subscription(category_id=1, price_id=1)</code></pre></section><section><h2>Django views</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.django import view
+from django.http import HttpResponse, HttpResponseRedirect
+
+@view
+class BuySubscriptionView(BuySubscription):
+
+    @operation
+    def post(buy_subscription, category_id, price_id):
+        result = buy_subscription.run(category_id, price_id)
+        if result.is_success:
+            return HttpResponseRedirect(to=result.value)
+        elif result.failed_on('check_balance'):
+            return HttpResponse('&lt;h1&gt;Not enough money&lt;/h1&gt;')</code></pre></section><section><h2>Flask views</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.flask import method_view
+from flask import redirect
+
+@method_view
+class BuySubscriptionView(BuySubscription):
+
+    @operation
+    def post(buy_subscription, category_id, price_id):
+        result = buy_subscription.run(category_id, price_id)
+        if result.is_success:
+            return redirect(result.value)
+        elif result.failed_on('check_balance'):
+            return '&lt;h1&gt;Not enough money&lt;/h1&gt;'</code></pre></section><section><h2>Celery Tasks</h2><pre><code class="python">from dependencies import operation
+from dependencies.contrib.celery import task
+
+@task
+class PutMoneyTask(PutMoney):
+
+    @operation
+    def run(put_money, user, amount, task):
+        result = put_money.run(user, amount)
+        if result.is_failure:
+            task.on_failure(result.ctx.transaction_id)</code></pre></section><section><h2>Plans</h2><ol><li>Delegates</li><li>Rollbacks</li><li>asyncio support</li><li>pyramid support</li><li>typing advantages</li><li>linters integration</li><li>language server</li></ol></section><section><h2>Try it!</h2><pre><code>$ pip install stories</code></pre><pre><code>$ pip install dependencies</code></pre></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
