@@ -5,6 +5,7 @@ from invoke import task
 def lint(c):
     c.run("poetry run pre-commit run -a")
     c.run("poetry run python -m mddoctest")
+    c.run("poetry run flake8 .")
     c.run("poetry run yamllint --strict .")
     c.run("npm run lint:css")
     c.run("npm run lint:js")
