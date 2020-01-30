@@ -28,4 +28,4 @@ def deploy(c):
     command = "poetry run ghp-import --cname dry-python.org --branch master --push site"
     enter_username = Responder(r"Username: ", environ["GIT_COMMITTER_NAME"])
     enter_password = Responder(r"Password: ", environ["GIT_COMMITTER_PASSWORD"])
-    c.run(command, watchers=[enter_username, enter_password])
+    c.run(command, pty=True, watchers=[enter_username, enter_password])
