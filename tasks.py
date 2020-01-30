@@ -5,18 +5,19 @@ from invoke import task
 def lint(c):
     c.run("poetry run pre-commit run -a")
     c.run("poetry run python -m mddoctest")
+    c.run("poetry run flake8 .")
     c.run("poetry run yamllint --strict .")
-    c.run("npm run lint:css")
-    c.run("npm run lint:js")
-    c.run("npm run lint:md")
-    c.run("npm run lint:pug")
+    c.run("npx stylelint --ignore-path .gitignore '**/*.css'")
+    c.run("npx eslint --ext .js --ignore-path .gitignore .")
+    c.run("npx remark --frail .")
+    c.run("npx pug-lint **/*.pug")
     c.run("vale '--glob=*.md' docs")
 
 
 @task
 def build(c):
     c.run("poetry run mkdocs build")
-    c.run("npm run build:slides")
+    c.run("npx webpack")
 
 
 @task
