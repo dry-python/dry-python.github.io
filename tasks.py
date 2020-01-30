@@ -1,3 +1,6 @@
+from os import environ
+
+from invoke import Responder
 from invoke import task
 
 
@@ -22,4 +25,7 @@ def build(c):
 
 @task
 def deploy(c):
-    c.run("poetry run mkdocs gh-deploy --remote-branch master")
+    command = "poetry run ghp-import --cname dry-python.org --branch master --push site"
+    enter_username = Responder(r"Username: ", environ["GIT_COMMITTER_NAME"])
+    enter_password = Responder(r"Password: ", environ["GIT_COMMITTER_PASSWORD"])
+    c.run(command, watchers=[enter_username, enter_password])
