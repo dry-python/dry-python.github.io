@@ -10,6 +10,11 @@ jobs:
         inputs:
           versionSpec: "3.8"
         displayName: Install Python.
+      - script: |
+          curl -sSL "https://raw.githubusercontent.com\
+          /python-poetry/poetry/master/get-poetry.py" | python
+          echo '##vso[task.prependpath]$(HOME)/.poetry/bin'
+        displayName: Install Poetry.
       - task: NodeTool@0
         inputs:
           versionSpec: "10.x"
@@ -18,15 +23,10 @@ jobs:
           curl https://install.goreleaser.com/github.com/ValeLint/vale.sh | sh
           echo '##vso[task.prependpath]$(system.defaultWorkingDirectory)/bin'
         displayName: Install Vale.
-      - script: |
-          curl -sSL "https://raw.githubusercontent.com\
-          /python-poetry/poetry/master/get-poetry.py" | python
-          echo '##vso[task.prependpath]$(HOME)/.poetry/bin'
-        displayName: Install poetry.
       - script: poetry install
-        displayName: Install python dependencies.
+        displayName: Install Python dependencies.
       - script: npm install
-        displayName: Install javascript dependencies.
+        displayName: Install JS dependencies.
       - script: poetry run invoke lint
         displayName: Run linters.
       - script: poetry run invoke build
@@ -39,4 +39,5 @@ jobs:
           GIT_COMMITTER_NAME: $(git.name)
           GIT_COMMITTER_EMAIL: $(git.email)
           GIT_COMMITTER_PASSWORD: $(git.password)
+          GIT_TERMINAL_PROMPT: 1
         displayName: Run deploy.
