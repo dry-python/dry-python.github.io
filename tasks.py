@@ -1,6 +1,7 @@
 from os import environ
+from os import getcwd
+from os.path import join
 
-from invoke import Responder
 from invoke import task
 
 
@@ -25,7 +26,15 @@ def build(c):
 
 @task
 def deploy(c):
-    command = "poetry run ghp-import --cname dry-python.org --branch master --push site"
-    enter_username = Responder(r"Username for .*:", environ["GIT_COMMITTER_NAME"])
-    enter_password = Responder(r"Password for .*:", environ["GIT_COMMITTER_PASSWORD"])
-    c.run(command, pty=True, watchers=[enter_username, enter_password])
+    config_path = join(getcwd(), ".git", "config")
+    cred_path = join(getcwd(), ".git", "credentials")
+    with open(config_path, "a") as f:
+        f.write("[credential]\n")
+        f.write(f"helper = store --file {cred_path}\n")
+    with open(cred_path, "w") as f:
+        f.write("https://")
+        f.write(environ["GIT_COMMITTER_NAME"])
+        f.write(":")
+        f.write(environ["GIT_COMMITTER_PASSWORD"])
+        f.write("@github.com\n")
+    c.run("poetry run ghp-import --cname dry-python.org --branch master --push site")
