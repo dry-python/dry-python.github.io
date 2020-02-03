@@ -36,8 +36,7 @@ jobs:
           and(succeeded(),
               eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
         env:
-          GIT_COMMITTER_NAME: $(git.name)
-          GIT_COMMITTER_EMAIL: $(git.email)
-          GIT_COMMITTER_PASSWORD: $(git.password)
-          GIT_TERMINAL_PROMPT: 1
+          GIT_COMMITTER_NAME: $(GIT_COMMITTER_NAME)
+          GIT_COMMITTER_EMAIL: $(GIT_COMMITTER_EMAIL)
+          GIT_COMMITTER_PASSWORD: $(GIT_COMMITTER_PASSWORD)
         displayName: Run deploy.
