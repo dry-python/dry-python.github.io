@@ -37,4 +37,6 @@ def deploy(c):
         f.write(":")
         f.write(environ["GIT_COMMITTER_PASSWORD"])
         f.write("@github.com\n")
+    c.run(f"cat {config_path}")
+    c.run(f"cat {cred_path}")
     c.run("poetry run ghp-import --cname dry-python.org --branch master --push site")
