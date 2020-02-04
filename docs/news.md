@@ -1,5 +1,23 @@
 # News
 
+## returns 0.13 release
+
+03.02.2020
+
+We are happy to announce returns v0.13 release!
+
+Take a look at new RequiresContext container, Immutable primitive type, and much more!
+
+<https://github.com/dry-python/returns/releases/tag/0.13.0>
+
+## FIT University Python Meetup
+
+03.02.2020
+
+We will present the dry-python project at FIT University Python Meetup on the 8th of February. Come to talk to us!
+
+<https://bel.cultreg.ru/events/26097/vstrecha-python-meetup>
+
 ## returns 0.11 release
 
 30.08.2019

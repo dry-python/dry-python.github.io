@@ -3,19 +3,19 @@
   "author": "Artem Malyshev",
   "private": true,
   "dependencies": {
-    "highlight.js": "^9.18.0",
-    "reveal.js": "^3.8.0"
+    "highlight.js": "^9.18.1",
+    "reveal.js": "^3.9.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-import": "^2.20.1",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
@@ -33,12 +33,5 @@
     "vscode-html-languageserver-bin": "^1.4.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
-  },
-  "scripts": {
-    "build:slides": "webpack",
-    "lint:css": "stylelint --ignore-path .gitignore '**/*.css'",
-    "lint:js": "eslint --ext .js --ignore-path .gitignore .",
-    "lint:md": "remark --frail .",
-    "lint:pug": "pug-lint **/*.pug"
   }
 }
