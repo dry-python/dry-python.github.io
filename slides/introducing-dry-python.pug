@@ -31,7 +31,7 @@ html
           p.fragment
             b and frustrating
           p.fragment Let's consider we're developing subscription button for a web service
-        section(data-background-image=require("./pics/startup.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/startup.jpg").default data-background-size="contain")
           h2(style="color: white; background-color: black") Startup
           br
           br
@@ -61,7 +61,7 @@ html
               Traceback (most recent call last):
                 File "views.py", line 1027, in buy_subscription
               ZeroDivisionError: division by zero
-        section(data-background-image=require("./pics/enterprise.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/enterprise.jpg").default data-background-size="contain")
           h2(style="color: white; background-color: black") Enterprise
           br
           br
@@ -89,7 +89,7 @@ html
           ol
             li.fragment What exactly does this class do?
             li.fragment How to use it?
-        section(data-background-image=require("./pics/method-flowchart.png") data-background-size="contain")
+        section(data-background-image=require("./pics/method-flowchart.png").default data-background-size="contain")
           br
         section
           h2 Framework internals leak
@@ -115,13 +115,13 @@ html
             li.fragment Hard to reason about
             li.fragment Time-consuming
         section
-          img(src=require("./pics/crazy-telephone-wires.png"))
+          img(src=require("./pics/crazy-telephone-wires.png").default)
         section
           blockquote
             p If your code is crap, stickies on the wall won't help.
             a(href="https://twitter.com/henrikkniberg").
               @HenrikKniberg
-            img(src=require("./pics/stickers-on-the-wall.jpg"))
+            img(src=require("./pics/stickers-on-the-wall.jpg").default)
         section
           h2 Service layer
           p Defines an application's boundary with a layer of services that establishes a set of available operations and coordinates the application's response in each operation.
@@ -194,7 +194,7 @@ html
                 user = #{"<"}User: 3292#{">"} # Story argument
                 category = #{"<"}Category: 1318#{">"}
                   # Set by Subscription.find_category
-        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+        section(data-background-image=require("./pics/debug-toolbar.png").default data-background-size="contain")
           h2 DEBUG TOOLBAR
           br
           br
@@ -206,9 +206,9 @@ html
           br
           br
           br
-        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+        section(data-background-image=require("./pics/pytest.png").default data-background-size="contain")
           h2(style="color: white") py.test
-        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+        section(data-background-image=require("./pics/sentry.png").default data-background-size="contain")
           h2 Sentry
         section
           h2 Usage

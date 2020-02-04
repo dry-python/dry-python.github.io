@@ -28,8 +28,8 @@ html
           h2 Complexity
           p.fragment #[b Accidental complexity] refers to challenges that developers unintentionally make for themselves as a result of trying to solve a problem.
           p.fragment #[b Essential complexity] is just the nature of the beast you're trying to tame.
-        section(data-background-image=require("./pics/interrupted-programmer.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/callback-hell.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/interrupted-programmer.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/callback-hell.jpg").default data-background-size="contain")
         section
           h2 Accidental complexity
           ul
@@ -39,7 +39,7 @@ html
             li.fragment Emacs vs. Vim
             li.fragment Tabs vs. Spaces
         section
-          img(src=require("./pics/domain-driven-design.jpg")).plain
+          img(src=require("./pics/domain-driven-design.jpg").default).plain
         section
           h2 What is the domain-driven design?
           p.fragment Focus on the core complexity and opportunity in the domain
@@ -51,9 +51,9 @@ html
           p.fragment You have to master the tool first then you can focus on #[b DDD].
           p.fragment In most domain models, most design patterns are technical noise.
         section
-          img(src=require("./pics/implementing-domain-driven-design.jpg")).plain
-        section(data-background-image=require("./pics/ddd-schema.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/ddd-schema-models-selected.jpg") data-background-size="contain")
+          img(src=require("./pics/implementing-domain-driven-design.jpg").default).plain
+        section(data-background-image=require("./pics/ddd-schema.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-models-selected.jpg").default data-background-size="contain")
         section
           h2 What is a model?
           p.fragment #[b HINT:] Not a UML diagram
@@ -63,7 +63,7 @@ html
             a(href="https://dry-python.org/") dry-python
           p A set of libraries for pluggable business logic components.
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
-        section(data-background-image=require("./pics/ddd-schema-services-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-services-selected.jpg").default data-background-size="contain")
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
           p Define a user story in the business transaction DSL.
@@ -148,7 +148,7 @@ html
                 user = #{"<"}User: 3292#{">"} # Story argument
                 category = #{"<"}Category: 1318#{">"}
                   # Set by Subscription.find_category
-        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+        section(data-background-image=require("./pics/debug-toolbar.png").default data-background-size="contain")
           h2 DEBUG TOOLBAR
           br
           br
@@ -160,18 +160,18 @@ html
           br
           br
           br
-        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+        section(data-background-image=require("./pics/pytest.png").default data-background-size="contain")
           h2(style="color: white") py.test
-        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+        section(data-background-image=require("./pics/sentry.png").default data-background-size="contain")
           h2 Sentry
-        section(data-background-image=require("./pics/elk-logs-ui.gif") data-background-size="contain")
+        section(data-background-image=require("./pics/elk-logs-ui.gif").default data-background-size="contain")
           h2 ELK
-        section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/aggregate-root-1.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/aggregate-root-2.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/aggregate-root-3.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/aggregate-root-4.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/aggregate-root-5.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/aggregate-root-1.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/aggregate-root-2.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/aggregate-root-3.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/aggregate-root-4.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/aggregate-root-5.jpg").default data-background-size="contain")
         section
           h2 Layout
           pre
@@ -202,7 +202,7 @@ html
               class Order:
                   primary_key: OrderId
                   items: List[LineItem]
-        section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg").default data-background-size="contain")
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
           p Declarative mappers from ORM models to domain entities. And back again!
@@ -268,7 +268,7 @@ html
                       loadInvoice(id: %(id)d)
                     }
                   """, {"id": id}))
-        section(data-background-image=require("./pics/pusher-to-ably.png") data-background-size="contain")
+        section(data-background-image=require("./pics/pusher-to-ably.png").default data-background-size="contain")
         section
           h2 Tests & Mocks
           pre
@@ -313,6 +313,6 @@ html
             li.fragment Contracts and aggregates
             li.fragment Mappers
             li.fragment Dependency injection
-        section(data-background-image=require("./pics/drylabs-io.png") data-background-size="contain")
+        section(data-background-image=require("./pics/drylabs-io.png").default data-background-size="contain")
         section
           h2 Questions?

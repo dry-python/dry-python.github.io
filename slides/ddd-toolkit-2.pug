@@ -24,8 +24,8 @@ html
             li #[a(href="https://dry-python.org/") dry-python.org]
             li Django Channels 1.0
             li 5 years of experience in Python
-        section(data-background-image=require("./pics/startup-process.png") data-background-size="contain" data-background-color="#2E677B")
-        section(data-background-image=require("./pics/long-function.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/startup-process.png").default data-background-size="contain" data-background-color="#2E677B")
+        section(data-background-image=require("./pics/long-function.jpg").default data-background-size="contain")
         section
           h2 pros
           ol
@@ -34,7 +34,7 @@ html
           ol
             li.fragment Really hard to change
             li.fragment We can not see the whole picture
-        section(data-background-image=require("./pics/trello-issue.png") data-background-size="contain" data-background-color="#002B45")
+        section(data-background-image=require("./pics/trello-issue.png").default data-background-size="contain" data-background-color="#002B45")
         section
           h2 Implicit API
           pre
@@ -72,17 +72,17 @@ html
             li.fragment Python vs. Go
             li.fragment Emacs vs. Vim
             li.fragment Tabs vs. Spaces
-        section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
+        section(data-background-image=require("./pics/eric-evans.jpg").default data-background-size="contain" data-background-position="left" data-background-color="#000000")
         section
-          img(src=require("./pics/domain-driven-design.jpg")).plain
+          img(src=require("./pics/domain-driven-design.jpg").default).plain
         section
           h2 What is the domain-driven design?
           p.fragment Focus on the core complexity and opportunity in the domain
           p.fragment Explore models in a collaboration of domain experts and software experts
           p.fragment Write software that expresses those models explicitly
           p.fragment Speak #[b ubiquitous language] within a #[b bounded context]
-        section(data-background-image=require("./pics/ddd-schema.jpg") data-background-size="contain")
-        section(data-background-image=require("./pics/ddd-schema-models-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-models-selected.jpg").default data-background-size="contain")
         section
           h2 What is a model?
           p.fragment #[b HINT:] Not a UML diagram
@@ -92,7 +92,7 @@ html
             a(href="https://dry-python.org/") dry-python
           p A set of libraries for pluggable business logic components.
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
-        section(data-background-image=require("./pics/ddd-schema-services-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-services-selected.jpg").default data-background-size="contain")
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
           p Define a user story in the business transaction DSL.
@@ -170,7 +170,7 @@ html
             li.fragment Each step knows nothing about a neighbor
             li.fragment Easy reuse of code
             li.fragment Allows to instrument code easily
-        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+        section(data-background-image=require("./pics/debug-toolbar.png").default data-background-size="contain")
           h2 DEBUG TOOLBAR
           br
           br
@@ -182,21 +182,21 @@ html
           br
           br
           br
-        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+        section(data-background-image=require("./pics/pytest.png").default data-background-size="contain")
           h2(style="color: white") py.test
-        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+        section(data-background-image=require("./pics/sentry.png").default data-background-size="contain")
           h2 Sentry
-        section(data-background-image=require("./pics/elk-logs-ui.gif") data-background-size="contain")
+        section(data-background-image=require("./pics/elk-logs-ui.gif").default data-background-size="contain")
           h2 ELK
-        section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg").default data-background-size="contain")
         section
-          img(src=require("./pics/postgresql.png") height="150" style=" padding-right: 70px;").plain
-          img(src=require("./pics/firebase.png") height="150" style=" padding-right: 70px;").plain
+          img(src=require("./pics/postgresql.png").default height="150" style=" padding-right: 70px;").plain
+          img(src=require("./pics/firebase.png").default height="150" style=" padding-right: 70px;").plain
           ul
             li.fragment We do not have the tooling to work with data
             li.fragment There are no data contracts written in code
         section
-          img(src=require("./pics/attrs.png")).plain
+          img(src=require("./pics/attrs.png").default).plain
         section
           h2 Layout
           pre
@@ -253,7 +253,7 @@ html
           h2.fragment cons
           ol
             li.fragment Working with data sources manually
-        section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg").default data-background-size="contain")
         section
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
           p Declarative mappers from ORM models to domain entities. And back again!
@@ -320,7 +320,7 @@ html
                     }
                   """, {"id": id}))
         section
-          img(src=require("./pics/pusher.png")).plain
+          img(src=require("./pics/pusher.png").default).plain
         section
           h2 How we use third-party libraries
           pre
@@ -339,7 +339,7 @@ html
                       "private-user-1"
                   )
         section
-          img(src=require("./pics/ably.png")).plain
+          img(src=require("./pics/ably.png").default).plain
         section
           h2 How to use it with DI
           pre
@@ -392,7 +392,7 @@ html
                   load_profile = app.repositories.load_profile
 
               MakePurchase.make_purchase(category_id=1, price_id=1)
-        section(data-background-image=require("./pics/keep-calm-and-ddd.png") data-background-size="contain" data-background-color="#C10C06")
+        section(data-background-image=require("./pics/keep-calm-and-ddd.png").default data-background-size="contain" data-background-color="#C10C06")
         section
           h2 Get in touch
           ul

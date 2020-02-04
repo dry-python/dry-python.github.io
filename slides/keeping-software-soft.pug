@@ -17,7 +17,7 @@ html
             a(href="https://github.com/proofit404") Artem Malyshev
           h6
             a(href="https://twitter.com/proofit404") @proofit404
-        section(data-background-image=require("./pics/martin-fowler.jpg") data-background-size="contain" data-background-position="right" data-background-color="#000000")
+        section(data-background-image=require("./pics/martin-fowler.jpg").default data-background-size="contain" data-background-position="right" data-background-color="#000000")
           br
         section
           h2 BIO
@@ -26,17 +26,17 @@ html
             li #[a(href="https://dry-python.org/") dry-python.org]
             li Django Channels 1.0
             li 5 years of experience in Python
-        section(data-background-image=require("./pics/startup-process.png") data-background-size="contain" data-background-color="#2E677B")
+        section(data-background-image=require("./pics/startup-process.png").default data-background-size="contain" data-background-color="#2E677B")
           br
-        section(data-background-image=require("./pics/reading-other-peoples-code.png") data-background-size="contain")
+        section(data-background-image=require("./pics/reading-other-peoples-code.png").default data-background-size="contain")
           br
         section
-          img(src=require("./pics/flask.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/express.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/sinatra.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/flask.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/express.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/sinatra.png").default height="100" style=" padding-right: 70px;").plain
           aside.notes
             p несторуктурированный проект на фласке синатре
-        section(data-background-image=require("./pics/long-function.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/long-function.jpg").default data-background-size="contain")
           br
           aside.notes
             p тут мы json валидируем
@@ -57,14 +57,14 @@ html
             p тяжело менять
             p чтобы добавить какую-нибудь фигню надо перелопатить весь проект
         section
-          img(src=require("./pics/django.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/ruby-on-rails.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/spring.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/django.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/ruby-on-rails.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/spring.png").default height="100" style=" padding-right: 70px;").plain
           aside.notes
             p eсть стартапы с django rails nestjs spring
             p там за людей уже подумали как структурировать код
             p казалось бы решение проблемы
-        section(data-background-image=require("./pics/trello-issue.png") data-background-size="contain" data-background-color="#002B45")
+        section(data-background-image=require("./pics/trello-issue.png").default data-background-size="contain" data-background-color="#002B45")
           br
           aside.notes
             p вот приходишь ты в такой стартап, получаешь таску
@@ -84,7 +84,7 @@ html
           ol
             li.fragment What exactly does this class do?
             li.fragment How to use it?
-        section(data-background-image=require("./pics/method-flowchart.png") data-background-size="contain")
+        section(data-background-image=require("./pics/method-flowchart.png").default data-background-size="contain")
           br
         section
           h2 Function to change
@@ -96,7 +96,7 @@ html
               def send_sms(event):
                   text = 'You purchase something!'
                   on_commit(lambda: send_message(text))
-          img(src=require("./pics/grep-test.png")).fragment.plain
+          img(src=require("./pics/grep-test.png").default).fragment.plain
           aside.notes
             p В документации нет ни слова про вызов нашей функции
             p Не ясно как передать в неё нужные нам аргументы
@@ -114,7 +114,7 @@ html
             p тяжело читать
             p проще править
             p надо держать в голове полную картину работы фреймворка
-        section(data-background-image=require("./pics/lost-in-translation.jpg") data-background-size="contain")
+        section(data-background-image=require("./pics/lost-in-translation.jpg").default data-background-size="contain")
           br
           aside.notes
             p в каждом примере мы понятия не имеем что вообще делает наше приложение
@@ -158,15 +158,15 @@ html
             p реализация каждого шага ничего не знает про соседний
             p соответственно шаги легко переиспользовать в любом порядке
             p их легко менять
-        section(data-background-image=require("./pics/eric-evans.jpg") data-background-size="contain" data-background-position="left" data-background-color="#000000")
+        section(data-background-image=require("./pics/eric-evans.jpg").default data-background-size="contain" data-background-position="left" data-background-color="#000000")
           br
           aside.notes
             p что такое ddd
             p ддд есть а инструментов не так много
         section
-          img(src=require("./pics/trailblazer.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/dry-rb.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/hanami.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/trailblazer.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/dry-rb.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/hanami.png").default height="100" style=" padding-right: 70px;").plain
           img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png" height="100" style=" padding-right: 70px;").plain
         section
           h2
@@ -227,8 +227,8 @@ html
             p мы так же получили раздельные шаги с хорошым переиспользованием
             p DDD - тот самый ясный язык
         section
-          img(src=require("./pics/postgresql.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/firebase.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/postgresql.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/firebase.png").default height="100" style=" padding-right: 70px;").plain
           aside.notes
             p жили не тужили всё было хорошо
             p всё было в постгресе
@@ -245,9 +245,9 @@ html
               p проблема: нет явно прописанных правил о данных, которыми живёт проект
               p DDD: нет модели
         section
-          img(src=require("./pics/attrs.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/dry-rb.png") height="100" style=" padding-right: 70px;").plain
-          img(src=require("./pics/lombok.png") height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/attrs.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/dry-rb.png").default height="100" style=" padding-right: 70px;").plain
+          img(src=require("./pics/lombok.png").default height="100" style=" padding-right: 70px;").plain
           aside.notes
             p attrs/dataclasses dry-structures lombok
         section
@@ -356,7 +356,7 @@ html
                     }
                   """, {"id": id}))
         section
-          img(src=require("./pics/pusher.png")).plain
+          img(src=require("./pics/pusher.png").default).plain
           aside.notes
             p жили не тужили
             p был у нас пушер
@@ -383,7 +383,7 @@ html
             p импортируем на прямую пихаем им данные так как они того хотят
             p в тестах stubим библиотеку и ассертим данные которые им скормили
         section
-          img(src=require("./pics/ably.png")).plain
+          img(src=require("./pics/ably.png").default).plain
           aside.notes
             p пришёл бизнес
             p хотим горантию доставки сообщений
@@ -421,7 +421,7 @@ html
             p была проблема - внутри шагов всё привязано конкретным сторонним библиотекам
             p решение - интерфейсы нас спасут
             p предотвратят от протекания ограничений конкретной тулзы в бизнес логики
-        section(data-background-image=require("./pics/debug-toolbar.png") data-background-size="contain")
+        section(data-background-image=require("./pics/debug-toolbar.png").default data-background-size="contain")
           h2 DEBUG TOOLBAR
           br
           br
@@ -437,22 +437,22 @@ html
             p жили не тужили
             p но чего-то не хватало
             p запилили интеграцию с debug toolbar потомучто сценарий падал на шаге без описания по какой бизнес логике прошёл
-        section(data-background-image=require("./pics/pytest.png") data-background-size="contain")
+        section(data-background-image=require("./pics/pytest.png").default data-background-size="contain")
           h2(style="color: white") py.test
           aside.notes
             p кто ломал сиай?
             p отычно тесты падают assertion error true is not false
             p спасибо помог!
             p мы напилили интеграцию с test frameworks чтобы показыват какая строчка теста чего выполняла
-        section(data-background-image=require("./pics/sentry.png") data-background-size="contain")
+        section(data-background-image=require("./pics/sentry.png").default data-background-size="contain")
           h2 Sentry
           aside.notes
             p напилили интеграцию с sentry
-        section(data-background-image=require("./pics/elk-logs-ui.gif") data-background-size="contain")
+        section(data-background-image=require("./pics/elk-logs-ui.gif").default data-background-size="contain")
           h2 ELK
           aside.notes
             p напилим интеграцию с elk
-        section(data-background-image=require("./pics/keep-calm-and-ddd.png") data-background-size="contain" data-background-color="#C10C06")
+        section(data-background-image=require("./pics/keep-calm-and-ddd.png").default data-background-size="contain" data-background-color="#C10C06")
           br
           aside.notes
             p подитожим
