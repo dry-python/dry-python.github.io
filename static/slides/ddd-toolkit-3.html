@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="description" content="Domain Driven Design Toolkit"><meta name="author" content="Artem Malyshev"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Domain Driven Design Toolkit</title><link href="reveal.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section><h2>Domain Driven Design Toolkit</h2><h4><a href="https://github.com/proofit404">Artem Malyshev</a></h4><h6><a href="https://twitter.com/proofit404">@proofit404</a></h6></section><section><h2>BIO</h2><ul><li>Co-Founder at <a href="https://drylabs.io/">drylabs.io</a></li><li><a href="https://dry-python.org/">dry-python.org</a></li><li>Django Channels 1.0</li><li>6 years of experience in Python</li></ul></section><section data-background-image="f59f3c8af01ae12346e23c4ec6b68d06.png" data-background-size="contain" data-background-color="#2E677B"></section><section data-background-image="53997124e1acc9aa28c273b0daa540b3.jpg" data-background-size="contain"></section><section><h2>pros</h2><ol><li class="fragment">Relatively easy to read</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Really hard to change</li><li class="fragment">We can not see the whole picture</li></ol></section><section><img src="7d06605fa014b5fade560eaa463937b4.png"></section><section data-background-image="6daa36da08983dfbecfbaddeba0310e4.png" data-background-size="contain" data-background-color="#002B45"></section><section><h2>Implicit API</h2><pre><code class="python">class Purchases(viewsets.ModelViewSet):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerializer
+    permission_classes = (CanPurchase,)
+    filter_class = PurchaseFilter</code></pre><pre><code class="python">router.register('/api/purchases/', Purchases)</code></pre><ol><li class="fragment">What exactly does this class do?</li><li class="fragment">How to use it?</li></ol></section><section><h2>Framework internals leak</h2><pre><code class="python">class SubscriptionSerializer(Serializer):
+    category_id = IntegerField()
+    price_id = IntegerField()</code></pre><pre class="fragment"><code class="python">def recreate_nested_writable_fields(self, instance):
+    for field, values in self.writable_fields_to_recreate():
+        related_manager = getattr(instance, field)
+        related_manager.all().delete()
+        for data in values:
+            obj = related_manager.model.objects.create(
+                to=instance, **data)
+            related_manager.add(obj)</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Relatively easy to change</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Really hard to read</li><li class="fragment">You should keep in mind framework rules</li><li class="fragment">Implicit knowledge grow</li><li class="fragment">We still can not see the whole picture</li></ol></section><section><blockquote><p>If your code is crap, stickies on the wall won't help.</p><a href="https://twitter.com/henrikkniberg">@HenrikKniberg</a><img src="8b5cce5f4a93c75cc2e5028723fba061.jpg"></blockquote></section><section><h2>Code is...</h2><ol><li class="fragment">Fragile</li><li class="fragment">Hard to reason about</li><li class="fragment">Time-consuming</li></ol><p class="fragment">This is a common issue with any framework</p></section><section><h2>Project layout</h2><pre><code>project
+├── api
+├── db
+├── forms
+├── migrations
+├── permissions
+├── serializers
+├── templates
+└── views</code></pre></section><section><h2>Complexity</h2><p class="fragment"><b>Accidental complexity</b> refers to challenges that developers unintentionally make for themselves as a result of trying to solve a problem.</p><p class="fragment"><b>Essential complexity</b> is just the nature of the beast you're trying to tame.</p></section><section><h2>Accidental complexity</h2><ul><li class="fragment">AsyncIO vs. Gevent</li><li class="fragment">PostgreSQL vs. MongoDB</li><li class="fragment">Python vs. Go</li><li class="fragment">Emacs vs. Vim</li><li class="fragment">Tabs vs. Spaces</li></ul></section><section data-background-image="2cb8eb7a333f341bce653635d00802ce.jpg" data-background-size="contain" data-background-position="left" data-background-color="#000000"></section><section><img class="plain" src="84967f7293cc96c87fa15b8ba857824f.jpg"></section><section><h2>What is the domain-driven design?</h2><p class="fragment">Focus on the core complexity and opportunity in the domain</p><p class="fragment">Explore models in a collaboration of domain experts and software experts</p><p class="fragment">Write software that expresses those models explicitly</p><p class="fragment">Speak <b>ubiquitous language</b> within a <b>bounded context</b></p></section><section data-background-image="a1e03b421dfec7d4299ee5f88724a5fe.jpg" data-background-size="contain"></section><section data-background-image="2a4f9d033642fd35ff0ae38b60e040b8.jpg" data-background-size="contain"></section><section><h2>What is a model?</h2><p class="fragment">A set of entities, services and value objects expressed in classes, methods, and refs.</p></section><section><img class="plain" src="07b2e4403c83a8b377ad14ab3589044c.jpg"></section><section><h2><a href="https://dry-python.org/">dry-python</a></h2><p>A set of libraries for pluggable business logic components.</p><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png"></section><section data-background-image="2f8fdc259c046cefdd4211db709ef31e.jpg" data-background-size="contain"></section><section><h2>Project layout</h2><pre><code>project
+├── api
+├── db
+├── forms
+├── migrations
+├── <b><s>permissions</s></b>
+├── serializers
+├── templates
+└── views</code></pre></section><section><h2>Project layout</h2><pre><code>project
+├── api
+├── db
+├── <b>entities</b>
+├── forms
+├── migrations
+├── serializers
+├── templates
+└── views</code></pre></section><section><img class="plain" src="f32ac17f4679c123040dc386b9258a94.png"></section><section><h2>Entities</h2><pre><code class="python">from attr import attrs
+from typing import List, NewType
+
+OrderId = NewType("OrderId", int)
+
+@attrs
+class Order:
+    primary_key: OrderId
+    items: List[Item]
+
+    def could_be_processed(self):
+        return all(item.is_available for item in self.items)</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Single responsibility</li><li class="fragment">Interface segregation</li><li class="fragment">Testable</li></ol><h2 class="fragment">cons</h2><ol><li class="fragment">Working with any data store manually</li></ol></section><section data-background-image="dfa51ec6d49a3dd72fa893c5f11dd52b.jpg" data-background-size="contain"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png"><p>Define a user story in the business transaction DSL.</p><p>Separate state, implementation and specification.</p></section><section><h2>Project layout</h2><pre><code>project
+├── api
+├── db
+├── entities
+├── forms
+├── migrations
+├── serializers
+├── templates
+├── <b>usecases</b>
+└── views</code></pre></section><section><h2>Specification DSL</h2><pre><code class="python">from stories import story, arguments
+
+class Purchase:
+    @story
+    @arguments("invoice_id", "user")
+    def make(I):
+        I.find_order
+        I.find_price
+        I.find_invoice
+        I.check_balance
+        I.persist_payment
+        I.persist_purchase
+        I.send_purchase_notification</code></pre></section><section><h2>Steps implementation</h2><pre><code class="python">from stories import Failure, Success
+
+class Purchase:
+    @story
+    def make(I): ...
+
+    def find_invoice(self, ctx):
+        ctx.invoice = self.load_invoice(ctx.invoice_id)
+        return Success()
+
+    def check_balance(self, ctx):
+        if ctx.user.can_pay(ctx.invoice): ...
+
+    load_invoice: Callable</code></pre></section><section><h2>Story Execution</h2><pre><code class="python">>>> purchase = Purchase(load_invoice=lambda invoice_id: ...)
+>>> purchase.make(category_id=2, user=...)
+Purchase.make:
+  find_order
+  find_price
+  check_purchase (PromoCode.validate)
+    find_code (skipped)
+  check_balance
+    find_profile
+Context:
+  category_id = 1318  # Story argument
+  user = &lt;User: 3292&gt; # Story argument
+  category = &lt;Category: 1318&gt;
+    # Set by Purchase.find_category</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Clean flow in the source code</li><li class="fragment">Separate step implementation</li><li class="fragment">Each step knows nothing about a neighbor</li><li class="fragment">Easy reuse of code</li><li class="fragment">Allows to instrument code easily</li></ol></section><section data-background-image="0b268941b08e07b82b1982ba847f31ec.png" data-background-size="contain"><h2>DEBUG TOOLBAR</h2><br><br><br><br><br><br><br><br><br><br></section><section data-background-image="335b1cb95d5010bb26e11d96f39114bc.png" data-background-size="contain"><h2 style="color: white">py.test</h2></section><section data-background-image="4427b3c017312108535dcfd25fd5898c.png" data-background-size="contain"><h2>Sentry</h2></section><section data-background-image="322f6c659ff69a70b4a9392f80eba983.gif" data-background-size="contain"><h2>ELK</h2></section><section><h2>State Contract</h2><pre><code class="python">from pydantic import BaseModel, validator
+
+class Purchase:
+    @story
+    def make(I): ...
+
+@Purchase.make.contract
+class Context(BaseModel):
+    user: User
+    order: Optional[Order]
+
+    @validator("order")
+    def order_expectations(cls, order):
+        return order.could_be_processed()</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Explicit data contracts and relations in code</li><li class="fragment">Data store independent</li><li class="fragment">Catch errors when they occur</li><li class="fragment">Not when they propagate to exception</li></ol></section><section data-background-image="a6d4253cc3f40f8c0afaf6ab22e33bc5.jpg" data-background-size="contain"></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png"><p>Declarative mappers from ORM models to domain entities. And back again!</p></section><section><h2>Project layout</h2><pre><code>project
+├── api
+├── db
+├── entities
+├── forms
+├── migrations
+├── <b>repositories</b>
+├── serializers
+├── templates
+├── usecases
+└── views</code></pre></section><section><h2>Django ORM</h2><pre><code class="python">from mappers import Mapper
+from app.entities import Order, OrderId, User
+from app.db import OrderTable, UserTable
+
+mapper = Mapper(Order, OrderTable, {"primary_key": "id"})
+
+@mapper.reader
+def load_order(id: OrderId, user: User) -> Order:
+    friends = UserTable.objects.filter(
+        purchases=OuterRef("pk"), friends=user.primary_key)
+    return OrderTable.objects.filter(pk=id).annotate(
+        purchased_by_friends=Exists(friends)).get()</code></pre></section><section><h2>Swagger definitions</h2><pre><code class="python">from mappers import Mapper
+from bravado import swagger_model
+from app.entities import Price
+
+spec = swagger_model.load_file("price_service.yml")
+mapper = Mapper(Price, spec.definitions["Price"])
+
+@mapper.reader
+def load_price(id: PriceId) -> Price:
+    return requests.get(f"http://172.16.1.7/get/{id}")</code></pre></section><section><h2>GraphQL queries</h2><pre><code class="python">from mappers import Mapper
+from gql import gql, Client, build_schema
+from app.entities import Invoice
+
+schema = build_schema("invoice_service.graphql")
+mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+@mapper.reader
+def load_invoice(id: InvoiceId) -> Invoice:
+    return Client(schema=schema).execute(gql("""
+      {
+        loadInvoice(id: %(id)d)
+      }
+    """, {"id": id}))</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Automated work with data stores</li><li class="fragment">Prevent serialization process leak into entities</li></ol></section><section><img class="plain" src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png"><p>Provide composition instead of inheritance.</p><p>Solves top-down approach problem.</p></section><section><h2>Injection</h2><pre><code class="python">from dependencies import Injector, Package
+
+app = Package('app')
+
+class MakePurchase(Injector):
+
+    make_purchase = app.services.Purchase.make
+    load_order = app.repositories.load_order
+    load_price = app.repositories.load_price
+    load_invoice = app.repositories.load_invoice
+
+MakePurchase.make_purchase(category_id=1, price_id=1)</code></pre></section><section><h2>pros</h2><ol><li class="fragment">Boilerplate-free object hierarchies</li><li class="fragment">API entrypoints, admin panels, CLI commands are oneliners</li></ol></section><section><img class="plain" src="3bbbf9a76da55505df1596dbbfe3d393.png" height="150" style="padding-right: 70px;"><img class="plain" src="e87a433c735dc2a18650f483dd211a72.png" height="150" style="padding-right: 70px;"><ul><li class="fragment">We didn't have the tooling to work with data</li><li class="fragment">There were no data contracts written in code</li></ul></section><section><img class="plain" src="cdb3a22e833e649bb814bd0a32002328.png" height="150" style="padding-right: 70px;"><img class="plain" src="ebaffe0760c8e607e0686f435ffdcd9e.png" height="150" style="padding-right: 70px;"></section><section><h2>How we use third-party libraries</h2><pre><code class="python">from pusher import Pusher
+
+class Purchase:
+    def send_purchase_notification(self, ctx):
+        Pusher().trigger("private-user-1")</code></pre><pre><code class="python">def test_before(monkeypatch):
+    monkeypatch.setattr(pusher, "Pusher", Mock())
+    # ...
+    pusher.Pusher.trigger.assert_called_once_with(
+        "private-user-1"
+    )</code></pre></section><section><h2>How to use it with DI</h2><pre><code class="python">@attrs
+class Purchase:
+    def send_purchase_notification(ctx):
+        self.trigger_message(UserStream(ctx.user))
+
+    trigger_message: Callable</code></pre><pre><code class="python">def test_after(emitter):
+    # ...
+    Purchase.trigger_message.assert_called_once_with(
+        UserStream(User(primary_key=1))
+    )</code></pre></section><section data-background-image="59b4ce188835d8bb41dc6867d467abdc.png" data-background-size="contain" data-background-color="#C10C06"></section><section><h2>Get in touch</h2><ul><li><a href="https://dry-python.org/">dry-python.org</a></li><li><a href="https://twitter.com/dry_py">twitter.com/dry_py</a></li><li><a href="https://github.com/dry-python">github.com/dry-python</a></li><li><a href="https://gitter.im/dry-python">gitter.im/dry-python</a></li></ul></section></div></div><script type="text/javascript" src="reveal.js"></script></body></html>
