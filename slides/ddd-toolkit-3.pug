@@ -1,0 +1,469 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="description" content="Domain Driven Design Toolkit")
+    meta(name="author" content="Artem Malyshev")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title Domain Driven Design Toolkit
+  body
+    .reveal
+      .slides
+        section
+          h2 Domain Driven Design Toolkit
+          h4
+            a(href="https://github.com/proofit404") Artem Malyshev
+          h6
+            a(href="https://twitter.com/proofit404") @proofit404
+        section
+          h2 BIO
+          ul
+            li Co-Founder at #[a(href="https://drylabs.io/") drylabs.io]
+            li #[a(href="https://dry-python.org/") dry-python.org]
+            li Django Channels 1.0
+            li 6 years of experience in Python
+        section(data-background-image=require("./pics/startup-process.png").default data-background-size="contain" data-background-color="#2E677B")
+        section(data-background-image=require("./pics/long-function.jpg").default data-background-size="contain")
+        section
+          h2 pros
+          ol
+            li.fragment Relatively easy to read
+          h2.fragment cons
+          ol
+            li.fragment Really hard to change
+            li.fragment We can not see the whole picture
+        section
+          img(src=require("./pics/crazy-telephone-wires.png").default)
+        section(data-background-image=require("./pics/trello-issue.png").default data-background-size="contain" data-background-color="#002B45")
+        section
+          h2 Implicit API
+          pre
+            code.python.
+              class Purchases(viewsets.ModelViewSet):
+                  queryset = Purchase.objects.all()
+                  serializer_class = PurchaseSerializer
+                  permission_classes = (CanPurchase,)
+                  filter_class = PurchaseFilter
+          pre
+            code.python.
+              router.register('/api/purchases/', Purchases)
+          ol
+            li.fragment What exactly does this class do?
+            li.fragment How to use it?
+        section
+          h2 Framework internals leak
+          pre
+            code.python.
+              class SubscriptionSerializer(Serializer):
+                  category_id = IntegerField()
+                  price_id = IntegerField()
+          pre.fragment
+            code.python.
+              def recreate_nested_writable_fields(self, instance):
+                  for field, values in self.writable_fields_to_recreate():
+                      related_manager = getattr(instance, field)
+                      related_manager.all().delete()
+                      for data in values:
+                          obj = related_manager.model.objects.create(
+                              to=instance, **data)
+                          related_manager.add(obj)
+        section
+          h2 pros
+          ol
+            li.fragment Relatively easy to change
+          h2.fragment cons
+          ol
+            li.fragment Really hard to read
+            li.fragment You should keep in mind framework rules
+            li.fragment Implicit knowledge grow
+            li.fragment We still can not see the whole picture
+        section
+          blockquote
+            p If your code is crap, stickies on the wall won't help.
+            a(href="https://twitter.com/henrikkniberg").
+              @HenrikKniberg
+            img(src=require("./pics/stickers-on-the-wall.jpg").default)
+        section
+          h2 Code is...
+          ol
+            li.fragment Fragile
+            li.fragment Hard to reason about
+            li.fragment Time-consuming
+          p.fragment This is a common issue with any framework
+        section
+          h2 Project layout
+          pre
+            code.
+              project
+              ├── api
+              ├── db
+              ├── forms
+              ├── migrations
+              ├── permissions
+              ├── serializers
+              ├── templates
+              └── views
+        section
+          h2 Complexity
+          p.fragment #[b Accidental complexity] refers to challenges that developers unintentionally make for themselves as a result of trying to solve a problem.
+          p.fragment #[b Essential complexity] is just the nature of the beast you're trying to tame.
+        section
+          h2 Accidental complexity
+          ul
+            li.fragment AsyncIO vs. Gevent
+            li.fragment PostgreSQL vs. MongoDB
+            li.fragment Python vs. Go
+            li.fragment Emacs vs. Vim
+            li.fragment Tabs vs. Spaces
+        section(data-background-image=require("./pics/eric-evans.jpg").default data-background-size="contain" data-background-position="left" data-background-color="#000000")
+        section
+          img(src=require("./pics/domain-driven-design.jpg").default).plain
+        section
+          h2 What is the domain-driven design?
+          p.fragment Focus on the core complexity and opportunity in the domain
+          p.fragment Explore models in a collaboration of domain experts and software experts
+          p.fragment Write software that expresses those models explicitly
+          p.fragment Speak #[b ubiquitous language] within a #[b bounded context]
+        section(data-background-image=require("./pics/ddd-schema.jpg").default data-background-size="contain")
+        section(data-background-image=require("./pics/ddd-schema-models-selected.jpg").default data-background-size="contain")
+        section
+          h2 What is a model?
+          p.fragment A set of entities, services and value objects expressed in classes, methods, and refs.
+        section
+          img(src=require("./pics/clean-architecture.jpg").default).plain
+        section
+          h2
+            a(href="https://dry-python.org/") dry-python
+          p A set of libraries for pluggable business logic components.
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dry-python.png").plain
+        section(data-background-image=require("./pics/ddd-schema-entities-selected.jpg").default data-background-size="contain")
+        section
+          h2 Project layout
+          pre
+            code.
+              project
+              ├── api
+              ├── db
+              ├── forms
+              ├── migrations
+              ├── #[b #[s permissions]]
+              ├── serializers
+              ├── templates
+              └── views
+        section
+          h2 Project layout
+          pre
+            code.
+              project
+              ├── api
+              ├── db
+              ├── #[b entities]
+              ├── forms
+              ├── migrations
+              ├── serializers
+              ├── templates
+              └── views
+        section
+          img(src=require("./pics/attrs.png").default).plain
+        section
+          h2 Entities
+          pre
+            code.python.
+              from attr import attrs
+              from typing import List, NewType
+
+              OrderId = NewType("OrderId", int)
+
+              @attrs
+              class Order:
+                  primary_key: OrderId
+                  items: List[Item]
+
+                  def could_be_processed(self):
+                      return all(item.is_available for item in self.items)
+        section
+          h2 pros
+          ol
+            li.fragment Single responsibility
+            li.fragment Interface segregation
+            li.fragment Testable
+          h2.fragment cons
+          ol
+            li.fragment Working with any data store manually
+        section(data-background-image=require("./pics/ddd-schema-services-selected.jpg").default data-background-size="contain")
+        section
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/stories.png").plain
+          p Define a user story in the business transaction DSL.
+          p Separate state, implementation and specification.
+        section
+          h2 Project layout
+          pre
+            code.
+              project
+              ├── api
+              ├── db
+              ├── entities
+              ├── forms
+              ├── migrations
+              ├── serializers
+              ├── templates
+              ├── #[b usecases]
+              └── views
+        section
+          h2 Specification DSL
+          pre
+            code.python.
+              from stories import story, arguments
+
+              class Purchase:
+                  @story
+                  @arguments("invoice_id", "user")
+                  def make(I):
+                      I.find_order
+                      I.find_price
+                      I.find_invoice
+                      I.check_balance
+                      I.persist_payment
+                      I.persist_purchase
+                      I.send_purchase_notification
+        section
+          h2 Steps implementation
+          pre
+            code.python.
+              from stories import Failure, Success
+
+              class Purchase:
+                  @story
+                  def make(I): ...
+
+                  def find_invoice(self, ctx):
+                      ctx.invoice = self.load_invoice(ctx.invoice_id)
+                      return Success()
+
+                  def check_balance(self, ctx):
+                      if ctx.user.can_pay(ctx.invoice): ...
+
+                  load_invoice: Callable
+        section
+          h2 Story Execution
+          pre
+            code.python.
+              >>> purchase = Purchase(load_invoice=lambda invoice_id: ...)
+              >>> purchase.make(category_id=2, user=...)
+              Purchase.make:
+                find_order
+                find_price
+                check_purchase (PromoCode.validate)
+                  find_code (skipped)
+                check_balance
+                  find_profile
+              Context:
+                category_id = 1318  # Story argument
+                user = #{"<"}User: 3292#{">"} # Story argument
+                category = #{"<"}Category: 1318#{">"}
+                  # Set by Purchase.find_category
+        section
+          h2 pros
+          ol
+            li.fragment Clean flow in the source code
+            li.fragment Separate step implementation
+            li.fragment Each step knows nothing about a neighbor
+            li.fragment Easy reuse of code
+            li.fragment Allows to instrument code easily
+        section(data-background-image=require("./pics/debug-toolbar.png").default data-background-size="contain")
+          h2 DEBUG TOOLBAR
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+          br
+        section(data-background-image=require("./pics/pytest.png").default data-background-size="contain")
+          h2(style="color: white") py.test
+        section(data-background-image=require("./pics/sentry.png").default data-background-size="contain")
+          h2 Sentry
+        section(data-background-image=require("./pics/elk-logs-ui.gif").default data-background-size="contain")
+          h2 ELK
+        section
+          h2 State Contract
+          pre
+            code.python.
+              from pydantic import BaseModel, validator
+
+              class Purchase:
+                  @story
+                  def make(I): ...
+
+              @Purchase.make.contract
+              class Context(BaseModel):
+                  user: User
+                  order: Optional[Order]
+
+                  @validator("order")
+                  def order_expectations(cls, order):
+                      return order.could_be_processed()
+        section
+          h2 pros
+          ol
+            li.fragment Explicit data contracts and relations in code
+            li.fragment Data store independent
+            li.fragment Catch errors when they occur
+            li.fragment Not when they propagate to exception
+        section(data-background-image=require("./pics/ddd-schema-repositories-selected.jpg").default data-background-size="contain")
+        section
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/mappers.png").plain
+          p Declarative mappers from ORM models to domain entities. And back again!
+        section
+          h2 Project layout
+          pre
+            code.
+              project
+              ├── api
+              ├── db
+              ├── entities
+              ├── forms
+              ├── migrations
+              ├── #[b repositories]
+              ├── serializers
+              ├── templates
+              ├── usecases
+              └── views
+        section
+          h2 Django ORM
+          pre
+            code.python.
+              from mappers import Mapper
+              from app.entities import Order, OrderId, User
+              from app.db import OrderTable, UserTable
+
+              mapper = Mapper(Order, OrderTable, {"primary_key": "id"})
+
+              @mapper.reader
+              def load_order(id: OrderId, user: User) -> Order:
+                  friends = UserTable.objects.filter(
+                      purchases=OuterRef("pk"), friends=user.primary_key)
+                  return OrderTable.objects.filter(pk=id).annotate(
+                      purchased_by_friends=Exists(friends)).get()
+        section
+          h2 Swagger definitions
+          pre
+            code.python.
+              from mappers import Mapper
+              from bravado import swagger_model
+              from app.entities import Price
+
+              spec = swagger_model.load_file("price_service.yml")
+              mapper = Mapper(Price, spec.definitions["Price"])
+
+              @mapper.reader
+              def load_price(id: PriceId) -> Price:
+                  return requests.get(f"http://172.16.1.7/get/{id}")
+        section
+          h2 GraphQL queries
+          pre
+            code.python.
+              from mappers import Mapper
+              from gql import gql, Client, build_schema
+              from app.entities import Invoice
+
+              schema = build_schema("invoice_service.graphql")
+              mapper = Mapper(Invoice, schema.get_type_map()["Invoice"])
+
+              @mapper.reader
+              def load_invoice(id: InvoiceId) -> Invoice:
+                  return Client(schema=schema).execute(gql("""
+                    {
+                      loadInvoice(id: %(id)d)
+                    }
+                  """, {"id": id}))
+        section
+          h2 pros
+          ol
+            li.fragment Automated work with data stores
+            li.fragment Prevent serialization process leak into entities
+        section
+          img(src="https://raw.githubusercontent.com/dry-python/brand/master/logo/dependencies.png").plain
+          p Provide composition instead of inheritance.
+          p Solves top-down approach problem.
+        section
+          h2 Injection
+          pre
+            code.python.
+              from dependencies import Injector, Package
+
+              app = Package('app')
+
+              class MakePurchase(Injector):
+
+                  make_purchase = app.services.Purchase.make
+                  load_order = app.repositories.load_order
+                  load_price = app.repositories.load_price
+                  load_invoice = app.repositories.load_invoice
+
+              MakePurchase.make_purchase(category_id=1, price_id=1)
+        section
+          h2 pros
+          ol
+            li.fragment Boilerplate-free object hierarchies
+            li.fragment API entrypoints, admin panels, CLI commands are oneliners
+        section
+          img(src=require("./pics/postgresql.png").default height="150" style="padding-right: 70px;").plain
+          img(src=require("./pics/firebase.png").default height="150" style="padding-right: 70px;").plain
+          ul
+            li.fragment We didn't have the tooling to work with data
+            li.fragment There were no data contracts written in code
+        section
+          img(src=require("./pics/pusher.png").default height="150" style="padding-right: 70px;").plain
+          img(src=require("./pics/ably.png").default height="150" style="padding-right: 70px;").plain
+        section
+          h2 How we use third-party libraries
+          pre
+            code.python.
+              from pusher import Pusher
+
+              class Purchase:
+                  def send_purchase_notification(self, ctx):
+                      Pusher().trigger("private-user-1")
+          pre
+            code.python.
+              def test_before(monkeypatch):
+                  monkeypatch.setattr(pusher, "Pusher", Mock())
+                  # ...
+                  pusher.Pusher.trigger.assert_called_once_with(
+                      "private-user-1"
+                  )
+        section
+          h2 How to use it with DI
+          pre
+            code.python.
+              @attrs
+              class Purchase:
+                  def send_purchase_notification(ctx):
+                      self.trigger_message(UserStream(ctx.user))
+
+                  trigger_message: Callable
+          pre
+            code.python.
+              def test_after(emitter):
+                  # ...
+                  Purchase.trigger_message.assert_called_once_with(
+                      UserStream(User(primary_key=1))
+                  )
+        section(data-background-image=require("./pics/keep-calm-and-ddd.png").default data-background-size="contain" data-background-color="#C10C06")
+        section
+          h2 Get in touch
+          ul
+            li
+              a(href="https://dry-python.org/") dry-python.org
+            li
+              a(href="https://twitter.com/dry_py") twitter.com/dry_py
+            li
+              a(href="https://github.com/dry-python") github.com/dry-python
+            li
+              a(href="https://gitter.im/dry-python") gitter.im/dry-python

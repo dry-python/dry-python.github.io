@@ -56,6 +56,10 @@ module.exports = {
       template: "ddd-toolkit-2.pug",
       filename: "ddd-toolkit-2.html"
     }),
+    new HtmlWebpackPlugin({
+      template: "ddd-toolkit-3.pug",
+      filename: "ddd-toolkit-3.html"
+    }),
     new MiniCssExtractPlugin({
       filename: "[name].css"
     })
