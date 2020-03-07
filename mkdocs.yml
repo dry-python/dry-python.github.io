@@ -31,7 +31,6 @@ google_analytics:
 nav:
   - "Home": index.md
   - "Projects": projects.md
-  - "News": news.md
   - "Talks": talks.md
   - "Team": team.md
   # A UI hack to split Table of Content into two visual parts.
