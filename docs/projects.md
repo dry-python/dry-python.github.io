@@ -16,6 +16,7 @@ Dependency Injection for Humans.
 - [Issue Tracker](https://github.com/dry-python/dependencies/issues)
 - [Documentation](https://dependencies.readthedocs.io/en/latest/)
 - [Discussion](https://gitter.im/dry-python/dependencies)
+- [Package](https://pypi.org/project/dependencies/)
 
 ## Stories
 
@@ -25,6 +26,7 @@ Define a user story in the business transaction DSL.
 - [Issue Tracker](https://github.com/dry-python/stories/issues)
 - [Documentation](https://stories.readthedocs.io/en/latest/)
 - [Discussion](https://gitter.im/dry-python/stories)
+- [Package](https://pypi.org/project/stories/)
 
 ## Mappers
 
@@ -34,6 +36,7 @@ Declarative mappers from ORM models to domain entities. And back again!
 - [Issue Tracker](https://github.com/dry-python/mappers/issues)
 - [Documentation](https://mappers.readthedocs.io/en/latest/)
 - [Discussion](https://gitter.im/dry-python/mappers)
+- [Package](https://pypi.org/project/mappers/)
 
 ## Classes
 
@@ -58,6 +61,7 @@ A set of tools to automate clients' code upgrade as much as possible.
 - [Source Code](https://github.com/dry-python/editors)
 - [Issue Tracker](https://github.com/dry-python/editors/issues)
 - [Discussion](https://gitter.im/dry-python/editors)
+- [Package](https://pypi.org/project/editors/)
 
 ## Bookshelf
 
