@@ -27,3 +27,19 @@ CTO at wemake.services, ElixirLangMoscow organizer.
 Since 2019 — Chelyabinsk, Russia
 
 [supadrupa](https://github.com/supadrupa)
+
+## Omer Katz
+
+![photo](https://avatars1.githubusercontent.com/u/48936)
+
+Since 2020 — Israel
+
+[thedrow](https://github.com/thedrow)
+
+## Dmitry
+
+![photo](https://avatars3.githubusercontent.com/u/28233899)
+
+Since 2020 — Moscow, Russia
+
+[ditansu](https://github.com/ditansu)

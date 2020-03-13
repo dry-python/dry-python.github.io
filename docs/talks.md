@@ -2,6 +2,8 @@
 
 ## Domain Driven Design Toolkit 3
 
+[Video](https://www.youtube.com/watch?v=nsIcNR_eq-8)
+
 [Slides](/static/slides/ddd-toolkit-3.html)
 
 ## dry-python stories & Machine Learning
