@@ -70,3 +70,7 @@ Code examples to learn dry-python with Django at the project scale.
 - [Source Code](https://github.com/dry-python/bookshelf)
 - [Issue Tracker](https://github.com/dry-python/bookshelf/issues)
 - [Discussion](https://gitter.im/dry-python/bookshelf)
+
+<p align="center">&mdash; ⭐️ &mdash;</p>
+<p align="center"><i>Drylabs maintains dry-python and helps those who want to use it inside their organizations.</i></p>
+<p align="center"><i>Read more at <a href="https://drylabs.io">drylabs.io</a></i></p>
