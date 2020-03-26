@@ -8,7 +8,7 @@ authors = ["Artem Malyshev <proofit404@gmail.com>"]
 python = "^3.8"
 ghp-import = "^0.5.5"
 mkdocs = "^1.0.4"
-mkdocs-material = "^4.6.0"
+mkdocs-material = "^4.6.3"
 
 [tool.poetry.dev-dependencies]
 dependencies = "^0.15"
