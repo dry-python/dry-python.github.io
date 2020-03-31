@@ -11,7 +11,7 @@ mkdocs = "^1.1"
 mkdocs-material = "^4.6.3"
 
 [tool.poetry.dev-dependencies]
-dependencies = "^0.15"
+dependencies = "^1.0"
 django = "^3.0.3"
 flake8 = "^3.7.9"
 invoke = "^1.4.0"
