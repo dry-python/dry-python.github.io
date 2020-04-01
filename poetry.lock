@@ -39,10 +39,7 @@ description = "Dependency Injection for Humans"
 name = "dependencies"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "1.0.0"
-
-[package.extras]
-mkdocs = ["mkdocs", "mkdocs-material"]
+version = "1.0.1"
 
 [[package]]
 category = "dev"
@@ -440,8 +437,8 @@ click = [
     {file = "click-7.1.1.tar.gz", hash = "sha256:8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc"},
 ]
 dependencies = [
-    {file = "dependencies-1.0.0-py2.py3-none-any.whl", hash = "sha256:b9f643047344c18f738576640aa8dad7f261b1ba3460a1299735fd436a9d197e"},
-    {file = "dependencies-1.0.0.tar.gz", hash = "sha256:b8dbd7560ac0de0f83ecca19c330235993edc1de63b1745841000a39b60f7ff6"},
+    {file = "dependencies-1.0.1-py2.py3-none-any.whl", hash = "sha256:ffe1a939eb244bcdf89542ce219d85de1147f45e56e659201e04fde36bfc4b30"},
+    {file = "dependencies-1.0.1.tar.gz", hash = "sha256:a224ef54538c726d38111126d025065a556a08945e35231de5926e6daaf88fa4"},
 ]
 distlib = [
     {file = "distlib-0.3.0.zip", hash = "sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21"},
