@@ -11,10 +11,12 @@ mkdocs = "^1.1"
 mkdocs-material = "^4.6.3"
 
 [tool.poetry.dev-dependencies]
+attrs = "^19.3.0"
 dependencies = "^1.0"
 django = "^3.0.5"
 flake8 = "^3.7.9"
 invoke = "^1.4.0"
+mappers = "^1.0.2"
 pre-commit = "^2.2.0"
 stories = "^0.14.0"
 yamllint = "^1.21.0"

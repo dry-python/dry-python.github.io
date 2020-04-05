@@ -1,14 +1,13 @@
-import builtins
-import sys
 from doctest import testfile
 from glob import glob
-from unittest import mock
+from sys import exit
+from sys import modules
+from unittest.mock import Mock
 
 
 def _setup():
-    sys.modules["app.views"] = mock.Mock()
-    builtins.path = mock.Mock()
-    builtins.workflows = mock.Mock()
+    modules["project.db.models"] = Mock()
+    modules["project.web.forms"] = Mock()
 
 
 def _main():
@@ -17,7 +16,7 @@ def _main():
     for markdown_file in markdown_files:
         failed, attempted = testfile(markdown_file, module_relative=False)
         exit_code += failed
-    sys.exit(exit_code)
+    exit(exit_code)
 
 
 if __name__ == "__main__":
