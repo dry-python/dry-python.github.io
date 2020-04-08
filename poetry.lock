@@ -232,13 +232,13 @@ description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
 python-versions = "*"
-version = "4.6.3"
+version = "5.0.1"
 
 [package.dependencies]
 Pygments = ">=2.4"
 markdown = ">=3.2"
-mkdocs = ">=1.0"
-pymdown-extensions = ">=6.3"
+mkdocs = ">=1.1"
+pymdown-extensions = ">=7.0"
 
 [[package]]
 category = "main"
@@ -416,7 +416,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "cd51f35dc2fd14d71233550b4a8bf5e92a3d5c4f49a5fc02df8d151542a52678"
+content-hash = "b018dfb4cc38ff0daa9a773c57f4b580d1e2839c32cd9e3d33543738286c5def"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -534,8 +534,8 @@ mkdocs = [
     {file = "mkdocs-1.1.tar.gz", hash = "sha256:9243291392f59e20b655e4e46210233453faf97787c2cf72176510e868143174"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-4.6.3.tar.gz", hash = "sha256:1d486635b03f5a2ec87325842f7b10c7ae7daa0eef76b185572eece6a6ea212c"},
-    {file = "mkdocs_material-4.6.3-py2.py3-none-any.whl", hash = "sha256:7f3afa0a09c07d0b89a6a9755fdb00513aee8f0cec3538bb903325c80f66f444"},
+    {file = "mkdocs-material-5.0.1.tar.gz", hash = "sha256:0a3ef09776d8160a1de322065d68cc05672ac47052733665fa405e8c8f263115"},
+    {file = "mkdocs_material-5.0.1-py2.py3-none-any.whl", hash = "sha256:a16b7dbb2704fc911d9705881a66dba15136e1b8c2b818ba08faabfd60192155"},
 ]
 nltk = [
     {file = "nltk-3.4.5.win32.exe", hash = "sha256:a08bdb4b8a1c13de16743068d9eb61c8c71c2e5d642e8e08205c528035843f82"},
