@@ -232,13 +232,25 @@ description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
 python-versions = "*"
-version = "5.0.1"
+version = "5.1.0"
 
 [package.dependencies]
 Pygments = ">=2.4"
 markdown = ">=3.2"
 mkdocs = ">=1.1"
+mkdocs-material-extensions = ">=1.0b1"
 pymdown-extensions = ">=7.0"
+
+[[package]]
+category = "main"
+description = "Extension pack for Python Markdown."
+name = "mkdocs-material-extensions"
+optional = false
+python-versions = ">=3.5"
+version = "1.0b1"
+
+[package.dependencies]
+mkdocs-material = ">=5.0.0"
 
 [[package]]
 category = "main"
@@ -416,7 +428,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "b018dfb4cc38ff0daa9a773c57f4b580d1e2839c32cd9e3d33543738286c5def"
+content-hash = "9454ffaad5c38d3d36693e6a5b9a8ae47054cabfd47ea962b995c6a3915c6a5a"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -534,8 +546,12 @@ mkdocs = [
     {file = "mkdocs-1.1.tar.gz", hash = "sha256:9243291392f59e20b655e4e46210233453faf97787c2cf72176510e868143174"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-5.0.1.tar.gz", hash = "sha256:0a3ef09776d8160a1de322065d68cc05672ac47052733665fa405e8c8f263115"},
-    {file = "mkdocs_material-5.0.1-py2.py3-none-any.whl", hash = "sha256:a16b7dbb2704fc911d9705881a66dba15136e1b8c2b818ba08faabfd60192155"},
+    {file = "mkdocs-material-5.1.0.tar.gz", hash = "sha256:fb8ffa2b1779efad4f57206456bb480980f06c4e38260ea449ff4361531b17f1"},
+    {file = "mkdocs_material-5.1.0-py2.py3-none-any.whl", hash = "sha256:5dd84931447281d48694b7bc6401cafdca0237c967df7801ec5240385e64ce58"},
+]
+mkdocs-material-extensions = [
+    {file = "mkdocs-material-extensions-1.0b1.tar.gz", hash = "sha256:8aaf3b1e81bdc503cb73bb90f91e7e635be5f54397bb22fb60d68b247cd8f7bd"},
+    {file = "mkdocs_material_extensions-1.0b1-py3-none-any.whl", hash = "sha256:a5f4d995923381e0dbfa36919dc7004fd0a69e3e0027058b153cc04d5f725f47"},
 ]
 nltk = [
     {file = "nltk-3.4.5.win32.exe", hash = "sha256:a08bdb4b8a1c13de16743068d9eb61c8c71c2e5d642e8e08205c528035843f82"},
