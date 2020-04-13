@@ -7,14 +7,14 @@ authors = ["Artem Malyshev <proofit404@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 ghp-import = "^0.5.5"
-mkdocs = "^1.0.4"
-mkdocs-material = "^4.6.3"
+mkdocs = "^1.1"
+mkdocs-material = "^5.1.0"
 
 [tool.poetry.dev-dependencies]
-dependencies = "^0.15"
-django = "^3.0.3"
+dependencies = "^1.0"
+django = "^3.0.5"
 flake8 = "^3.7.9"
 invoke = "^1.4.0"
-pre-commit = "^1.21.0"
+pre-commit = "^2.2.0"
 stories = "^0.14.0"
 yamllint = "^1.21.0"
