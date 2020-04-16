@@ -451,14 +451,14 @@ description = "A linter for YAML files."
 name = "yamllint"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-version = "1.21.0"
+version = "1.22.1"
 
 [package.dependencies]
 pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "9454ffaad5c38d3d36693e6a5b9a8ae47054cabfd47ea962b995c6a3915c6a5a"
+content-hash = "3151843f2475234d117e615c8fb9e3dd8dac7e0d48cbbbcb81c260df475efa96"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -694,6 +694,6 @@ virtualenv = [
     {file = "virtualenv-20.0.17.tar.gz", hash = "sha256:c8364ec469084046c779c9a11ae6340094e8a0bf1d844330fc55c1cefe67c172"},
 ]
 yamllint = [
-    {file = "yamllint-1.21.0-py2.py3-none-any.whl", hash = "sha256:09d554bafc57beb22b01619c94e1ba0e8fbb016fa9c1b35ddc68d7bfc16d177f"},
-    {file = "yamllint-1.21.0.tar.gz", hash = "sha256:7e1e698b3d344b64bc46cbe8c4df7dfdfe7c00ed1a8d1c851ecd5b552d93d193"},
+    {file = "yamllint-1.22.1-py2.py3-none-any.whl", hash = "sha256:1b0dfb4f5679ca3effcfa9c67d2d79f81e4b8239a725ad9f0118bdd8f5b36d8f"},
+    {file = "yamllint-1.22.1.tar.gz", hash = "sha256:dd8eb7540e6fd929494280a4def7dc76c1f802d43446a0b612c19b850d70945e"},
 ]
