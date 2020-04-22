@@ -255,7 +255,7 @@ description = "Extension pack for Python Markdown."
 name = "mkdocs-material-extensions"
 optional = false
 python-versions = ">=3.5"
-version = "1.0b1"
+version = "1.0b2"
 
 [package.dependencies]
 mkdocs-material = ">=5.0.0"
@@ -581,8 +581,8 @@ mkdocs-material = [
     {file = "mkdocs_material-5.1.0-py2.py3-none-any.whl", hash = "sha256:5dd84931447281d48694b7bc6401cafdca0237c967df7801ec5240385e64ce58"},
 ]
 mkdocs-material-extensions = [
-    {file = "mkdocs-material-extensions-1.0b1.tar.gz", hash = "sha256:8aaf3b1e81bdc503cb73bb90f91e7e635be5f54397bb22fb60d68b247cd8f7bd"},
-    {file = "mkdocs_material_extensions-1.0b1-py3-none-any.whl", hash = "sha256:a5f4d995923381e0dbfa36919dc7004fd0a69e3e0027058b153cc04d5f725f47"},
+    {file = "mkdocs-material-extensions-1.0b2.tar.gz", hash = "sha256:838580195f3f4d6c937238b1ce81365744348bca8bb2c694028aacf21bfac518"},
+    {file = "mkdocs_material_extensions-1.0b2-py3-none-any.whl", hash = "sha256:f2557ab830c2ecc0306a0741d7d943f7036b5fb167a5a92850ee6a1c9ce51d5a"},
 ]
 nltk = [
     {file = "nltk-3.5.zip", hash = "sha256:845365449cd8c5f9731f7cb9f8bd6fd0767553b9d53af9eb1b3abf7700936b35"},
