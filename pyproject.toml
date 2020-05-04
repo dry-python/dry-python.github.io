@@ -12,7 +12,7 @@ mkdocs-material = "^5.1.5"
 
 [tool.poetry.dev-dependencies]
 dependencies = "^1.0"
-django = "^3.0.5"
+django = "^3.0.6"
 flake8 = "^3.7.9"
 invoke = "^1.4.0"
 pre-commit = "^2.3.0"
