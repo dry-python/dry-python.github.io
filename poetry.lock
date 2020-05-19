@@ -239,13 +239,13 @@ description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
 python-versions = "*"
-version = "5.1.6"
+version = "5.2.0"
 
 [package.dependencies]
 Pygments = ">=2.4"
 markdown = ">=3.2"
 mkdocs = ">=1.1"
-mkdocs-material-extensions = ">=1.0b1"
+mkdocs-material-extensions = ">=1.0"
 pymdown-extensions = ">=7.0"
 
 [[package]]
@@ -254,7 +254,7 @@ description = "Extension pack for Python Markdown."
 name = "mkdocs-material-extensions"
 optional = false
 python-versions = ">=3.5"
-version = "1.0b2"
+version = "1.0"
 
 [package.dependencies]
 mkdocs-material = ">=5.0.0"
@@ -457,7 +457,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "2018859b70f9edd0b359df3c05a1ab2be36702c9e5cc411aada9baf3162c2911"
+content-hash = "4203c943c39e32c34c48e76c13a1a2cd4bae57acdf690149a79f4c706d4b3078"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -579,12 +579,12 @@ mkdocs = [
     {file = "mkdocs-1.1.2.tar.gz", hash = "sha256:f0b61e5402b99d7789efa032c7a74c90a20220a9c81749da06dbfbcbd52ffb39"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-5.1.6.tar.gz", hash = "sha256:a50180157d0fb539022f8476e3220e45934610fc1d61f54efa6fe266681cb202"},
-    {file = "mkdocs_material-5.1.6-py2.py3-none-any.whl", hash = "sha256:e6678eac0aec6f50ed44042d00a985c4256a3148e1a560914a934de956210e6c"},
+    {file = "mkdocs-material-5.2.0.tar.gz", hash = "sha256:7a8a1b48de0cda1c623f0b590cadabe2b462942f0f9b29aee804a4cd2c1b2869"},
+    {file = "mkdocs_material-5.2.0-py2.py3-none-any.whl", hash = "sha256:f086388007322fc07a80359792886189aaf945bea41d705ee3905fa44abd7a07"},
 ]
 mkdocs-material-extensions = [
-    {file = "mkdocs-material-extensions-1.0b2.tar.gz", hash = "sha256:838580195f3f4d6c937238b1ce81365744348bca8bb2c694028aacf21bfac518"},
-    {file = "mkdocs_material_extensions-1.0b2-py3-none-any.whl", hash = "sha256:f2557ab830c2ecc0306a0741d7d943f7036b5fb167a5a92850ee6a1c9ce51d5a"},
+    {file = "mkdocs-material-extensions-1.0.tar.gz", hash = "sha256:17d7491e189af75700310b7ec33c6c48a22060b8b445001deca040cb60471cde"},
+    {file = "mkdocs_material_extensions-1.0-py3-none-any.whl", hash = "sha256:09569c3694b5acc1e8334c9730e52b4bcde65fc9d613cc20e49af131ef1a9ca0"},
 ]
 nltk = [
     {file = "nltk-3.5.zip", hash = "sha256:845365449cd8c5f9731f7cb9f8bd6fd0767553b9d53af9eb1b3abf7700936b35"},
