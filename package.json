@@ -27,7 +27,7 @@
     "remark-preset-lint-recommended": "*",
     "stylelint": "^13.4.0",
     "stylelint-config-prettier": "^8.0.1",
-    "typescript": "^3.8.3",
+    "typescript": "^3.9.2",
     "typescript-language-server": "^0.4.0",
     "vscode-css-languageserver-bin": "^1.4.0",
     "vscode-html-languageserver-bin": "^1.4.0",
