@@ -230,7 +230,7 @@ description = "A Material Design theme for MkDocs"
 name = "mkdocs-material"
 optional = false
 python-versions = "*"
-version = "5.2.1"
+version = "5.2.2"
 
 [package.dependencies]
 Pygments = ">=2.4"
@@ -448,7 +448,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "63d188a78a89ebd6e8635a01701cd3ef9eaa873e3badac771fb630a25cfd6d01"
+content-hash = "5ca7678dff2bccbcd1ea24c68fbc13c0dbd4ed9ff2fabc2f1190bddddcac538d"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -566,8 +566,8 @@ mkdocs = [
     {file = "mkdocs-1.1.2.tar.gz", hash = "sha256:f0b61e5402b99d7789efa032c7a74c90a20220a9c81749da06dbfbcbd52ffb39"},
 ]
 mkdocs-material = [
-    {file = "mkdocs-material-5.2.1.tar.gz", hash = "sha256:0ddb543f9d3bd429fedf8b6224f1f18a88d3d33b29737bee9a404eba3a31eb4e"},
-    {file = "mkdocs_material-5.2.1-py2.py3-none-any.whl", hash = "sha256:92fd4606442153075f05601d81c8129a43885ca130e3f0c050e4b8467f3cdc16"},
+    {file = "mkdocs-material-5.2.2.tar.gz", hash = "sha256:381d35fe2fc80773c6c94fe18622f29719ed15719f968b14c2a628a41489b9ab"},
+    {file = "mkdocs_material-5.2.2-py2.py3-none-any.whl", hash = "sha256:c896bfb8d7c52caeac423aa5b210828c317aa7a0916ab02ee1ada242edc5c813"},
 ]
 mkdocs-material-extensions = [
     {file = "mkdocs-material-extensions-1.0.tar.gz", hash = "sha256:17d7491e189af75700310b7ec33c6c48a22060b8b445001deca040cb60471cde"},
