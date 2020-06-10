@@ -298,7 +298,7 @@ description = "A framework for managing and maintaining multi-language pre-commi
 name = "pre-commit"
 optional = false
 python-versions = ">=3.6.1"
-version = "2.5.0"
+version = "2.5.1"
 
 [package.dependencies]
 cfgv = ">=2.0.0"
@@ -451,7 +451,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "af0b9bddc3ce6d8c5e571663fbc97085328b8d47c31b203629409a85dedf7adf"
+content-hash = "6cfe784b4ac872b525127018e73fd561280fcba0378c1d32780735906899f19e"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -586,8 +586,8 @@ pathspec = [
     {file = "pathspec-0.8.0.tar.gz", hash = "sha256:da45173eb3a6f2a5a487efba21f050af2b41948be6ab52b6a1e3ff22bb8b7061"},
 ]
 pre-commit = [
-    {file = "pre_commit-2.5.0-py2.py3-none-any.whl", hash = "sha256:e02328d2a61dc6e0b20a40b6eecda2655b998fed7f561cac5993cbd8bdb3fbde"},
-    {file = "pre_commit-2.5.0.tar.gz", hash = "sha256:3f16110d2e5136de8bae11a32e496cc193a68cf02bcf11dba61d8e6aff06efc5"},
+    {file = "pre_commit-2.5.1-py2.py3-none-any.whl", hash = "sha256:c5c8fd4d0e1c363723aaf0a8f9cba0f434c160b48c4028f4bae6d219177945b3"},
+    {file = "pre_commit-2.5.1.tar.gz", hash = "sha256:da463cf8f0e257f9af49047ba514f6b90dbd9b4f92f4c8847a3ccd36834874c7"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.6.0-py2.py3-none-any.whl", hash = "sha256:2295e7b2f6b5bd100585ebcb1f616591b652db8a741695b3d8f5d28bdc934367"},
