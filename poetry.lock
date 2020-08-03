@@ -390,7 +390,7 @@ description = "Define a user story in the business transaction DSL"
 name = "stories"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "1.0.0"
+version = "1.0.2"
 
 [[package]]
 category = "dev"
@@ -451,7 +451,7 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "c11233fc00322ed5a6a18a679744e6b2c8a51a773630029e07ce7a71889124ab"
+content-hash = "23e8d3e74caa0e3546de7de4b108339d02adad6efef8359a062fa9a83a87bb58"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -654,8 +654,8 @@ sqlparse = [
     {file = "sqlparse-0.3.1.tar.gz", hash = "sha256:e162203737712307dfe78860cc56c8da8a852ab2ee33750e33aeadf38d12c548"},
 ]
 stories = [
-    {file = "stories-1.0.0-py2.py3-none-any.whl", hash = "sha256:fc63485ed291b8ec73e6a742a4894af514d362f7a2e77a183feb7f3f504806dc"},
-    {file = "stories-1.0.0.tar.gz", hash = "sha256:f0f6a8bf1c8b480715cdd855be4c1cb68131892434d2b32a3510f69638825b6e"},
+    {file = "stories-1.0.2-py2.py3-none-any.whl", hash = "sha256:ed3baff24bb65033873862d33f7b8ba316fd2c4a7f5838bb7dc7fff39aa57ab6"},
+    {file = "stories-1.0.2.tar.gz", hash = "sha256:d4f49c1cdbb477e0f0ef836f3f0e00be36d26ee979e90e0c1ad12af0df2a07f4"},
 ]
 toml = [
     {file = "toml-0.10.1-py2.py3-none-any.whl", hash = "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"},
