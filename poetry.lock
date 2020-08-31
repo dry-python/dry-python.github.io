@@ -389,8 +389,8 @@ category = "dev"
 description = "Define a user story in the business transaction DSL"
 name = "stories"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
-version = "1.0.0"
+python-versions = ">=3.6,<4.0"
+version = "2.0.0"
 
 [[package]]
 category = "dev"
@@ -451,7 +451,8 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "c11233fc00322ed5a6a18a679744e6b2c8a51a773630029e07ce7a71889124ab"
+content-hash = "61363bf0965c0288a16ce520854be9b635280b508b69ff86d9cb294f2152c5c9"
+lock-version = "1.0"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -580,6 +581,7 @@ nltk = [
 ]
 nodeenv = [
     {file = "nodeenv-1.4.0-py2.py3-none-any.whl", hash = "sha256:4b0b77afa3ba9b54f4b6396e60b0c83f59eaeb2d63dc3cc7a70f7f4af96c82bc"},
+    {file = "nodeenv-1.4.0.tar.gz", hash = "sha256:26941644654d8dd5378720e38f62a3bac5f9240811fb3b8913d2663a17baa91c"},
 ]
 pathspec = [
     {file = "pathspec-0.8.0-py2.py3-none-any.whl", hash = "sha256:7d91249d21749788d07a2d0f94147accd8f845507400749ea19c1ec9054a12b0"},
@@ -654,8 +656,8 @@ sqlparse = [
     {file = "sqlparse-0.3.1.tar.gz", hash = "sha256:e162203737712307dfe78860cc56c8da8a852ab2ee33750e33aeadf38d12c548"},
 ]
 stories = [
-    {file = "stories-1.0.0-py2.py3-none-any.whl", hash = "sha256:fc63485ed291b8ec73e6a742a4894af514d362f7a2e77a183feb7f3f504806dc"},
-    {file = "stories-1.0.0.tar.gz", hash = "sha256:f0f6a8bf1c8b480715cdd855be4c1cb68131892434d2b32a3510f69638825b6e"},
+    {file = "stories-2.0.0-py3-none-any.whl", hash = "sha256:0adb2d1542c77159cd652155e6329c4b256c2feb75e8eaa05e61b3c711825779"},
+    {file = "stories-2.0.0.tar.gz", hash = "sha256:b1ee4cb55ec01af2707983f6a57cc0b8862b844ecef7ce8ee5cfabe71d692def"},
 ]
 toml = [
     {file = "toml-0.10.1-py2.py3-none-any.whl", hash = "sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88"},
