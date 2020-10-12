@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "highlight.js": "^10.1.1",
-    "reveal.js": "^3.9.2"
+    "reveal.js": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
