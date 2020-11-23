@@ -7,7 +7,7 @@
     "reveal.js": "^3.9.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
+    "@babel/core": "^7.12.7",
     "@babel/preset-env": "^7.10.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
