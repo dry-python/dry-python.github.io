@@ -3,7 +3,7 @@
   "author": "Artem Malyshev",
   "private": true,
   "dependencies": {
-    "highlight.js": "^10.1.1",
+    "highlight.js": "^10.1.2",
     "reveal.js": "^3.9.2"
   },
   "devDependencies": {
